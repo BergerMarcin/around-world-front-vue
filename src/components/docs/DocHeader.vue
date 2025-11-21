@@ -1,16 +1,10 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green">Around World</h1>
     <h3>
-      You’ve successfully created a project with
+      Project created with
       <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>
     </h3>
   </div>
 </template>
@@ -25,6 +19,10 @@ h1 {
 
 h3 {
   font-size: 1.2rem;
+}
+
+.greetings {
+  margin-bottom: 2rem;
 }
 
 .greetings h1,
