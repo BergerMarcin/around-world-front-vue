@@ -4,7 +4,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo-around-world.png" width="100"/>
+    <img alt="Vue logo" class="logo" src="@/assets/logo-vue.svg" width="40" height="40" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo-vite.svg" width="40" height="40" />
 
     <div class="wrapper">
       <nav>
@@ -62,7 +64,7 @@ nav a:first-of-type {
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    margin: 0 1.5rem 0 0;
   }
 
   header .wrapper {
