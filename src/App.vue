@@ -4,11 +4,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo-around-world.png" width="100"/>
-    <img alt="Vue logo" class="logo" src="@/assets/logo-vue.svg" width="40" height="40" />
-    <img alt="Vue logo" class="logo" src="@/assets/logo-vite.svg" width="40" height="40" />
+    <div>
+      <img alt="Around World app logo" class="logo" src="@/assets/logo-around-world.svg" height="25" />
+      <img alt="Vue logo" class="logo" src="@/assets/logo-vue.svg" height="20" width="20" />
+      <img alt="Vite logo" class="logo" src="@/assets/logo-vite.svg" height="20" width="20" />
+    </div>
 
-    <div class="wrapper">
+    <div class="nav-wrapper">
       <nav>
         <RouterLink to="/">Start</RouterLink>
         <RouterLink to="/project-dev-docs">Project Dev Docs</RouterLink>
@@ -21,25 +23,30 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
-  padding-bottom: 2rem;
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  margin: 0 0.25rem;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 1rem;
   text-align: center;
-  margin-top: 2rem;
+}
+
+.nav-wrapper {
+  display: flex;
+  place-items: flex-start;
+  flex-wrap: wrap;
 }
 
 nav a.router-link-exact-active {
   color: var(--color-text);
+  cursor: default;
 }
 
 nav a.router-link-exact-active:hover {
@@ -54,32 +61,5 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: 2rem;
-  }
-
-  .logo {
-    margin: 0 1.5rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>
