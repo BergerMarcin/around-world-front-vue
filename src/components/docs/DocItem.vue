@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <li class="item">
     <i>
       <slot name="icon"></slot>
     </i>
@@ -9,7 +9,7 @@
       </h3>
       <slot></slot>
     </div>
-  </div>
+  </li>
 </template>
 
 <style scoped>
@@ -44,7 +44,8 @@ h3 {
 @media (min-width: 1024px) {
   .item {
     margin-top: 0;
-    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
+    margin-left: 2rem;
+    padding: 0.4rem 1rem 1rem calc(var(--section-gap) / 5);
   }
 
   i {
