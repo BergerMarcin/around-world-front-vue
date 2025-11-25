@@ -15,4 +15,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  // Enable server to be accessible over the wifi (especially on mobile devices)
+  server: {
+    host: true,
+  },
 })
