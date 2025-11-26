@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import { provide, type ShallowRef, useTemplateRef } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Logos from '@/components/logos/Logos.vue'
+
+const logsContainer: Readonly<ShallowRef<HTMLElement | null>> = useTemplateRef('logsContainer')
+provide('logsContainer', logsContainer)
 </script>
 
 <template>
   <header>
     <Logos />
+
+    <div ref="logsContainer" style="font-size: 8px"></div>
 
     <div class="nav-container">
       <nav>

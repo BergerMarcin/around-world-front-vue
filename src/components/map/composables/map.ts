@@ -1,4 +1,4 @@
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 import Leaflet from 'leaflet'
@@ -11,7 +11,11 @@ export interface UseMapOptions {
   zoom?: number
 }
 
-export function useMap(options?: UseMapOptions): Ref<Map | undefined> {
+export function useMap(options?: UseMapOptions): {
+  map: Ref<Map | undefined>
+  mountMap: () => void
+  unmountMap: () => void
+} {
   const { containerId, center, zoom } = {
     containerId: 'mapContainer',
     center: [51.505, -0.09] as LatLngTuple,
@@ -21,19 +25,19 @@ export function useMap(options?: UseMapOptions): Ref<Map | undefined> {
 
   const map = ref<Map | undefined>()
 
-  onMounted(() => {
+  function mountMap(): void {
     map.value = Leaflet.map(containerId).setView(center, zoom)
 
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map.value)
-  })
+  }
 
-  onBeforeUnmount(() => {
+  function unmountMap(): void {
     if (map.value) {
       map.value.remove()
     }
-  })
+  }
 
-  return map
+  return { map, mountMap, unmountMap }
 }

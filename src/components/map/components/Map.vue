@@ -1,30 +1,18 @@
 <script setup lang="ts">
-import { onMounted, toRaw } from 'vue'
-import Leaflet from 'leaflet'
-import { useMap } from '../composables/useMap'
+import { onBeforeUnmount, onMounted } from 'vue'
+import { useMap } from '../composables/map'
+import { useHotels } from '../composables/hotels'
 
-const map = useMap({ center: [51.505, 19] })
+const { map, mountMap, unmountMap } = useMap({ center: [51.505, -0.09], zoom: 13 })
+const { hotels, bindHotelsMarkers, unbindHotelsMarkers } = useHotels()
 
 onMounted(() => {
-  Leaflet.marker([51.5, -0.09])
-    .addTo(toRaw(map.value)!)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .on('mouseover', function (this: Leaflet.Marker) {
-      this.openPopup()
-      console.log('mouseover')
-    })
-    .on('mouseout', function (this: Leaflet.Marker) {
-      this.closePopup()
-      console.log('mouseout')
-    })
-    .on('touchstart', function (this: Leaflet.Marker) {
-      this.openPopup()
-      console.log('touchstart')
-    })
-    .on('touchend', function (this: Leaflet.Marker) {
-      this.closePopup()
-      console.log('touchend')
-    })
+  mountMap()
+  bindHotelsMarkers(map)
+})
+onBeforeUnmount(() => {
+  unbindHotelsMarkers(map)
+  unmountMap()
 })
 </script>
 
