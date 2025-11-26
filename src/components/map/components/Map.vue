@@ -10,6 +10,7 @@ onMounted(() => {
   mountMap()
   bindHotelsMarkers(map)
 })
+
 onBeforeUnmount(() => {
   unbindHotelsMarkers(map)
   unmountMap()

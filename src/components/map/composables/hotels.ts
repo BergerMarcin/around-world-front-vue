@@ -1,7 +1,8 @@
-import { ref, inject } from 'vue'
-import type { Ref, ShallowRef } from 'vue'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 import Leaflet from 'leaflet'
 import type { LatLngTuple, Map } from 'leaflet'
+import { useLogger } from '@/utils/logger'
 
 export interface Hotel {
   localisation: LatLngTuple
@@ -13,7 +14,7 @@ export function useHotels(initial?: Hotel[]): {
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
 } {
-  const logsContainer: Readonly<ShallowRef<HTMLElement | null>> | undefined = inject('logsContainer')
+  const { logHotelEvent } = useLogger()
 
   const hotels: Ref<Hotel[]> = ref(
     initial || [
@@ -22,16 +23,6 @@ export function useHotels(initial?: Hotel[]): {
       { localisation: [51.49, -0.08], name: 'Hotel 3' },
     ],
   )
-
-  function logHotelEvent(logText: string): void {
-    console.log(logText)
-    if (import.meta.env.DEV) {
-      const el = logsContainer?.value
-      if (el) {
-        el.innerText += ` | ${logText}`
-      }
-    }
-  }
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {
@@ -58,7 +49,7 @@ export function useHotels(initial?: Hotel[]): {
             setTimeout(() => {
               const isHoveringPopup = !!el && el.matches(':hover')
               if (!isHoveringPopup) {
-                (this as Leaflet.Marker).closePopup()
+                this.closePopup()
                 logHotelEvent(`Mouseout hotel marker ${hotel.name} (closed after 300ms)`)
               } else {
                 // If currently hovering popup, close when user leaves the popup element
@@ -67,7 +58,7 @@ export function useHotels(initial?: Hotel[]): {
                   el.dataset.leaveBound = 'true'
                   const onLeave = () => {
                     delete el.dataset.leaveBound
-                    ;(this as Leaflet.Marker).closePopup()
+                    this.closePopup()
                     logHotelEvent(`Popup mouseleave -> closed ${hotel.name}`)
                   }
                   el.addEventListener('mouseleave', onLeave, { once: true })
