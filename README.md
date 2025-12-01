@@ -1,6 +1,12 @@
 # around-world-front-vue
 
-This template should help get you started developing with Vue 3 in Vite.
+✈️ 🌐️ Travel around the world! 🌍️ 🛌️ Find your hotel! 🏄‍♀️️ 🏖️
+
+This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with **Vite** build tool.
+
+<hr/>
+
+# DEV
 
 ## Recommended IDE Setup
 
