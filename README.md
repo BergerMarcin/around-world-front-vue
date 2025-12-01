@@ -4,7 +4,43 @@
 
 This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with **Vite** build tool.
 
-<hr/>
+## 🛣️ Roadmap (FE & BE) 🚧
+
+### FE part 1 - basic functionalities
+
+1. Try implementation of `vue-leaflet` thought stoped development of this package (insted custom applying `leaflet` in Vue3)
+2. Create local JSON-server as source of hotel data
+3. Move hotels to `store` (`Pinia`)
+4. Add cart to `store`
+5. TS typing of hotels & cart.
+6. Markers of added to cart hotels (red-orange i.e. some nice color)
+7. Hotel popup element with image, price, range
+8. Hotel modal on popup click. Modal with hotel details & ATC (add-to-cart).
+9. Cart modal with remove-item & buy-all CTA buttons
+---
+10. Scrape hotel data & add to JSON-fixture
+11. Add searching by `localization` & `date` & `dateAccurancy` (add them to `store`)
+
+### BE & DB
+
+1. Create non-SQL `Mongo DB` with hotel data
+2. Move data from JSON to DB
+3. Create server `express.js`
+4. Connect server with DB
+5. Create endpoint:
+
+- hotels?latRange&lngRange&dateRange&dateAccurancy&
+
+6. Add JWT token
+7. Basic unit-tests
+
+### FE part 2
+
+1. Move hotels from JSON-server to BE
+2. Basic unit-tests
+3. Basic e2e tests (Playwright)
+
+<hr/><br/><br/>
 
 # DEV
 
@@ -15,7 +51,7 @@ This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with
 ## Recommended Browser Setup
 
 - Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
   - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
 - Firefox:
   - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
