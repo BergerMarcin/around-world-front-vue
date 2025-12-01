@@ -34,7 +34,7 @@ export function useLogger() {
     }
   }
 
-  function devLog(...args: any[]): void {
+  function devLog(...args: unknown[]): void {
     if (!(import.meta.env.DEV && import.meta.env.VITE_LOG === 'true' && args.length)) {
       return
     }

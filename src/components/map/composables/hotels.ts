@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 import Leaflet from 'leaflet'
 import type { LatLngTuple, Map } from 'leaflet'
-import { useLogger, LogLevel } from '@/utils/logger'
+import { LogLevel, useLogger } from '@/utils/logger'
 
 export interface Hotel {
   localisation: LatLngTuple
