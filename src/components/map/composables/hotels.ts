@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 import Leaflet from 'leaflet'
 import type { LatLngTuple, Map } from 'leaflet'
-import { useLogger } from '@/utils/logger'
+import { useLogger, LogLevel } from '@/utils/logger'
 
 export interface Hotel {
   localisation: LatLngTuple
@@ -14,7 +14,7 @@ export function useHotels(initial?: Hotel[]): {
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
 } {
-  const { logHotelEvent } = useLogger()
+  const { devLog } = useLogger()
 
   const hotels: Ref<Hotel[]> = ref(
     initial || [
@@ -40,28 +40,28 @@ export function useHotels(initial?: Hotel[]): {
         marker
           .on('mouseover', function (this: Leaflet.Marker) {
             this.openPopup()
-            logHotelEvent(`Mouseover hotel marker ${hotel.name}`)
+            devLog(`Mouseover hotel marker ${hotel.name}`)
           })
           .on('mouseout', function (this: Leaflet.Marker) {
             const popup = this.getPopup()
-            const el = popup?.getElement() || undefined
+            const popupElem = popup?.getElement() || undefined
             // Delay close to allow hover over popup
             setTimeout(() => {
-              const isHoveringPopup = !!el && el.matches(':hover')
+              const isHoveringPopup = !!popupElem && popupElem.matches(':hover')
               if (!isHoveringPopup) {
                 this.closePopup()
-                logHotelEvent(`Mouseout hotel marker ${hotel.name} (closed after 300ms)`)
+                devLog(LogLevel.warn, `Mouseout hotel marker ${hotel.name} (closed after 300ms)`)
               } else {
                 // If currently hovering popup, close when user leaves the popup element
-                logHotelEvent(`Mouseout ignored: hovering popup for ${hotel.name}`)
-                if (el && !el.dataset.leaveBound) {
-                  el.dataset.leaveBound = 'true'
+                devLog(`Mouseout ignored: hovering popup for ${hotel.name}`)
+                if (popupElem && !popupElem.dataset.leaveBound) {
+                  popupElem.dataset.leaveBound = 'true'
                   const onLeave = () => {
-                    delete el.dataset.leaveBound
+                    delete popupElem.dataset.leaveBound
                     this.closePopup()
-                    logHotelEvent(`Popup mouseleave -> closed ${hotel.name}`)
+                    devLog(LogLevel.error, `Popup mouseleave -> closed ${hotel.name}`)
                   }
-                  el.addEventListener('mouseleave', onLeave, { once: true })
+                  popupElem.addEventListener('mouseleave', onLeave, { once: true })
                 }
               }
             }, 300)
