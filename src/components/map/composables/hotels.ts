@@ -1,28 +1,20 @@
-import { ref } from 'vue'
+import { computed } from 'vue'
 import type { Ref } from 'vue'
 import Leaflet from 'leaflet'
-import type { LatLngTuple, Map } from 'leaflet'
+import type { Map } from 'leaflet'
 import { LogLevel, useLogger } from '@/utils/logger'
+import { useHotelsStore } from '@/stores/hotels-store'
+import type { Hotel } from '@/types'
 
-export interface Hotel {
-  localisation: LatLngTuple
-  name: string
-}
-
-export function useHotels(initial?: Hotel[]): {
+export function useHotels(): {
   hotels: Ref<Hotel[]>
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
 } {
   const { devLog } = useLogger()
+  const hotelsStore = useHotelsStore()
 
-  const hotels: Ref<Hotel[]> = ref(
-    initial || [
-      { localisation: [51.5, -0.09], name: 'Hotel 1' },
-      { localisation: [51.51, -0.1], name: 'Hotel 2' },
-      { localisation: [51.49, -0.08], name: 'Hotel 3' },
-    ],
-  )
+  const hotels: Ref<Hotel[]> = computed(() => hotelsStore.hotels)
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {

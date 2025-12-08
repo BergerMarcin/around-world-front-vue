@@ -2,12 +2,15 @@
 import { onBeforeUnmount, onMounted } from 'vue'
 import { useMap } from '../composables/map'
 import { useHotels } from '../composables/hotels'
+import { useHotelsStore } from '@/stores/hotels-store'
 
 const { map, mountMap, unmountMap } = useMap({ center: [51.505, -0.09] })
-const { hotels, bindHotelsMarkers, unbindHotelsMarkers } = useHotels()
+const { bindHotelsMarkers, unbindHotelsMarkers } = useHotels()
+const hotelsStore = useHotelsStore()
 
-onMounted(() => {
+onMounted(async () => {
   mountMap()
+  await hotelsStore.fetchHotels()
   bindHotelsMarkers(map)
 })
 
