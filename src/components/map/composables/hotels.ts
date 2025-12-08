@@ -29,7 +29,6 @@ export function useHotels(initial?: Hotel[]): {
       return
     }
 
-    // Detect if device supports touch
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 
     hotels.value.forEach((hotel) => {

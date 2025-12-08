@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 import Leaflet from 'leaflet'
-import type { LatLngTuple, Map } from 'leaflet'
+import type { LatLngTuple, Map, MapOptions } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 export interface UseMapOptions {
@@ -26,7 +26,14 @@ export function useMap(options?: UseMapOptions): {
   const map = ref<Map | undefined>()
 
   function mountMap(): void {
-    map.value = Leaflet.map(containerId).setView(center, zoom)
+    const mapOptions: MapOptions = {
+      attributionControl: false,
+      maxBounds: [
+        [-90, -180],
+        [90, 180],
+      ],
+    }
+    map.value = Leaflet.map(containerId, mapOptions).setView(center, zoom)
 
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
