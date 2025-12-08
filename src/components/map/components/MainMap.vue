@@ -1,10 +1,16 @@
 <script setup lang="ts">
 // TODO: Remove later on as `vue-leaflet` adding another layer of complexity
 import { ref, useTemplateRef, watch } from 'vue'
+import type { Ref } from 'vue'
 import { LMap, LMarker, LPopup, LTileLayer } from '@vue-leaflet/vue-leaflet'
+import type { LatLngTuple } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { useHotels } from '../composables/hotels'
 import { useLogger } from '@/utils/logger'
+
+export interface HotelForVueLeaflet {
+  localisation: LatLngTuple
+  name: string
+}
 
 /* NOTE:  Required here (instead onMounted) calculation `minZoom` to set `zoom` initial value.
           If calculated onMounted then `zoom` set value with `minZoom` is not taking by `LMap` component.
@@ -30,7 +36,11 @@ console.log(
 )
 const zoom = ref<number>(minZoom)
 
-const { hotels } = useHotels()
+const hotels: Ref<HotelForVueLeaflet[]> = ref([
+  { localisation: [51.5, -0.09], name: 'Hotel 1' },
+  { localisation: [51.51, -0.1], name: 'Hotel 2' },
+  { localisation: [51.49, -0.08], name: 'Hotel 3' },
+])
 
 const { devLog } = useLogger()
 
