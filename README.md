@@ -8,7 +8,7 @@ This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with
 
 ### FE part 1 - basic functionalities
 
-1. Try implementation of `vue-leaflet` thought stoped development of this package (insted custom applying `leaflet` in Vue3)
+1. ~~Try implementation of `vue-leaflet` thought stoped development of this package (insted custom applying `leaflet` in Vue3)~~
 2. Create local JSON-server as source of hotel data
 3. Move hotels to `store` (`Pinia`)
 4. Add cart to `store`
