@@ -1,0 +1,100 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Grand Hotel London",
+      "localisation": [51.505, -0.09],
+      "address": "123 Oxford Street, London, UK",
+      "price": 150,
+      "currency": "GBP",
+      "rating": 4.5,
+      "image": "https://picsum.photos/400/300?random=1",
+      "description": "Luxury hotel in the heart of London",
+      "amenities": ["WiFi", "Pool", "Restaurant", "Gym"]
+    },
+    {
+      "id": 2,
+      "name": "Paris Boutique Hotel",
+      "localisation": [48.8566, 2.3522],
+      "address": "45 Rue de Rivoli, Paris, France",
+      "price": 180,
+      "currency": "EUR",
+      "rating": 4.7,
+      "image": "https://picsum.photos/400/300?random=2",
+      "description": "Charming boutique hotel near the Eiffel Tower",
+      "amenities": ["WiFi", "Restaurant", "Bar"]
+    },
+    {
+      "id": 3,
+      "name": "Berlin City Hotel",
+      "localisation": [52.52, 13.405],
+      "address": "78 Unter den Linden, Berlin, Germany",
+      "price": 120,
+      "currency": "EUR",
+      "rating": 4.3,
+      "image": "https://picsum.photos/400/300?random=3",
+      "description": "Modern hotel in central Berlin",
+      "amenities": ["WiFi", "Gym", "Conference Room"]
+    },
+    {
+      "id": 4,
+      "name": "Rome Historic Inn",
+      "localisation": [41.9028, 12.4964],
+      "address": "12 Via del Corso, Rome, Italy",
+      "price": 140,
+      "currency": "EUR",
+      "rating": 4.6,
+      "image": "https://picsum.photos/400/300?random=4",
+      "description": "Historic hotel near the Colosseum",
+      "amenities": ["WiFi", "Restaurant", "Terrace"]
+    },
+    {
+      "id": 5,
+      "name": "Barcelona Beach Resort",
+      "localisation": [41.3851, 2.1734],
+      "address": "34 Passeig de Gràcia, Barcelona, Spain",
+      "price": 160,
+      "currency": "EUR",
+      "rating": 4.8,
+      "image": "https://picsum.photos/400/300?random=5",
+      "description": "Beachfront resort with stunning views",
+      "amenities": ["WiFi", "Pool", "Beach Access", "Spa", "Restaurant"]
+    },
+    {
+      "id": 6,
+      "name": "New York Plaza Hotel",
+      "localisation": [40.7128, -74.006],
+      "address": "768 5th Avenue, New York, USA",
+      "price": 250,
+      "currency": "USD",
+      "rating": 4.9,
+      "image": "https://picsum.photos/400/300?random=6",
+      "description": "Iconic luxury hotel in Manhattan",
+      "amenities": ["WiFi", "Pool", "Restaurant", "Gym", "Concierge"]
+    },
+    {
+      "id": 7,
+      "name": "Tokyo Central Hotel",
+      "localisation": [35.6762, 139.6503],
+      "address": "1-1-1 Shibuya, Tokyo, Japan",
+      "price": 200,
+      "currency": "JPY",
+      "rating": 4.7,
+      "image": "https://picsum.photos/400/300?random=7",
+      "description": "Modern hotel in the heart of Tokyo",
+      "amenities": ["WiFi", "Restaurant", "Bar", "Gym"]
+    },
+    {
+      "id": 8,
+      "name": "Sydney Harbour Hotel",
+      "localisation": [-33.8688, 151.2093],
+      "address": "88 George Street, Sydney, Australia",
+      "price": 190,
+      "currency": "AUD",
+      "rating": 4.6,
+      "image": "https://picsum.photos/400/300?random=8",
+      "description": "Hotel with stunning harbour views",
+      "amenities": ["WiFi", "Pool", "Restaurant", "Rooftop Bar"]
+    }
+  ]
+}

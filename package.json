@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev-all": "json-server db.json --watch --port 3010 & vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -41,6 +42,7 @@
     "eslint-plugin-vue": "~10.5.0",
     "jiti": "^2.6.1",
     "jsdom": "^27.0.1",
+    "json-server": "^1.0.0-beta.3",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.6.2",
     "sass-embedded": "^1.93.3",
