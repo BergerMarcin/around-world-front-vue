@@ -15,6 +15,16 @@ const DocumentLogStyle: DocumentLogStyleType = {
   error: 'color: red;',
 }
 
+/**
+ * Provides a logging utility for development purposes.
+ * 
+ * Example usage:
+ * ```typescript
+ * const { devLog } = useLogger();
+ * devLog(LogLevel.warn, 'This is a warning message');
+ * devLog('This is an info message');
+ * ```
+ */
 export function useLogger() {
   const logsContainer: Readonly<ShallowRef<HTMLElement | null>> | undefined = inject('logsContainer')
 

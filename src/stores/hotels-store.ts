@@ -10,8 +10,11 @@ export const useHotelsStore = defineStore('hotels', () => {
   const backendApiService = inject<BackendApiService>(ProviderKey.BACKEND_API_SERVICE)
 
   const fetchHotels = async () => {
-    const hotelsResponse = await backendApiService!.hotelsService.hotels()
-    hotels.value = hotelsResponse
+    try {
+      const hotelsResponse = await backendApiService!.hotelsService.hotels()
+      hotels.value = hotelsResponse
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {}
   }
 
   return { hotels, fetchHotels }
