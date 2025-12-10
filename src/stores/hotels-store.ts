@@ -1,26 +1,17 @@
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Hotel } from '@/types'
-import axios from '@/utils/axios'
+import type { BackendApiService } from '@/api/types/backend-api-service.types'
 
 export const useHotelsStore = defineStore('hotels', () => {
   const hotels = ref<Hotel[]>([])
-  const loading = ref(false)
-  const error = ref<string | null>(null)
 
-  async function fetchHotels() {
-    loading.value = true
-    error.value = null
-    try {
-      const response = await axios.get<Hotel[]>('/hotels')
-      hotels.value = response.data
-    } catch (e) {
-      error.value = e instanceof Error ? e.message : 'Failed to fetch hotels'
-      console.error('Error fetching hotels:', e)
-    } finally {
-      loading.value = false
-    }
+  const backendApiService = inject<BackendApiService>('backendApiService')
+
+  const fetchHotels = async () => {
+    const hotelsResponse = await backendApiService!.hotelsService.hotels()
+    hotels.value = hotelsResponse
   }
 
-  return { hotels, loading, error, fetchHotels }
+  return { hotels, fetchHotels }
 })
