@@ -12,3 +12,7 @@ export interface Hotel {
   description: string
   amenities: string[]
 }
+
+export enum ProviderKey {
+  BACKEND_API_SERVICE = 'backendApiService',
+}

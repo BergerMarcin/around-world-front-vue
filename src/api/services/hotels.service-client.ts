@@ -1,4 +1,4 @@
-import type { Hotel } from '@/types'
+import type { Hotel } from '@/types/global.types'
 import type { ApiClientOptions } from '../http/types/http-client.types'
 import type { ApiServiceConfig } from '../types/backend-api-service.types'
 

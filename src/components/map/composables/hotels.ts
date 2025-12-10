@@ -4,7 +4,7 @@ import Leaflet from 'leaflet'
 import type { Map } from 'leaflet'
 import { LogLevel, useLogger } from '@/utils/logger'
 import { useHotelsStore } from '@/stores/hotels-store'
-import type { Hotel } from '@/types'
+import type { Hotel } from '@/types/global.types'
 
 export function useHotels(): {
   hotels: Ref<Hotel[]>
