@@ -11,11 +11,7 @@ This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with
 1. ~~Try implementation of `vue-leaflet` thought stoped development of this package (insted custom applying `leaflet` in Vue3)~~
 2. ~~Create local JSON-server as source of hotel data~~
 3. ~~Move hotels to `store` (`Pinia`)~~
-4. Create correct fetching data with Axios
-5. Add cart to `store`
-6. TS typing of hotels & cart.
-7. Markers of added to cart hotels (red-orange i.e. some nice color)
-8. Hotel popup element with image, price, range
+4. Create correct fetching data with Axios (~~http-client, api-service, error handling,~~ error toasting, validate/typeguard data/DTO)
 9. Hotel modal on popup click. Modal with hotel details & ATC (add-to-cart).
 10. Cart modal with remove-item & buy-all CTA buttons
 ---
@@ -40,6 +36,9 @@ This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with
 1. Move hotels from JSON-server to BE
 2. Basic unit-tests
 3. Basic e2e tests (Playwright)
+
+### Future
+1. Authorization
 
 <hr/><br/><br/>
 
