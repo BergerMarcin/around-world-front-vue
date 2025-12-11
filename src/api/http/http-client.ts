@@ -12,7 +12,7 @@ const getAuthorizationHeader = async (acquireToken: () => Promise<string | undef
 }
 
 export const createHttpClient = (config: HttpClientConfig): HttpClientMethods => {
-  const httpClientConfig: AxiosHttpClientConfig = {
+  const axiosHttpClientConfig: AxiosHttpClientConfig = {
     headers: {
       [HttpHeaders.CONTENT_TYPE]: 'application/json',
       [HttpHeaders.ACCEPT]: '*/*',
@@ -25,7 +25,7 @@ export const createHttpClient = (config: HttpClientConfig): HttpClientMethods =>
     ...config,
   }
 
-  const httpClientMethods: HttpClientMethods = createAxiosHttpClient(httpClientConfig)
+  const httpClientMethods: HttpClientMethods = createAxiosHttpClient(axiosHttpClientConfig)
 
   return httpClientMethods
 }

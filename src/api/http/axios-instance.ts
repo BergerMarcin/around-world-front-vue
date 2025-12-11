@@ -2,9 +2,8 @@ import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { AxiosHttpClientConfig } from './types/http-client.types'
 
-export function createAxiosInstance(httpClientConfig: AxiosHttpClientConfig): AxiosInstance {
-  const { baseURL, headers, withCredentials, timeout, maxConcurrentRequests, requestConcurrencyDelay } =
-    httpClientConfig
+export function createAxiosInstance(config: AxiosHttpClientConfig): AxiosInstance {
+  const { baseURL, headers, withCredentials, timeout, maxConcurrentRequests, requestConcurrencyDelay } = config
 
   const axiosInstance: AxiosInstance = axios.create({
     baseURL,
@@ -25,7 +24,7 @@ export function createAxiosInstance(httpClientConfig: AxiosHttpClientConfig): Ax
       }, requestConcurrencyDelay)
     })
   })
-  
+
   axiosInstance.interceptors.response.use(
     (response) => {
       pendingRequests = Math.max(0, pendingRequests - 1)
