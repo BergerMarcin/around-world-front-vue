@@ -2,6 +2,7 @@
 import { provide, type ShallowRef, useTemplateRef } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Logos from '@/components/logos/Logos.vue'
+import Notification from '@/components/notification/Notification.vue'
 
 const logsContainer: Readonly<ShallowRef<HTMLElement | null>> = useTemplateRef('logsContainer')
 provide('logsContainer', logsContainer)
@@ -10,9 +11,7 @@ provide('logsContainer', logsContainer)
 <template>
   <header>
     <Logos />
-
     <div ref="logsContainer" style="font-size: 8px"></div>
-
     <div class="nav-container">
       <nav>
         <RouterLink to="/">Start</RouterLink>
@@ -22,6 +21,8 @@ provide('logsContainer', logsContainer)
   </header>
 
   <RouterView />
+
+  <Notification></Notification>
 </template>
 
 <style scoped>
