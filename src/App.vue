@@ -22,7 +22,7 @@ provide('logsContainer', logsContainer)
 
   <RouterView />
 
-  <Notification></Notification>
+  <Notification />
 </template>
 
 <style scoped>

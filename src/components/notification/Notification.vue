@@ -106,7 +106,7 @@ const showToast = ({
 }
 </script>
 
-<template></template>
+<template />
 
 <style>
 .custom-swal-popup {
