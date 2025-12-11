@@ -1,5 +1,6 @@
 import { inject } from 'vue'
 import type { ShallowRef } from 'vue'
+import { ProviderKey } from '@/types/global.types'
 
 export enum LogLevel {
   info = 'info',
@@ -17,7 +18,7 @@ const DocumentLogStyle: DocumentLogStyleType = {
 
 /**
  * Provides a logging utility for development purposes.
- * 
+ *
  * Example usage:
  * ```typescript
  * const { devLog } = useLogger();
@@ -26,7 +27,7 @@ const DocumentLogStyle: DocumentLogStyleType = {
  * ```
  */
 export function useLogger() {
-  const logsContainer: Readonly<ShallowRef<HTMLElement | null>> | undefined = inject('logsContainer')
+  const logsContainer: Readonly<ShallowRef<HTMLElement | null>> | undefined = inject(ProviderKey.LOGS_CONTAINER)
 
   function typeGuardLogLevel(level: unknown): level is LogLevel {
     return typeof level === 'string' && Object.keys(LogLevel).includes(level)

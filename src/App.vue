@@ -3,9 +3,10 @@ import { provide, type ShallowRef, useTemplateRef } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Logos from '@/components/logos/Logos.vue'
 import Notification from '@/components/notification/Notification.vue'
+import { ProviderKey } from '@/types/global.types'
 
 const logsContainer: Readonly<ShallowRef<HTMLElement | null>> = useTemplateRef('logsContainer')
-provide('logsContainer', logsContainer)
+provide(ProviderKey.LOGS_CONTAINER, logsContainer)
 </script>
 
 <template>

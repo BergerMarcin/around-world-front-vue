@@ -15,4 +15,5 @@ export interface Hotel {
 
 export enum ProviderKey {
   BACKEND_API_SERVICE = 'backendApiService',
+  LOGS_CONTAINER = 'logsContainer',
 }
