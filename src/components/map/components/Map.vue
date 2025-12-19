@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue'
-import { useMap } from '../composables/map'
-import { useHotels } from '../composables/hotels'
+import { useMap } from '../composables/useMap'
+import { useHotels } from '../composables/useHotels'
 import { useHotelsStore } from '@/stores/hotels-store'
 
 const { map, mountMap, unmountMap } = useMap({ center: [51.505, -0.09] })
