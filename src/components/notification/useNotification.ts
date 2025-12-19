@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 import Swal from 'sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
-import type { ToastType, ShowToast, ToastOptions } from './notification.types'
+import type { NotificationType, ShowNotification, NotificationOptions } from './notification.types'
 
 const isOpen = ref(false)
 
-const iconColor = (toastType: ToastType): string => {
+const iconColor = (toastType: NotificationType): string => {
   switch (toastType) {
     case 'success':
       return 'green'
@@ -22,7 +22,7 @@ const iconColor = (toastType: ToastType): string => {
   }
 }
 
-const popupBackgroundColor = (toastType: ToastType): string => {
+const popupBackgroundColor = (toastType: NotificationType): string => {
   switch (toastType) {
     case 'success':
       return 'rgb(229, 255, 229)'
@@ -39,16 +39,16 @@ const popupBackgroundColor = (toastType: ToastType): string => {
   }
 }
 
-const showToast: ShowToast = (message: string, toastOptions: ToastOptions) => {
-  const { toastType, timer }: Required<ToastOptions> = {
-    toastType: 'info',
+const showNotification: ShowNotification = (message: string, toastOptions: NotificationOptions) => {
+  const { notificationType, timer }: Required<NotificationOptions> = {
+    notificationType: 'info',
     timer: 0,
     ...toastOptions,
   }
   isOpen.value = true
   Swal.fire({
     text: message,
-    icon: toastType,
+    icon: notificationType,
     position: 'bottom-left',
     timer: timer > 0 ? timer : undefined,
     timerProgressBar: timer > 0,
@@ -62,23 +62,21 @@ const showToast: ShowToast = (message: string, toastOptions: ToastOptions) => {
       htmlContainer: 'custom-swal-html-container',
     },
     didOpen: () => {
-      console.log('Alert toast opened')
       const swalPopup = document.querySelector('.custom-swal-popup') as HTMLElement
       if (swalPopup) {
-        swalPopup.style.setProperty('--popup-background-color', popupBackgroundColor(toastType))
-        swalPopup.style.setProperty('--icon-color', iconColor(toastType))
+        swalPopup.style.setProperty('--popup-background-color', popupBackgroundColor(notificationType))
+        swalPopup.style.setProperty('--icon-color', iconColor(notificationType))
       }
     },
     didClose: () => {
       isOpen.value = false
-      console.log('Alert toast closed')
     },
   })
 }
 
 export function useNotification() {
   return {
-    showToast,
+    showNotification,
     isOpen,
   }
 }

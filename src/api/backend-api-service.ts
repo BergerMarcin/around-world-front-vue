@@ -4,8 +4,8 @@ import { errorHandler } from './utils/error-handler'
 import { useNotification } from '../components/notification/useNotification'
 
 export function useBackendApiService(): BackendApiService {
-  const { showToast } = useNotification()
-  const factoryConfig: BackendApiServiceFactoryConfig = { errorHandler, showToast} // , acquireToken }
+  const { showNotification } = useNotification()
+  const factoryConfig: BackendApiServiceFactoryConfig = { errorHandler, showNotification } // , acquireToken }
 
   const backendApiService = backendApiServiceFactory(factoryConfig)
 

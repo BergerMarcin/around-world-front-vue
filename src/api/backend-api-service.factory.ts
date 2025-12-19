@@ -9,8 +9,8 @@ import type {
 } from './types/backend-api-service.types'
 
 export const backendApiServiceFactory = (factoryConfig: BackendApiServiceFactoryConfig): BackendApiService => {
-  // const { acquireToken, errorHandler, showToast } = factoryConfig
-  const { errorHandler, showToast } = factoryConfig
+  // const { acquireToken, errorHandler, showNotification } = factoryConfig
+  const { errorHandler, showNotification } = factoryConfig
 
   const httpClientConfig: HttpClientConfig = {
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -20,7 +20,7 @@ export const backendApiServiceFactory = (factoryConfig: BackendApiServiceFactory
 
   const httpClient: HttpClientMethods = createHttpClient(httpClientConfig)
 
-  const apiServiceConfig: ApiServiceConfig = { client: httpClient, errorHandler, showToast }
+  const apiServiceConfig: ApiServiceConfig = { client: httpClient, errorHandler, showNotification }
 
   const hotelsServiceClient = createHotelsServiceClient(apiServiceConfig)
 

@@ -1,10 +1,10 @@
 import type { SweetAlertIcon } from 'sweetalert2'
 
-export type ToastType = SweetAlertIcon
+export type NotificationType = SweetAlertIcon
 
-export type ToastOptions = {
-  toastType?: ToastType
+export type NotificationOptions = {
+  notificationType?: NotificationType
   timer?: number
 }
 
-export type ShowToast = (message: string, toastOptions: ToastOptions) => void
+export type ShowNotification = (message: string, notificationOptions: NotificationOptions) => void
