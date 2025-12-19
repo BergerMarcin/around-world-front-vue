@@ -2,11 +2,15 @@ import type { HttpClientMethods } from './http/types/http-client.types'
 import { createHttpClient } from './http/http-client'
 import type { HttpClientConfig } from './http/types/http-client.types'
 import { createHotelsServiceClient } from './services/hotels.service-client'
-import type { ApiServiceConfig, BackendApiService, BackendApiServiceFactoryConfig } from './types/backend-api-service.types'
+import type {
+  ApiServiceConfig,
+  BackendApiService,
+  BackendApiServiceFactoryConfig,
+} from './types/backend-api-service.types'
 
 export const backendApiServiceFactory = (factoryConfig: BackendApiServiceFactoryConfig): BackendApiService => {
   // const { acquireToken, errorHandler, showToast } = factoryConfig
-  const { errorHandler } = factoryConfig
+  const { errorHandler, showToast } = factoryConfig
 
   const httpClientConfig: HttpClientConfig = {
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -16,7 +20,7 @@ export const backendApiServiceFactory = (factoryConfig: BackendApiServiceFactory
 
   const httpClient: HttpClientMethods = createHttpClient(httpClientConfig)
 
-  const apiServiceConfig: ApiServiceConfig = { client: httpClient, errorHandler } // , showToast }
+  const apiServiceConfig: ApiServiceConfig = { client: httpClient, errorHandler, showToast }
 
   const hotelsServiceClient = createHotelsServiceClient(apiServiceConfig)
 
