@@ -7,13 +7,14 @@ export interface Hotel {
   address: string
   price: number
   currency: string
-  rating: number
-  image: string
+  rating?: number
   description: string
-  amenities: string[]
+  image: string
+  amenities?: string[]
 }
 
 export enum ProviderKey {
   BACKEND_API_SERVICE = 'backendApiService',
   LOGS_CONTAINER = 'logsContainer',
 }
+

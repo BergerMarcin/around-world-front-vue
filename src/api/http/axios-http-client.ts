@@ -1,6 +1,6 @@
 import { createAxiosInstance } from './axios-instance'
 import type { AxiosInstance } from 'axios'
-import type { AxiosHttpClientConfig, HttpClientMethods } from './types/http-client.types'
+import type { AxiosHttpClientConfig, HttpClientMethods, Typeguard, Validator } from './types/http-client.types'
 import { HttpHeaders } from './types/http-client.consts'
 
 export const createAxiosHttpClient = (config: AxiosHttpClientConfig): HttpClientMethods => {
@@ -11,7 +11,11 @@ export const createAxiosHttpClient = (config: AxiosHttpClientConfig): HttpClient
       endpointUrl: string,
       parameters?: Record<string, string | number | boolean | null>,
       // { cancelToken, headers, validatorOrTypeguard }: { cancelToken?: CancelToken; headers?: Record<string, string>; validatorOrTypeguard?: ValidatorOrTypeguard } = {},
-      { headers }: { headers?: Record<string, string> } = {},
+      {
+        headers,
+        validator,
+        typeguard,
+      }: { headers?: Record<string, string>; validator?: Validator; typeguard?: Typeguard } = {},
     ): Promise<ResponseType> {
       const response = await axiosInstance.get<ResponseType>(endpointUrl, {
         params: parameters,
@@ -21,6 +25,16 @@ export const createAxiosHttpClient = (config: AxiosHttpClientConfig): HttpClient
           // [HttpHeaders.AUTHORIZATION]: await getAuthorizationHeader(acquireToken),
         },
       })
+      if (validator && !validator(response.data)) {
+        throw new Error('Response data validation failed')
+      }
+      if (typeguard) {
+        if (typeguard(response.data)) {
+          return response.data as ResponseType
+        } else {
+          throw new Error('Response data typeguard check failed')
+        }
+      }
       return response.data
     },
 

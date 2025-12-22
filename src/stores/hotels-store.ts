@@ -4,6 +4,7 @@ import { ProviderKey } from '@/types/global.types'
 import { useNotification } from '@/components/notification/useNotification'
 import type { Hotel } from '@/types/global.types'
 import type { BackendApiService } from '@/api/types/backend-api-service.types'
+import { isHotelArrayTypeguard } from '@/types/global.typeguard'
 
 export const useHotelsStore = defineStore('hotels', () => {
   const { showNotification } = useNotification()
@@ -13,7 +14,7 @@ export const useHotelsStore = defineStore('hotels', () => {
 
   const fetchHotels = async () => {
     try {
-      const hotelsResponse = await backendApiService!.hotelsService.hotels()
+      const hotelsResponse = await backendApiService!.hotelsService.hotels({ typeguard: isHotelArrayTypeguard })
       hotels.value = hotelsResponse
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
