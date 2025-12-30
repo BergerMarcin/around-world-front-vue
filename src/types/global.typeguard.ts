@@ -1,5 +1,5 @@
 import type { Hotel } from './global.types'
-import { LogLevel, useLogger } from '@/utils/logger'
+import { LogLevel, consoleDevLog } from '@/utils/logger'
 
 export function isHotelTypeguard(obj: unknown): obj is Hotel {
   if (typeof obj !== 'object' || obj === null) return false
@@ -11,8 +11,8 @@ export function isHotelTypeguard(obj: unknown): obj is Hotel {
     typeof h.location_region === 'string' &&
     typeof h.location_coordinates_latitude === 'number' &&
     typeof h.location_coordinates_longitude === 'number' &&
-    (typeof h.rate === 'number' || typeof h.rate === 'undefined') &&
-    (typeof h.source_url === 'string' || typeof h.source_url === 'undefined') &&
+    (typeof h.rate === 'number' || typeof h.rate === 'undefined' || h.rate === null) &&
+    (typeof h.source_url === 'string' || typeof h.source_url === 'undefined' || h.source_url === null) &&
     typeof h.image === 'string' &&
     typeof h.price === 'number' &&
     typeof h.currency === 'string' &&
@@ -28,23 +28,9 @@ export function isHotelTypeguard(obj: unknown): obj is Hotel {
 }
 
 export function isHotelsTypeguard(hotels: unknown): hotels is Hotel[] {
-  const { devLog } = useLogger()
-
   if (typeof hotels !== 'object' || hotels === null || !Array.isArray(hotels)) {
-    devLog(LogLevel.error, 'Hotels is not an array')
+    consoleDevLog(LogLevel.error, 'Hotels is not an array')
     return false
   }
-
-  const hotelsNotPassed: { index: number; id: number | undefined; hotel: unknown }[] = []
-  hotels.every((hotel, index) => {
-    if (!isHotelTypeguard(hotel)) {
-      hotelsNotPassed.push({ index, id: hotel?.id, hotel })
-    }
-  })
-  if (hotelsNotPassed.length) {
-    devLog(LogLevel.error, 'Some hotels did not pass the typeguard:', hotelsNotPassed)
-    return false
-  }
-
   return true
 }

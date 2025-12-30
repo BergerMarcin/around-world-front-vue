@@ -5,8 +5,8 @@ export interface Hotel {
   location_region: string;
   location_coordinates_latitude: number;
   location_coordinates_longitude: number;
-  rate?: number;
-  source_url?: string;
+  rate?: number | null;
+  source_url?: string | null;
   image: string;
   price: number;
   currency: string;
