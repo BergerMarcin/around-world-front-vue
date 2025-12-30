@@ -25,15 +25,15 @@ export const createAxiosHttpClient = (config: AxiosHttpClientConfig): HttpClient
           // [HttpHeaders.AUTHORIZATION]: await getAuthorizationHeader(acquireToken),
         },
       })
-      if (validator && !validator(response.data)) {
-        throw new Error('Response data validation failed')
-      }
       if (typeguard) {
         if (typeguard(response.data)) {
           return response.data as ResponseType
         } else {
           throw new Error('Response data typeguard check failed')
         }
+      }
+      if (validator && !validator(response.data)) {
+        throw new Error('Response data validation failed')
       }
       return response.data
     },
