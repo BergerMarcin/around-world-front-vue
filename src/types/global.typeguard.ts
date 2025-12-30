@@ -5,24 +5,29 @@ export function isHotelTypeguard(obj: unknown): obj is Hotel {
   if (typeof obj !== 'object' || obj === null) return false
   const h = obj as Record<string, unknown>
   return (
-    typeof h.id === 'number' &&
-    typeof h.name === 'string' &&
-    Array.isArray(h.localisation) &&
-    h.localisation.length === 2 &&
-    typeof h.localisation[0] === 'number' &&
-    typeof h.localisation[1] === 'number' &&
-    typeof h.address === 'string' &&
+    typeof h.sku === 'string' &&
+    typeof h.title === 'string' &&
+    typeof h.location_country === 'string' &&
+    typeof h.location_region === 'string' &&
+    typeof h.location_coordinates_latitude === 'number' &&
+    typeof h.location_coordinates_longitude === 'number' &&
+    (typeof h.rate === 'number' || typeof h.rate === 'undefined') &&
+    (typeof h.source_url === 'string' || typeof h.source_url === 'undefined') &&
+    typeof h.image === 'string' &&
     typeof h.price === 'number' &&
     typeof h.currency === 'string' &&
-    typeof h.rating === 'number' &&
-    typeof h.image === 'string' &&
-    typeof h.description === 'string' &&
-    Array.isArray(h.amenities) &&
-    h.amenities.every((a) => typeof a === 'string')
+    typeof h.category === 'string' &&
+    typeof h.description_general === 'string' &&
+    typeof h.description_location === 'string' &&
+    typeof h.description_hotel === 'string' &&
+    typeof h.description_food_drinks === 'string' &&
+    typeof h.description_room === 'string' &&
+    typeof h.description_beach === 'string' &&
+    typeof h.description_sport_entertainment === 'string'
   )
 }
 
-export function isHotelArrayTypeguard(hotels: unknown): hotels is Hotel[] {
+export function isHotelsTypeguard(hotels: unknown): hotels is Hotel[] {
   const { devLog } = useLogger()
 
   if (typeof hotels !== 'object' || hotels === null || !Array.isArray(hotels)) {

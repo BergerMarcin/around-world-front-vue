@@ -1,20 +1,26 @@
-import type { LatLngTuple } from 'leaflet'
-
 export interface Hotel {
-  id: number
-  name: string
-  localisation: LatLngTuple
-  address: string
-  price: number
-  currency: string
-  rating?: number
-  description: string
-  image: string
-  amenities?: string[]
+  sku: string;
+  title: string;
+  location_country: string;
+  location_region: string;
+  location_coordinates_latitude: number;
+  location_coordinates_longitude: number;
+  rate?: number;
+  source_url?: string;
+  image: string;
+  price: number;
+  currency: string;
+  category: "hotel";
+  description_general: string;
+  description_location: string;
+  description_hotel: string;
+  description_food_drinks: string;
+  description_room: string;
+  description_beach: string;
+  description_sport_entertainment: string;
 }
 
 export enum ProviderKey {
   BACKEND_API_SERVICE = 'backendApiService',
   LOGS_CONTAINER = 'logsContainer',
 }
-
