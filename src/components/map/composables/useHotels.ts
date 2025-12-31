@@ -48,7 +48,8 @@ export function useHotels(): {
     markerClusterGroup.value = Leaflet.markerClusterGroup({
       showCoverageOnHover: false,
       maxClusterRadius: 50,
-      spiderfyOnMaxZoom: true,
+      spiderfyOnMaxZoom: false,
+      zoomToBoundsOnClick: true,
       disableClusteringAtZoom: 18,
     })
 
