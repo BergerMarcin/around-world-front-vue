@@ -1,0 +1,17 @@
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: rgba(1, 182, 219, 0.6);
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: #039BD2;
+  color: #fff;
+}
+
+.custom-hotel-marker {
+  background: transparent;
+  border: none;
+}
