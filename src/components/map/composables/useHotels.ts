@@ -1,7 +1,10 @@
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { Ref } from 'vue'
 import Leaflet from 'leaflet'
 import type { LatLngTuple, Map } from 'leaflet'
+import 'leaflet.markercluster'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { LogLevel, useLogger } from '@/utils/logger'
 import { useHotelsStore } from '@/stores/hotels-store'
 import type { Hotel } from '@/types/global.types'
@@ -15,6 +18,7 @@ export function useHotels(): {
   const hotelsStore = useHotelsStore()
 
   const hotels: Ref<Hotel[]> = computed(() => hotelsStore.hotels)
+  const markerClusterGroup: Ref<Leaflet.MarkerClusterGroup | null> = ref(null)
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {
@@ -23,11 +27,19 @@ export function useHotels(): {
 
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 
+    // Create a marker cluster group
+    markerClusterGroup.value = Leaflet.markerClusterGroup({
+      showCoverageOnHover: false,
+      maxClusterRadius: 50,
+      spiderfyOnMaxZoom: true,
+      disableClusteringAtZoom: 18,
+    })
+
     hotels.value.forEach((hotel) => {
       const hotelLatLng: LatLngTuple = [hotel.location_coordinates_latitude, hotel.location_coordinates_longitude]
-      const marker = Leaflet.marker(hotelLatLng)
-        .addTo(mapRef.value!)
-        .bindPopup(`<h3>Hotel</h3><p>This is a hotel marker ${hotel.title}.</p>`)
+      const marker = Leaflet.marker(hotelLatLng).bindPopup(
+        `<h3>Hotel</h3><p>This is a hotel marker ${hotel.title}.</p>`,
+      )
       if (!isTouchDevice) {
         marker
           .on('mouseover', function (this: Leaflet.Marker) {
@@ -59,15 +71,17 @@ export function useHotels(): {
             }, 300)
           })
       }
+      markerClusterGroup.value!.addLayer(marker)
     })
+    mapRef.value.addLayer(markerClusterGroup.value)
   }
 
   function unbindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
-    mapRef.value?.eachLayer((layer) => {
-      if (layer instanceof Leaflet.Marker) {
-        mapRef.value?.removeLayer(layer)
-      }
-    })
+    if (markerClusterGroup.value) {
+      markerClusterGroup.value.clearLayers()
+      mapRef.value?.removeLayer(markerClusterGroup.value)
+      markerClusterGroup.value = null
+    }
   }
 
   return { hotels, bindHotelsMarkers, unbindHotelsMarkers }
