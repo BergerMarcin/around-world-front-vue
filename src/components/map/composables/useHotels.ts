@@ -10,6 +10,27 @@ import { LogLevel, useLogger } from '@/utils/logger'
 import { useHotelsStore } from '@/stores/hotels-store'
 import type { Hotel } from '@/types/global.types'
 
+function createHotelPopupContent(hotel: Hotel): string {
+  const rateHtml = hotel.rate ? `<span class="hotel-popup__rate">⭐ ${hotel.rate.toFixed(1)}</span>` : ''
+
+  return `
+    <div class="hotel-popup">
+      <div class="hotel-popup__image-container">
+        <img src="${hotel.image}" alt="${hotel.title}" class="hotel-popup__image" />
+        ${rateHtml}
+      </div>
+      <div class="hotel-popup__content">
+        <h3 class="hotel-popup__title">${hotel.title}</h3>
+        <div class="hotel-popup__price">
+          <span class="hotel-popup__price-value">${hotel.price}</span>
+          <span class="hotel-popup__price-currency">${hotel.currency}</span>
+        </div>
+        <p class="hotel-popup__description">${hotel.description_general}</p>
+      </div>
+    </div>
+  `
+}
+
 const customIcon = Leaflet.divIcon({
   className: 'custom-hotel-marker',
   html: `<svg width="25" height="41" viewBox="0 0 25 41" xmlns="http://www.w3.org/2000/svg">
@@ -55,9 +76,11 @@ export function useHotels(): {
 
     hotels.value.forEach((hotel) => {
       const hotelLatLng: LatLngTuple = [hotel.location_coordinates_latitude, hotel.location_coordinates_longitude]
-      const marker = Leaflet.marker(hotelLatLng, { icon: customIcon }).bindPopup(
-        `<h3>Hotel</h3><p>This is a hotel marker ${hotel.title}.</p>`,
-      )
+      const marker = Leaflet.marker(hotelLatLng, { icon: customIcon }).bindPopup(createHotelPopupContent(hotel), {
+        maxWidth: 300,
+        className: 'hotel-popup-wrapper',
+        closeOnClick: false,
+      })
       if (!isTouchDevice) {
         marker
           .on('mouseover', function (this: Leaflet.Marker) {
