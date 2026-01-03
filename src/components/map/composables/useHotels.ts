@@ -16,13 +16,11 @@ import {
   popupOpenOnMarkerHover,
 } from '../utils/hotel-marker.utils.js'
 
-export const clickHandler = (hotel: Hotel) => (event: Event) => {
-  event.stopPropagation()
-  console.warn(`Popup for hotel marker ${hotel.title} clicked`)
-}
-
 export function useHotels(): {
   hotels: Ref<Hotel[]>
+  selectedHotel: Ref<Hotel | null>
+  isModalOpen: Ref<boolean>
+  closeModal: () => void
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
 } {
@@ -31,6 +29,21 @@ export function useHotels(): {
 
   const hotels: Ref<Hotel[]> = computed(() => hotelsStore.hotels)
   const markerClusterGroup: Ref<Leaflet.MarkerClusterGroup | null> = ref(null)
+  const selectedHotel: Ref<Hotel | null> = ref(null)
+  const isModalOpen = ref(false)
+
+  function popupClickHandler(hotel: Hotel) {
+    return (event: Event) => {
+      event.stopPropagation()
+      selectedHotel.value = hotel
+      isModalOpen.value = true
+    }
+  }
+
+  function closeModal() {
+    isModalOpen.value = false
+    selectedHotel.value = null
+  }
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {
@@ -54,7 +67,7 @@ export function useHotels(): {
         closeOnClick: false,
       })
       popupOpenOnMarkerHover({ marker, hotel, isTouchDevice, devLog })
-      popupClickListener({ marker, hotel, clickHandler, devLog })
+      popupClickListener({ marker, hotel, popupClickHandler, devLog })
       markerClusterGroup.value!.addLayer(marker)
     })
     mapRef.value.addLayer(markerClusterGroup.value)
@@ -68,5 +81,5 @@ export function useHotels(): {
     }
   }
 
-  return { hotels, bindHotelsMarkers, unbindHotelsMarkers }
+  return { hotels, selectedHotel, isModalOpen, closeModal, bindHotelsMarkers, unbindHotelsMarkers }
 }

@@ -87,15 +87,15 @@ export const popupOpenOnMarkerHover = ({
 export const popupClickListener = ({
   marker,
   hotel,
-  clickHandler,
+  popupClickHandler,
   devLog,
 }: {
   marker: Leaflet.Marker
   hotel: Hotel
-  clickHandler: (hotel: Hotel) => (event: Event) => void
+  popupClickHandler: (hotel: Hotel) => (event: Event) => void
   devLog: (...args: unknown[]) => void
 }) => {
-  const resolvedClickHandler = clickHandler(hotel)
+  const resolvedClickHandler = popupClickHandler(hotel)
   marker.on('popupopen', function (this: Leaflet.Marker) {
     const popup = this.getPopup()
     const popupElem = popup?.getElement()
@@ -108,7 +108,7 @@ export const popupClickListener = ({
     const popupElem = popup?.getElement()
     if (popupElem) {
       popupElem.removeEventListener('click', resolvedClickHandler)
-      devLog(LogLevel.warn, `Removed event listener of clickHandler. ${hotel.title}`)
+      devLog(LogLevel.warn, `Removed event listener of popupClickHandler. ${hotel.title}`)
     }
   })
 }

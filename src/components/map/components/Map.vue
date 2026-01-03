@@ -3,9 +3,11 @@ import { onBeforeUnmount, onMounted } from 'vue'
 import { useMap } from '../composables/useMap'
 import { useHotels } from '../composables/useHotels'
 import { useHotelsStore } from '@/stores/hotels-store'
+import BaseModal from '@/components/modal/BaseModal.vue'
+import HotelDetailContent from '@/components/map/components/HotelDetailContent.vue'
 
 const { map, mountMap, unmountMap } = useMap({ center: [51.505, -0.09] })
-const { bindHotelsMarkers, unbindHotelsMarkers } = useHotels()
+const { bindHotelsMarkers, unbindHotelsMarkers, selectedHotel, isModalOpen, closeModal } = useHotels()
 const hotelsStore = useHotelsStore()
 
 onMounted(async () => {
@@ -22,6 +24,9 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="mapContainer"></div>
+  <BaseModal :is-open="isModalOpen" @close="closeModal">
+    <HotelDetailContent v-if="selectedHotel" :hotel="selectedHotel" />
+  </BaseModal>
 </template>
 
 <style scoped>
