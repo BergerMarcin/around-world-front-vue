@@ -19,7 +19,7 @@ defineProps<{
     <div class="hotel-detail__body">
       <div class="hotel-detail__header-container">
         <h2 class="hotel-detail__title">{{ hotel.title }}</h2>
-        <BaseButton :disabled="true">
+        <BaseButton>
           <span class="hotel-detail__atc">Book Now</span>
         </BaseButton>
       </div>
@@ -131,6 +131,7 @@ defineProps<{
 .hotel-detail__atc {
   font-weight: 600;
   white-space: nowrap;
+  user-select: none;
 }
 
 .hotel-detail__location {

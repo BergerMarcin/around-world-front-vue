@@ -37,6 +37,11 @@ const disabled = props.disabled || false
   box-shadow: 4px 4px 8px rgba(1, 182, 219, 0.3);
 }
 
+.base-button:not(:disabled):active {
+  transform: none;
+  box-shadow: none;
+}
+
 .base-button--primary {
   background: linear-gradient(135deg, #01b6db, #76f7c0);
   color: white;
