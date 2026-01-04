@@ -75,6 +75,10 @@ onUnmounted(() => {
   justify-content: center;
 }
 
+.modal:not([open]) {
+  display: none;
+}
+
 .modal::backdrop {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(1px);
