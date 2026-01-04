@@ -12,6 +12,7 @@ import type { Hotel } from '@/types/global.types'
 import {
   createHotelPopupContent,
   customIcon,
+  modalOpenOnMarkerClick,
   popupClickListener,
   popupOpenOnMarkerHover,
 } from '../utils/hotel-marker.utils.js'
@@ -32,17 +33,21 @@ export function useHotels(): {
   const selectedHotel: Ref<Hotel | null> = ref(null)
   const isModalOpen = ref(false)
 
-  function popupClickHandler(hotel: Hotel) {
-    return (event: Event) => {
-      event.stopPropagation()
-      selectedHotel.value = hotel
-      isModalOpen.value = true
-    }
+  function openModalWithHotel(hotel: Hotel) {
+    isModalOpen.value = true
+    selectedHotel.value = hotel
   }
 
   function closeModal() {
     isModalOpen.value = false
     selectedHotel.value = null
+  }
+
+  function openModalWithHotelOnEvent(hotel: Hotel) {
+    return (event: Event) => {
+      event.stopPropagation()
+      openModalWithHotel(hotel)
+    }
   }
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
@@ -66,8 +71,9 @@ export function useHotels(): {
         className: 'hotel-popup-wrapper',
         closeOnClick: false,
       })
+      modalOpenOnMarkerClick({ marker, hotel, isTouchDevice, markerClickHandler: openModalWithHotelOnEvent, devLog })
       popupOpenOnMarkerHover({ marker, hotel, isTouchDevice, devLog })
-      popupClickListener({ marker, hotel, popupClickHandler, devLog })
+      popupClickListener({ marker, hotel, popupClickHandler: openModalWithHotelOnEvent, devLog })
       markerClusterGroup.value!.addLayer(marker)
     })
     mapRef.value.addLayer(markerClusterGroup.value)

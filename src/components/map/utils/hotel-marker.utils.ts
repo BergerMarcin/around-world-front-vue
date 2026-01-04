@@ -1,4 +1,4 @@
-import Leaflet from 'leaflet'
+import Leaflet, { type LeafletEvent } from 'leaflet'
 import type { Hotel } from '@/types/global.types'
 import { LogLevel } from '@/utils/logger'
 
@@ -41,6 +41,33 @@ export function createHotelPopupContent(hotel: Hotel): string {
   `
 }
 
+// TODO: Remove `devLog`
+interface LeafletEventWithOriginalEvent extends LeafletEvent {
+  originalEvent: Event
+}
+export const modalOpenOnMarkerClick = ({
+  marker,
+  hotel,
+  isTouchDevice,
+  markerClickHandler,
+  devLog,
+}: {
+  marker: Leaflet.Marker
+  hotel: Hotel
+  isTouchDevice: boolean
+  markerClickHandler: (hotel: Hotel) => (event: Event) => void
+  devLog: (...args: unknown[]) => void
+}) => {
+  if (!isTouchDevice) {
+    const resolvedClickHandler = markerClickHandler(hotel)
+    marker.on('click', function (this: Leaflet.Marker, event: LeafletEventWithOriginalEvent) {
+      resolvedClickHandler(event.originalEvent)
+      devLog(`Marker clicked: ${hotel.title}`)
+    })
+  }
+}
+
+// TODO: Remove `devLog`
 export const popupOpenOnMarkerHover = ({
   marker,
   hotel,
@@ -85,6 +112,7 @@ export const popupOpenOnMarkerHover = ({
   }
 }
 
+// TODO: Remove `devLog`
 export const popupClickListener = ({
   marker,
   hotel,
