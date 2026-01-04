@@ -10,6 +10,8 @@ const { map, mountMap, unmountMap } = useMap({ center: [51.505, -0.09] })
 const { bindHotelsMarkers, unbindHotelsMarkers, selectedHotel, isModalOpen, closeModal } = useHotels()
 const hotelsStore = useHotelsStore()
 
+// TODO: Fix zoom on wheel-moving. Fix moving map on left-key-mouse-down and moving mouse
+
 onMounted(async () => {
   mountMap()
   await hotelsStore.fetchHotels()

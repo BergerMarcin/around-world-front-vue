@@ -22,6 +22,7 @@ export const customIcon = Leaflet.divIcon({
 export function createHotelPopupContent(hotel: Hotel): string {
   const rateHtml = hotel.rate ? `<span class="hotel-popup__rate">⭐ ${hotel.rate.toFixed(1)}</span>` : ''
 
+  // TODO: Add button `See details`
   return `
     <div class="hotel-popup">
       <div class="hotel-popup__image-container">
