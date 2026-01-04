@@ -36,5 +36,9 @@ coverage
 # Vitest
 __screenshots__/
 
+# Playwright
 test-results/
 playwright-report/
+
+# Temporary image files
+/tmp/images/
