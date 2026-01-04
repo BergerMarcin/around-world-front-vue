@@ -1,4 +1,5 @@
 import Leaflet, { type LeafletEvent } from 'leaflet'
+import { imageUrlFromHotel, rateStandardized } from './hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 import { LogLevel } from '@/utils/logger'
 
@@ -20,13 +21,15 @@ export const customIcon = Leaflet.divIcon({
 })
 
 export function createHotelPopupContent(hotel: Hotel): string {
-  const rateHtml = hotel.rate ? `<span class="hotel-popup__rate">⭐ ${hotel.rate.toFixed(1)}</span>` : ''
+  const imageUrl = imageUrlFromHotel(hotel)
+  const rate = rateStandardized(hotel)
+  const rateHtml = rate ? `<span class="hotel-popup__rate">⭐ ${rate}</span>` : ''
 
   // TODO: Add button `See details`
   return `
     <div class="hotel-popup">
       <div class="hotel-popup__image-container">
-        <img src="${hotel.image}" alt="${hotel.title}" class="hotel-popup__image" />
+        <img src="${imageUrl}" alt="${hotel.title}" class="hotel-popup__image" />
         ${rateHtml}
       </div>
       <div class="hotel-popup__content">

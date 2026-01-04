@@ -8,6 +8,7 @@ export interface Hotel {
   rate?: number | null;
   source_url?: string | null;
   image: string;
+  image_file: string;
   price: number;
   currency: string;
   category: "hotel";

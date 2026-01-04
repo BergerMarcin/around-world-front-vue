@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import BaseButton from '@/components/button/BaseButton.vue'
+import { imageUrlFromHotel, rateStandardized } from '@/components/map/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 
-defineProps<{
+const props = defineProps<{
   hotel: Hotel
 }>()
+
+const imageUrl = imageUrlFromHotel(props.hotel)
+const rate = rateStandardized(props.hotel)
 </script>
 
 <template>
   <div class="hotel-detail">
     <div class="hotel-detail__image-container">
-      <img :src="hotel.image" :alt="hotel.title" class="hotel-detail__image" />
+      <img :src="imageUrl" :alt="hotel.title" class="hotel-detail__image" />
       <div class="hotel-detail__overlay">
-        <span v-if="hotel.rate" class="hotel-detail__rate">⭐ {{ hotel.rate.toFixed(1) }}</span>
+        <span v-if="rate" class="hotel-detail__rate">⭐ {{ rate }}</span>
       </div>
     </div>
 

@@ -14,6 +14,7 @@ export function isHotelTypeguard(obj: unknown): obj is Hotel {
     (typeof h.rate === 'number' || typeof h.rate === 'undefined' || h.rate === null) &&
     (typeof h.source_url === 'string' || typeof h.source_url === 'undefined' || h.source_url === null) &&
     typeof h.image === 'string' &&
+    typeof h.image_file === 'string' &&
     typeof h.price === 'number' &&
     typeof h.currency === 'string' &&
     typeof h.category === 'string' &&
