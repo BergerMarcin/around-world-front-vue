@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO: Remove later on as `vue-leaflet` adding another layer of complexity
 import { ref, useTemplateRef, watch } from 'vue'
 import type { Ref } from 'vue'
 import { LMap, LMarker, LPopup, LTileLayer } from '@vue-leaflet/vue-leaflet'
