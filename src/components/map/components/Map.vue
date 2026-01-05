@@ -23,10 +23,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <div id="mapContainer"></div>
   <BaseModal :is-open="isModalOpen" @close="closeModal">
     <HotelDetailContent v-if="selectedHotel" :hotel="selectedHotel" />
   </BaseModal>
-  <div id="mapContainer"></div>
 </template>
 
 <style scoped>

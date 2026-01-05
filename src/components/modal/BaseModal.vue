@@ -122,6 +122,25 @@ onUnmounted(() => {
 }
 
 .modal__content {
+  overflow-x: hidden;
   overflow-y: auto;
+}
+
+.modal__content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal__content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+
+.modal__content::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
 }
 </style>
