@@ -120,7 +120,7 @@ export const popupOpenOnMarkerHover = ({
 }
 
 // TODO: Remove `devLog`
-export const popupClickListener = ({
+export const modalOpenOnPopupClick = ({
   marker,
   hotel,
   popupClickHandler,
@@ -131,7 +131,10 @@ export const popupClickListener = ({
   popupClickHandler: (hotel: Hotel) => (event: Event) => void
   devLog: (...args: unknown[]) => void
 }) => {
-  const resolvedClickHandler = popupClickHandler(hotel)
+  const resolvedClickHandler = (event: Event) => {
+    marker.closePopup()
+    popupClickHandler(hotel)(event)
+  }
   marker.on('popupopen', function (this: Leaflet.Marker) {
     const popup = this.getPopup()
     const popupElem = popup?.getElement()

@@ -13,7 +13,7 @@ import {
   createHotelPopupContent,
   customIcon,
   modalOpenOnMarkerClick,
-  popupClickListener,
+  modalOpenOnPopupClick,
   popupOpenOnMarkerHover,
 } from '../utils/hotel-marker.utils.js'
 
@@ -73,7 +73,7 @@ export function useHotels(): {
       })
       modalOpenOnMarkerClick({ marker, hotel, isTouchDevice, markerClickHandler: openModalWithHotelOnEvent, devLog })
       popupOpenOnMarkerHover({ marker, hotel, isTouchDevice, devLog })
-      popupClickListener({ marker, hotel, popupClickHandler: openModalWithHotelOnEvent, devLog })
+      modalOpenOnPopupClick({ marker, hotel, popupClickHandler: openModalWithHotelOnEvent, devLog })
       markerClusterGroup.value!.addLayer(marker)
     })
     mapRef.value.addLayer(markerClusterGroup.value)
