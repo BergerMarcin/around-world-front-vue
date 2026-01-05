@@ -13,11 +13,7 @@ const disabled = props.disabled || false
 </script>
 
 <template>
-  <button
-    :class="['base-button', `base-button--${variant}`]"
-    :disabled="disabled"
-    @click="$emit('click', $event)"
-  >
+  <button :class="['base-button', `base-button--${variant}`]" :disabled="disabled" @click="$emit('click', $event)">
     <slot />
   </button>
 </template>
@@ -34,7 +30,7 @@ const disabled = props.disabled || false
 
 .base-button:not(:disabled):hover {
   transform: translateX(-1px) translateY(-1px);
-  box-shadow: 4px 4px 8px rgba(1, 182, 219, 0.3);
+  box-shadow: 4px 4px 8px var(--color-primary-1-lighter);
 }
 
 .base-button:not(:disabled):active {
@@ -43,36 +39,36 @@ const disabled = props.disabled || false
 }
 
 .base-button--primary {
-  background: linear-gradient(135deg, #01b6db, #76f7c0);
+  background: var(--gradient-primary);
   color: white;
 }
 
 .base-button--primary:hover {
-  background: linear-gradient(135deg, #009aba, #76f7c0);
+  background: var(--gradient-primary-hover);
 }
 
 .base-button--secondary {
-  background-color: #6c757d;
+  background-color: var(--color-secondary);
   color: white;
 }
 
 .base-button--secondary:hover {
-  background-color: #5a6268;
+  background-color: var(--color-secondary-dark);
 }
 
 .base-button--tertiary {
   background-color: transparent;
-  color: #007bff;
-  border: 2px solid #007bff;
+  color: var(--color-tertiary);
+  border: 2px solid var(--color-tertiary);
 }
 
 .base-button--tertiary:hover {
-  background-color: #e2e6ea;
+  background-color: var(--color-tertiary-hover-bg);
 }
 
 .base-button:disabled {
-  background: #c0c0c0;
-  color: #444;
+  background: var(--color-bg-disabled);
+  color: var(--color-text-secondary);
   cursor: not-allowed;
 }
 </style>
