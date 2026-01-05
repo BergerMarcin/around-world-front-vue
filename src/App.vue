@@ -10,12 +10,13 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
 </script>
 
 <template>
-  <header>
+  <header class="app__header">
     <Logos />
     <div ref="logsContainer" style="font-size: 8px"></div>
-    <div class="nav-container">
-      <nav>
+    <div class="nav__container">
+      <nav class="nav__nav" aria-label="Main app navigation">
         <RouterLink to="/">Start</RouterLink>
+        <div class="nav__separator" />
         <RouterLink to="/project-dev-docs">Dev Docs</RouterLink>
       </nav>
     </div>
@@ -26,41 +27,45 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
   <Notification />
 </template>
 
-<style scoped>
-header {
+<style lang="scss" scoped>
+.app__header {
   display: flex;
   place-items: center;
   justify-content: space-between;
 }
 
-nav {
-  width: 100%;
-  font-size: 1rem;
-  text-align: center;
-}
-
-.nav-container {
+.nav__container {
   display: flex;
   place-items: flex-start;
   flex-wrap: wrap;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-  cursor: default;
+.nav__nav {
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+
+  & a {
+    display: inline-block;
+    padding: 0 1rem;
+    vertical-align: middle;
+
+    &.router-link-exact-active {
+      color: var(--color-text-regular);
+      cursor: default;
+    }
+
+    &.router-link-exact-active:hover {
+      background: transparent;
+    }
+  }
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
+.nav__separator {
   display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
+  width: 1px;
+  height: 25px;
+  background: var(--color-border-light);
+  vertical-align: middle;
 }
 </style>

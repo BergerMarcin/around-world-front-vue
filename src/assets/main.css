@@ -27,18 +27,21 @@
   --color-tertiary: #007bff;
   --color-tertiary-hover-bg: #e2e6ea;
 
-  /* Neutral colors - Text */
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #444;
+  /* Text colors */
+  /* #2c3e50  */
+  --color-text-header: #1a1a1a;
+  --color-text-regular: #444;
   --color-text-muted: #666;
   --color-text-dark: #333;
 
-  /* Neutral colors - Backgrounds */
+  /* Background colors */
   --color-bg-white: #fff;
-  --color-bg-light: #f1f1f1;
-  --color-bg-disabled: #c0c0c0;
+  --color-bg-light-gray: #c0c0c0;
 
-  /* Neutral colors - Scrollbar */
+  /* Border colors */
+  --color-border-light: rgba(60, 60, 60, 0.12);
+
+  /* Scrollbar colors */
   --color-scrollbar-track: #f1f1f1;
   --color-scrollbar-thumb: #c1c1c1;
   --color-scrollbar-thumb-hover: #a1a1a1;
@@ -54,6 +57,8 @@
   --color-notification-close: rgb(84, 84, 84);
   --color-notification-close-hover: rgb(107, 32, 32);
   /* More notification colors in TS file `src/components/notification/useNotification.ts` */
+
+  /* Vue color: hsla(160, 100%, 37%, 1); background: hsla(160, 100%, 37%, 0.2) */
 }
 
 #app {
@@ -67,16 +72,15 @@
   }
 }
 
-a,
-.green {
+a {
+  color: var(--color-primary-1);
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+  border-radius: 4px;
+  border: none;
   padding: 3px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+a:hover {
+  color: white;
+  background: var(--gradient-primary-hover);
 }

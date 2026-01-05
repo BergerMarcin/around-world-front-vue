@@ -11,10 +11,10 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
 </script>
 
 <template>
-  <div class="doc-container">
+  <div class="dev-doc__container">
     <DocHeader />
 
-    <ul class="doc-list">
+    <ul class="dev-doc__list">
       <DocItem>
         <template #icon>
           <DocumentationIcon />
@@ -99,14 +99,14 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
 </template>
 
 <style lang="scss" scoped>
-.doc-container {
+.dev-doc__container {
   margin: 0.5rem;
   @media (min-width: 1024px) {
     margin: 2rem;
   }
 }
 
-.doc-list {
+.dev-doc__list {
   list-style: none;
   padding: 0;
   margin: 0;

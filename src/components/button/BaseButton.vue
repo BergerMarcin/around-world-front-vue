@@ -25,7 +25,6 @@ const disabled = props.disabled || false
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .base-button:not(:disabled):hover {
@@ -67,8 +66,8 @@ const disabled = props.disabled || false
 }
 
 .base-button:disabled {
-  background: var(--color-bg-disabled);
-  color: var(--color-text-secondary);
+  background: var(--color-bg-light-gray);
+  color: var(--color-text-regular);
   cursor: not-allowed;
 }
 </style>
