@@ -13,7 +13,7 @@ This is demo frontend app in **Vue3** (+ **TS**, **Pinia**, **Vue Router**) with
 3. ~~Move hotels to `store` (`Pinia`)~~
 4. ~~Create correct fetching data with Axios (http-client, api-service, error handling, error notification, validate/typeguard data/DTO)~~
 6. ~~Grouping markers in case they are close each other. Style~~
-7. Hotel modal on popup click. Modal with hotel details & ATC (add-to-cart).
+7. ~~Hotel modal on popup click. Modal with hotel details & ATC (add-to-cart).~~
 8. Cart modal with remove-item & buy-all CTA buttons
 ---
 9. ~~Scrape hotel data & add to JSON-fixture~~
