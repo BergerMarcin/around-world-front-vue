@@ -25,7 +25,6 @@ export function createHotelPopupContent(hotel: Hotel): string {
   const rate = rateStandardized(hotel)
   const rateHtml = rate ? `<span class="hotel-popup__rate">⭐ ${rate}</span>` : ''
 
-  // TODO: Add button `See details`
   return `
     <div class="hotel-popup">
       <div class="hotel-popup__image-container">
@@ -33,10 +32,15 @@ export function createHotelPopupContent(hotel: Hotel): string {
         ${rateHtml}
       </div>
       <div class="hotel-popup__content">
-        <h3 class="hotel-popup__title">${hotel.title}</h3>
-        <div class="hotel-popup__price">
-          <span class="hotel-popup__price-value">${hotel.price}</span>
-          <span class="hotel-popup__price-currency">${hotel.currency}</span>
+        <div class="hotel-popup__header">
+          <div class="hotel-popup__title-price">
+            <h3 class="hotel-popup__title">${hotel.title}</h3>
+            <div class="hotel-popup__price">
+              <span class="hotel-popup__price-value">${hotel.price}</span>
+              <span class="hotel-popup__price-currency">${hotel.currency}</span>
+            </div>
+          </div>
+          <button class="hotel-popup__details-button" type="button">See more</button>
         </div>
         <p class="hotel-popup__description">${hotel.description_general}</p>
       </div>

@@ -76,6 +76,12 @@
   padding: 12px;
 }
 
+.hotel-popup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .hotel-popup__title {
   margin: 0 0 8px 0;
   font-size: 1rem;
@@ -102,7 +108,27 @@
   color: #666;
 }
 
-.hotel-popup__description {
+.hotel-popup__details-button {
+  background: linear-gradient(135deg, #01b6db, #76f7c0);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hotel-popup__details-button:hover {
+  background: linear-gradient(135deg, #009aba, #76f7c0);
+  box-shadow: 4px 4px 8px rgba(1, 182, 219, 0.3);
+  transform: translateX(-1px) translateY(-1px);
+}
+
+.hotel-popup__description.hotel-popup__description {
   margin: 0;
   font-size: 0.85rem;
   color: #444;
