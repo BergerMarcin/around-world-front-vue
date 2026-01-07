@@ -1,6 +1,10 @@
-@import './base.css';
-
 :root {
+  /* Basic colors */
+  --color-white: #fff;
+  --color-basic-text: #444;
+  --color-basic-background: var(--color-white);
+
+  /* Primary - Cyan/Mint theme */
   /* Primary 1 & 2 colors together creating complementary gradients */
   /* Primary 1 colors - Cyan/Teal theme */
   --color-primary-1: #01b6db;
@@ -14,32 +18,51 @@
   --color-primary-2: #76f7c0;
   --color-primary-2-faint: #76f7c010;
 
+  /* Secondary colors - Green/Mint theme */
+  --color-secondary-1: #019f8c;
+  --color-secondary-1-dark: #017f70;
+  --color-secondary-2: #57e49a;
+
+  /* Tertiary colors - Dark green/Green */
+  --color-tertiary-1: #017a63; /* Darker than --color-secondary-1 (#019f8c) */
+  --color-tertiary-1-dark: #015f4d; /* Darker than --color-secondary-1-dark (#017f70) */
+  --color-tertiary-2: #3fbf85; /* Darker than --color-secondary-2 (#57e49a) */
+
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2));
   --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-1-dark), var(--color-primary-2));
   --gradient-primary-faint: linear-gradient(135deg, var(--color-primary-1-faint), var(--color-primary-2-faint));
 
-  /* Secondary colors - Gray theme */
-  --color-secondary: #6c757d;
-  --color-secondary-dark: #5a6268;
+  --gradient-secondary: linear-gradient(135deg, var(--color-secondary-1), var(--color-secondary-2));
+  --gradient-secondary-hover: linear-gradient(135deg, var(--color-secondary-1-dark), var(--color-secondary-2));
 
-  /* Tertiary/Accent - Blue */
-  --color-tertiary: #007bff;
-  --color-tertiary-hover-bg: #e2e6ea;
+  --gradient-tertiary: linear-gradient(135deg, var(--color-tertiary-1), var(--color-tertiary-2));
+  --gradient-tertiary-hover: linear-gradient(135deg, var(--color-tertiary-1-dark), var(--color-tertiary-2));
 
   /* Text colors */
-  /* #2c3e50  */
   --color-text-header: #1a1a1a;
-  --color-text-regular: #444;
+  --color-text-regular: var(--color-basic-text);
   --color-text-muted: #666;
   --color-text-dark: #333;
 
   /* Background colors */
-  --color-bg-white: #fff;
+  --color-bg-white: var(--color-basic-background);
   --color-bg-light-gray: #c0c0c0;
 
   /* Border colors */
   --color-border-light: rgba(60, 60, 60, 0.12);
+
+  /* Button colors */
+  --color-button-text: var(--color-white);
+  --color-button-disabled-text: var(--color-text-regular);
+  --color-button-disabled-bg: var(--color-bg-light-gray);
+  --color-button-shadow: var(--color-primary-1-lighter);
+  --color-button-primary-bg: var(--gradient-primary);
+  --color-button-primary-bg-hover: var(--gradient-primary-hover);
+  --color-button-secondary-bg: var(--gradient-secondary);
+  --color-button-secondary-bg-hover: var(--gradient-secondary-hover);
+  --color-button-tertiary-bg: var(--gradient-tertiary);
+  --color-button-tertiary-bg-hover: var(--gradient-tertiary-hover);
 
   /* Scrollbar colors */
   --color-scrollbar-track: #f1f1f1;
@@ -61,6 +84,34 @@
   /* Vue color: hsla(160, 100%, 37%, 1); background: hsla(160, 100%, 37%, 0.2) */
 }
 
+body {
+  width: 100vw;
+  height: 100vh;
+  color: var(--color-text-regular);
+  background: var(--color-bg-white);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 #app {
   padding: 0.5rem;
   overflow-x: hidden;
@@ -70,6 +121,14 @@
   #app {
     overflow-y: hidden;
   }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
 }
 
 a {
