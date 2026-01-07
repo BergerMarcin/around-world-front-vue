@@ -58,7 +58,7 @@ onUnmounted(() => {
   </dialog>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .modal {
   position: fixed;
   inset: 0;
@@ -69,26 +69,26 @@ onUnmounted(() => {
   margin: 0;
   padding: 0;
   border: none;
-  background: transparent;
+  background: var(--aw-color-modal-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.modal:not([open]) {
-  display: none;
-}
+  &:not([open]) {
+    display: none;
+  }
 
-.modal::backdrop {
-  background: var(--aw-color-overlay-medium);
-  backdrop-filter: blur(1px);
+  &::backdrop {
+    background: var(--aw-color-modal-backdrop-bg);
+    backdrop-filter: blur(1px);
+  }
 }
 
 .modal__container {
   position: relative;
-  background: var(--aw-color-bg-white);
+  background: var(--aw-color-modal-container-bg);
   border-radius: 12px;
-  box-shadow: 0 8px 32px var(--aw-color-overlay-lighter);
+  box-shadow: 0 8px 32px var(--aw-color-modal-container-box-shadow);
   max-width: 85vw;
   max-height: 85vh;
   overflow: hidden;
@@ -101,7 +101,7 @@ onUnmounted(() => {
   top: 8px;
   right: 22px;
   z-index: 10;
-  background: var(--aw-color-overlay-faint);
+  background: var(--aw-color-modal-close-btn-bg);
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -112,35 +112,32 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--aw-color-text-dark);
+  color: var(--aw-color-modal-close-btn);
   transition: background 0.2s ease;
-}
 
-.modal__close-btn:hover {
-  background: var(--aw-color-overlay-light);
-  color: black;
+  &:hover {
+    background: var(--aw-color-modal-close-btn-bg-hover);
+    color: var(--aw-color-modal-close-btn-hover);
+  }
 }
 
 .modal__content {
   overflow-x: hidden;
   overflow-y: auto;
-}
 
-.modal__content::-webkit-scrollbar {
-  width: 10px;
-}
-
-.modal__content::-webkit-scrollbar-track {
-  background: var(--aw-color-scrollbar-track);
-  border-radius: 5px;
-}
-
-.modal__content::-webkit-scrollbar-thumb {
-  background: var(--aw-color-scrollbar-thumb);
-  border-radius: 5px;
-}
-
-.modal__content::-webkit-scrollbar-thumb:hover {
-  background: var(--aw-color-scrollbar-thumb-hover);
+  &::-webkit-scrollbar {
+    width: 10px;
+    &-track {
+      background: var(--aw-color-scrollbar-track);
+      border-radius: 5px;
+    }
+    &-thumb {
+      background: var(--aw-color-scrollbar-thumb);
+      border-radius: 5px;
+      &:hover {
+        background: var(--aw-color-scrollbar-thumb-hover);
+      }
+    }
+  }
 }
 </style>

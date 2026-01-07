@@ -1,6 +1,7 @@
 :root {
   /* Basic colors */
   --aw-color-white: #fff;
+  --aw-color-black: #000;
   --aw-color-basic-text: #444;
   --aw-color-basic-background: var(--aw-color-white);
 
@@ -24,9 +25,9 @@
   --aw-color-secondary-2: #57e49a;
 
   /* Tertiary colors - Dark green/Green */
-  --aw-color-tertiary-1: #017a63; /* Darker than --aw-color-secondary-1 (#019f8c) */
-  --aw-color-tertiary-1-dark: #015f4d; /* Darker than --aw-color-secondary-1-dark (#017f70) */
-  --aw-color-tertiary-2: #3fbf85; /* Darker than --aw-color-secondary-2 (#57e49a) */
+  --aw-color-tertiary-1: #017a63;
+  --aw-color-tertiary-1-dark: #015f4d;
+  --aw-color-tertiary-2: #3fbf85;
 
   /* Gradients */
   --aw-gradient-primary: linear-gradient(135deg, var(--aw-color-primary-1), var(--aw-color-primary-2));
@@ -98,6 +99,16 @@
   --aw-color-scrollbar-track: #f1f1f1;
   --aw-color-scrollbar-thumb: #c1c1c1;
   --aw-color-scrollbar-thumb-hover: #a1a1a1;
+
+  /* Modal */
+  --aw-color-modal-bg: transparent;
+  --aw-color-modal-backdrop-bg: var(--aw-color-overlay-medium);
+  --aw-color-modal-container-bg: var(--aw-color-bg-white);
+  --aw-color-modal-container-box-shadow: var(--aw-color-overlay-lighter);
+  --aw-color-modal-close-btn: var(--aw-color-text-dark);
+  --aw-color-modal-close-btn-hover: var(--aw-color-black);
+  --aw-color-modal-close-btn-bg: var(--aw-color-overlay-faint);
+  --aw-color-modal-close-btn-bg-hover: var(--aw-color-overlay-light);
 
   /* Notification colors */
   --aw-color-notification-close: rgb(84, 84, 84);
