@@ -28,23 +28,3 @@ export const useHotelsStore = defineStore('hotels', () => {
 
   return { hotels, fetchHotels }
 })
-
-export const useCartStore = defineStore('cart', () => {
-  const cartItems = ref<Hotel[]>([])
-
-  function addToCart(hotel: Hotel): void {
-    if (!cartItems.value.find((item) => item.sku === hotel.sku)) {
-      cartItems.value.push(hotel)
-    }
-  }
-
-  function removeFromCart(hotelSku: string): void {
-    cartItems.value = cartItems.value.filter((item) => item.sku !== hotelSku)
-  }
-
-  function hasCartHotel(hotelSku: string): boolean {
-    return cartItems.value.some((item) => item.sku === hotelSku)
-  }
-
-  return { cartItems, addToCart, removeFromCart, hasCartHotel }
-})
