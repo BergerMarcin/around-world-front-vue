@@ -6,7 +6,6 @@ import router from './router'
 
 import './assets/main.css'
 
-
 import { useBackendApiService } from './api/backend-api-service'
 import { ProviderKey } from './types/global.types'
 
