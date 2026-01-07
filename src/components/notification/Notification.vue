@@ -13,13 +13,13 @@
 }
 
 .custom-swal-close-button {
-  color: var(--color-notification-close);
+  color: var(--aw-color-notification-close);
   grid-column: 3/3;
   grid-row: 1/99;
   font-size: 2rem;
 }
 .custom-swal-close-button:hover {
-  color: var(--color-notification-close-hover);
+  color: var(--aw-color-notification-close-hover);
 }
 
 .custom-swal-icon {

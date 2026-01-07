@@ -23,13 +23,13 @@
   position: relative;
   top: -10px;
   padding: 3px;
-  color: var(--color-primary-1);
+  color: var(--aw-color-primary-1);
   font-size: 2.6rem;
   font-weight: 500;
 }
 
 .dev-doc-header__header-description {
   font-size: 1.2rem;
-  color: var(--color-text-regular);
+  color: var(--aw-color-text-regular);
 }
 </style>

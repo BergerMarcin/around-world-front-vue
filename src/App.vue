@@ -51,7 +51,7 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
     vertical-align: middle;
 
     &.router-link-exact-active {
-      color: var(--color-text-regular);
+      color: var(--aw-color-text-regular);
       cursor: default;
     }
 
@@ -65,7 +65,7 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
   display: inline-block;
   width: 1px;
   height: 25px;
-  background: var(--color-border-light);
+  background: var(--aw-color-border-light);
   vertical-align: middle;
 }
 </style>

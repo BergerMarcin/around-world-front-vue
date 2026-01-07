@@ -104,8 +104,8 @@ const rate = rateStandardized(props.hotel)
   }
 
   &__rate {
-    background: var(--color-overlay-dark);
-    color: var(--color-bg-white);
+    background: var(--aw-color-overlay-dark);
+    color: var(--aw-color-bg-white);
     padding: 6px 12px;
     border-radius: 6px;
     font-size: 1rem;
@@ -127,7 +127,7 @@ const rate = rateStandardized(props.hotel)
     margin: 0 25px 0 0;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-text-header);
+    color: var(--aw-color-text-header);
     line-height: 1.3;
   }
 
@@ -141,7 +141,7 @@ const rate = rateStandardized(props.hotel)
     display: flex;
     align-items: center;
     gap: 6px;
-    color: var(--color-text-muted);
+    color: var(--aw-color-text-muted);
     font-size: 0.95rem;
     margin-bottom: 16px;
   }
@@ -156,19 +156,19 @@ const rate = rateStandardized(props.hotel)
     gap: 8px;
     margin-bottom: 24px;
     padding: 12px 16px;
-    background: var(--gradient-primary-faint);
+    background: var(--aw-gradient-primary-faint);
     border-radius: 8px;
   }
 
   &__price-label {
     font-size: 0.9rem;
-    color: var(--color-text-muted);
+    color: var(--aw-color-text-muted);
   }
 
   &__price-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-primary-1);
+    color: var(--aw-color-primary-1);
   }
 
   &__sections-container {
@@ -182,13 +182,13 @@ const rate = rateStandardized(props.hotel)
       margin: 0 0 8px 0;
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--color-text-header);
+      color: var(--aw-color-text-header);
     }
 
     & p {
       margin: 0;
       font-size: 0.95rem;
-      color: var(--color-text-regular);
+      color: var(--aw-color-text-regular);
       line-height: 1.6;
     }
   }

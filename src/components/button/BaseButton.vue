@@ -21,7 +21,7 @@ const disabled = props.disabled || false
 <style lang="scss" scoped>
 .base-button {
   padding: 12px 24px;
-  color: var(--color-button-text);
+  color: var(--aw-color-button-text);
   font-size: 1rem;
   border: none;
   border-radius: 8px;
@@ -29,7 +29,7 @@ const disabled = props.disabled || false
 
   &:not(:disabled):hover {
     transform: translateX(-1px) translateY(-1px);
-    box-shadow: 4px 4px 8px var(--color-button-shadow);
+    box-shadow: 4px 4px 8px var(--aw-color-button-shadow);
   }
 
   &:not(:disabled):active {
@@ -40,30 +40,30 @@ const disabled = props.disabled || false
   &:disabled,
   &:disabled:hover,
   &:disabled:active {
-    color: var(--color-button-disabled-text);
-    background: var(--color-button-disabled-bg);
+    color: var(--aw-color-button-disabled-text);
+    background: var(--aw-color-button-disabled-bg);
     cursor: not-allowed;
   }
 }
 
 .base-button--primary {
-  background: var(--color-button-primary-bg);
+  background: var(--aw-color-button-primary-bg);
   &:hover {
-    background: var(--color-button-primary-bg-hover);
+    background: var(--aw-color-button-primary-bg-hover);
   }
 }
 
 .base-button--secondary {
-  background: var(--color-button-secondary-bg);
+  background: var(--aw-color-button-secondary-bg);
   &:hover {
-    background: var(--color-button-secondary-bg-hover);
+    background: var(--aw-color-button-secondary-bg-hover);
   }
 }
 
 .base-button--tertiary {
-  background: var(--color-button-tertiary-bg);
+  background: var(--aw-color-button-tertiary-bg);
   &:hover {
-    background: var(--color-button-tertiary-bg-hover);
+    background: var(--aw-color-button-tertiary-bg-hover);
   }
 }
 </style>

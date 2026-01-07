@@ -47,7 +47,7 @@
     &:before,
     &:after {
       content: ' ';
-      border-left: 1px solid var(--color-border-light);
+      border-left: 1px solid var(--aw-color-border-light);
       position: absolute;
       left: 0;
       height: calc(50% - 25px);
@@ -71,8 +71,8 @@
     top: calc(50% - 25px);
     left: -26px;
     position: absolute;
-    border: 1px solid var(--color-border-light);
-    background: var(--color-bg-white);
+    border: 1px solid var(--aw-color-border-light);
+    background: var(--aw-color-bg-white);
     border-radius: 8px;
     width: 50px;
     height: 50px;

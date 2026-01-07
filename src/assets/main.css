@@ -1,90 +1,94 @@
 :root {
   /* Basic colors */
-  --color-white: #fff;
-  --color-basic-text: #444;
-  --color-basic-background: var(--color-white);
+  --aw-color-white: #fff;
+  --aw-color-basic-text: #444;
+  --aw-color-basic-background: var(--aw-color-white);
 
   /* Primary - Cyan/Mint theme */
   /* Primary 1 & 2 colors together creating complementary gradients */
   /* Primary 1 colors - Cyan/Teal theme */
-  --color-primary-1: #01b6db;
-  --color-primary-1-dark: #009aba;
-  --color-primary-1-darker: #039bd2;
-  --color-primary-1-light: rgba(1, 182, 219, 0.6);
-  --color-primary-1-lighter: rgba(1, 182, 219, 0.3);
-  --color-primary-1-faint: #01b6db10;
+  --aw-color-primary-1: #01b6db;
+  --aw-color-primary-1-dark: #009aba;
+  --aw-color-primary-1-darker: #039bd2;
+  --aw-color-primary-1-light: rgba(1, 182, 219, 0.6);
+  --aw-color-primary-1-lighter: rgba(1, 182, 219, 0.3);
+  --aw-color-primary-1-faint: #01b6db10;
 
   /* Primary 2 - Mint/Green accent */
-  --color-primary-2: #76f7c0;
-  --color-primary-2-faint: #76f7c010;
+  --aw-color-primary-2: #76f7c0;
+  --aw-color-primary-2-faint: #76f7c010;
 
   /* Secondary colors - Green/Mint theme */
-  --color-secondary-1: #019f8c;
-  --color-secondary-1-dark: #017f70;
-  --color-secondary-2: #57e49a;
+  --aw-color-secondary-1: #019f8c;
+  --aw-color-secondary-1-dark: #017f70;
+  --aw-color-secondary-2: #57e49a;
 
   /* Tertiary colors - Dark green/Green */
-  --color-tertiary-1: #017a63; /* Darker than --color-secondary-1 (#019f8c) */
-  --color-tertiary-1-dark: #015f4d; /* Darker than --color-secondary-1-dark (#017f70) */
-  --color-tertiary-2: #3fbf85; /* Darker than --color-secondary-2 (#57e49a) */
+  --aw-color-tertiary-1: #017a63; /* Darker than --aw-color-secondary-1 (#019f8c) */
+  --aw-color-tertiary-1-dark: #015f4d; /* Darker than --aw-color-secondary-1-dark (#017f70) */
+  --aw-color-tertiary-2: #3fbf85; /* Darker than --aw-color-secondary-2 (#57e49a) */
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2));
-  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-1-dark), var(--color-primary-2));
-  --gradient-primary-faint: linear-gradient(135deg, var(--color-primary-1-faint), var(--color-primary-2-faint));
+  --aw-gradient-primary: linear-gradient(135deg, var(--aw-color-primary-1), var(--aw-color-primary-2));
+  --aw-gradient-primary-hover: linear-gradient(135deg, var(--aw-color-primary-1-dark), var(--aw-color-primary-2));
+  --aw-gradient-primary-faint: linear-gradient(
+    135deg,
+    var(--aw-color-primary-1-faint),
+    var(--aw-color-primary-2-faint)
+  );
 
-  --gradient-secondary: linear-gradient(135deg, var(--color-secondary-1), var(--color-secondary-2));
-  --gradient-secondary-hover: linear-gradient(135deg, var(--color-secondary-1-dark), var(--color-secondary-2));
+  --aw-gradient-secondary: linear-gradient(135deg, var(--aw-color-secondary-1), var(--aw-color-secondary-2));
+  --aw-gradient-secondary-hover: linear-gradient(135deg, var(--aw-color-secondary-1-dark), var(--aw-color-secondary-2));
 
-  --gradient-tertiary: linear-gradient(135deg, var(--color-tertiary-1), var(--color-tertiary-2));
-  --gradient-tertiary-hover: linear-gradient(135deg, var(--color-tertiary-1-dark), var(--color-tertiary-2));
+  --aw-gradient-tertiary: linear-gradient(135deg, var(--aw-color-tertiary-1), var(--aw-color-tertiary-2));
+  --aw-gradient-tertiary-hover: linear-gradient(135deg, var(--aw-color-tertiary-1-dark), var(--aw-color-tertiary-2));
 
   /* Text colors */
-  --color-text-header: #1a1a1a;
-  --color-text-regular: var(--color-basic-text);
-  --color-text-muted: #666;
-  --color-text-dark: #333;
+  --aw-color-text-header: #1a1a1a;
+  --aw-color-text-regular: var(--aw-color-basic-text);
+  --aw-color-text-muted: #666;
+  --aw-color-text-dark: #333;
 
   /* Background colors */
-  --color-bg-white: var(--color-basic-background);
-  --color-bg-light-gray: #c0c0c0;
+  --aw-color-bg-white: var(--aw-color-basic-background);
+  --aw-color-bg-light-gray: #c0c0c0;
 
   /* Border colors */
-  --color-border-light: rgba(60, 60, 60, 0.12);
+  --aw-color-border-light: rgba(60, 60, 60, 0.12);
 
   /* Button colors */
-  --color-button-text: var(--color-white);
-  --color-button-disabled-text: var(--color-text-regular);
-  --color-button-disabled-bg: var(--color-bg-light-gray);
-  --color-button-shadow: var(--color-primary-1-lighter);
-  --color-button-primary-bg: var(--gradient-primary);
-  --color-button-primary-bg-hover: var(--gradient-primary-hover);
-  --color-button-secondary-bg: var(--gradient-secondary);
-  --color-button-secondary-bg-hover: var(--gradient-secondary-hover);
-  --color-button-tertiary-bg: var(--gradient-tertiary);
-  --color-button-tertiary-bg-hover: var(--gradient-tertiary-hover);
+  --aw-color-button-text: var(--aw-color-white);
+  --aw-color-button-disabled-text: var(--aw-color-text-regular);
+  --aw-color-button-disabled-bg: var(--aw-color-bg-light-gray);
+  --aw-color-button-shadow: var(--aw-color-primary-1-lighter);
+  --aw-color-button-primary-bg: var(--aw-gradient-primary);
+  --aw-color-button-primary-bg-hover: var(--aw-gradient-primary-hover);
+  --aw-color-button-secondary-bg: var(--aw-gradient-secondary);
+  --aw-color-button-secondary-bg-hover: var(--aw-gradient-secondary-hover);
+  --aw-color-button-tertiary-bg: var(--aw-gradient-tertiary);
+  --aw-color-button-tertiary-bg-hover: var(--aw-gradient-tertiary-hover);
 
   /* Link color */
-  --color-link-text: var(--color-primary-1);
-  --color-link-text-hover: var(--color-text-regular);
-  --color-link-bg: transparent;
-  --color-link-bg-hover: var(--color-button-primary-bg-hover);
+  --aw-color-link-text: var(--aw-color-primary-1);
+  --aw-color-link-text-hover: var(--aw-color-text-regular);
+  --aw-color-link-bg: transparent;
+  --aw-color-link-bg-hover: var(--aw-color-button-primary-bg-hover);
 
   /* Scrollbar colors */
-  --color-scrollbar-track: #f1f1f1;
-  --color-scrollbar-thumb: #c1c1c1;
-  --color-scrollbar-thumb-hover: #a1a1a1;
+  --aw-color-scrollbar-track: #f1f1f1;
+  --aw-color-scrollbar-thumb: #c1c1c1;
+  --aw-color-scrollbar-thumb-hover: #a1a1a1;
 
   /* Overlay colors */
-  --color-overlay-dark: rgba(0, 0, 0, 0.7);
-  --color-overlay-medium: rgba(0, 0, 0, 0.5);
-  --color-overlay-light: rgba(0, 0, 0, 0.3);
-  --color-overlay-lighter: rgba(0, 0, 0, 0.2);
-  --color-overlay-faint: rgba(0, 0, 0, 0.1);
+  --aw-color-overlay-dark: rgba(0, 0, 0, 0.7);
+  --aw-color-overlay-medium: rgba(0, 0, 0, 0.5);
+  --aw-color-overlay-light: rgba(0, 0, 0, 0.3);
+  --aw-color-overlay-lighter: rgba(0, 0, 0, 0.2);
+  --aw-color-overlay-faint: rgba(0, 0, 0, 0.1);
 
   /* Notification colors */
-  --color-notification-close: rgb(84, 84, 84);
-  --color-notification-close-hover: rgb(107, 32, 32);
+  --aw-color-notification-close: rgb(84, 84, 84);
+  --aw-color-notification-close-hover: rgb(107, 32, 32);
   /* More notification colors in TS file `src/components/notification/useNotification.ts` */
 
   /* Vue color: hsla(160, 100%, 37%, 1); background: hsla(160, 100%, 37%, 0.2) */
@@ -93,8 +97,8 @@
 body {
   width: 100vw;
   height: 100vh;
-  color: var(--color-text-regular);
-  background: var(--color-bg-white);
+  color: var(--aw-color-text-regular);
+  background: var(--aw-color-bg-white);
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -138,9 +142,9 @@ body {
 }
 
 a {
-  color: var(--color-link-text);
+  color: var(--aw-color-link-text);
   font-weight: 500;
-  background-color: var(--color-link-bg);
+  background-color: var(--aw-color-link-bg);
   text-decoration: none;
   border-radius: 4px;
   border: none;
@@ -148,6 +152,6 @@ a {
 }
 
 a:hover {
-  color: var(--color-link-text-hover);
-  background: var(--color-link-bg-hover);
+  color: var(--aw-color-link-text-hover);
+  background: var(--aw-color-link-bg-hover);
 }

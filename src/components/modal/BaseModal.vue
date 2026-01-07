@@ -80,15 +80,15 @@ onUnmounted(() => {
 }
 
 .modal::backdrop {
-  background: var(--color-overlay-medium);
+  background: var(--aw-color-overlay-medium);
   backdrop-filter: blur(1px);
 }
 
 .modal__container {
   position: relative;
-  background: var(--color-bg-white);
+  background: var(--aw-color-bg-white);
   border-radius: 12px;
-  box-shadow: 0 8px 32px var(--color-overlay-lighter);
+  box-shadow: 0 8px 32px var(--aw-color-overlay-lighter);
   max-width: 85vw;
   max-height: 85vh;
   overflow: hidden;
@@ -101,7 +101,7 @@ onUnmounted(() => {
   top: 8px;
   right: 22px;
   z-index: 10;
-  background: var(--color-overlay-faint);
+  background: var(--aw-color-overlay-faint);
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -112,12 +112,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-dark);
+  color: var(--aw-color-text-dark);
   transition: background 0.2s ease;
 }
 
 .modal__close-btn:hover {
-  background: var(--color-overlay-light);
+  background: var(--aw-color-overlay-light);
   color: black;
 }
 
@@ -131,16 +131,16 @@ onUnmounted(() => {
 }
 
 .modal__content::-webkit-scrollbar-track {
-  background: var(--color-scrollbar-track);
+  background: var(--aw-color-scrollbar-track);
   border-radius: 5px;
 }
 
 .modal__content::-webkit-scrollbar-thumb {
-  background: var(--color-scrollbar-thumb);
+  background: var(--aw-color-scrollbar-thumb);
   border-radius: 5px;
 }
 
 .modal__content::-webkit-scrollbar-thumb:hover {
-  background: var(--color-scrollbar-thumb-hover);
+  background: var(--aw-color-scrollbar-thumb-hover);
 }
 </style>
