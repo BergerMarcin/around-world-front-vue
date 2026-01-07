@@ -8,12 +8,12 @@ export const customIcon = Leaflet.divIcon({
   html: `<svg width="25" height="41" viewBox="0 0 25 41" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="markerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#01B6DB"/>
-            <stop offset="100%" style="stop-color:#76F7C0"/>
+            <stop offset="0%" style="stop-color:var(--aw-color-marker-icon-bg-gradient-top)"/>
+            <stop offset="100%" style="stop-color:var(--aw-color-marker-icon-bg-gradient-bottom)"/>
           </linearGradient>
         </defs>
-        <path fill="url(#markerGradient)" stroke="#fff" stroke-width="1" d="M12.5 0C5.6 0 0 5.6 0 12.5c0 9.4 12.5 28.5 12.5 28.5S25 21.9 25 12.5C25 5.6 19.4 0 12.5 0z"/>
-        <circle cx="12.5" cy="12.5" r="5" fill="#fff"/>
+        <path fill="url(#markerGradient)" stroke="var(--aw-color-marker-icon-border)" stroke-width="1" d="M12.5 0C5.6 0 0 5.6 0 12.5c0 9.4 12.5 28.5 12.5 28.5S25 21.9 25 12.5C25 5.6 19.4 0 12.5 0z"/>
+        <circle cx="12.5" cy="12.5" r="5" fill="var(--aw-color-marker-icon-circle-point)"/>
       </svg>`,
   iconSize: [25, 41],
   iconAnchor: [12, 41],

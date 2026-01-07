@@ -48,6 +48,7 @@
   --aw-color-text-regular: var(--aw-color-basic-text);
   --aw-color-text-muted: #666;
   --aw-color-text-dark: #333;
+  --aw-color-text-white: var(--aw-color-white);
 
   /* Background colors */
   --aw-color-bg-white: var(--aw-color-basic-background);
@@ -57,7 +58,7 @@
   --aw-color-border-light: rgba(60, 60, 60, 0.12);
 
   /* Button colors */
-  --aw-color-button-text: var(--aw-color-white);
+  --aw-color-button-text: var(--aw-color-text-white);
   --aw-color-button-disabled-text: var(--aw-color-text-regular);
   --aw-color-button-disabled-bg: var(--aw-color-bg-light-gray);
   --aw-color-button-shadow: var(--aw-color-primary-1-lighter);
@@ -68,11 +69,25 @@
   --aw-color-button-tertiary-bg: var(--aw-gradient-tertiary);
   --aw-color-button-tertiary-bg-hover: var(--aw-gradient-tertiary-hover);
 
-  /* Link color */
+  /* Link colors */
   --aw-color-link-text: var(--aw-color-primary-1);
   --aw-color-link-text-hover: var(--aw-color-text-regular);
   --aw-color-link-bg: transparent;
   --aw-color-link-bg-hover: var(--aw-color-button-primary-bg-hover);
+
+  /* Map Marker-Cluster/Collection colors */
+  --aw-color-marker-cluster-text: var(--aw-color-text-white);
+  --aw-color-marker-cluster-inner-bg: var(--aw-color-primary-1-light);
+  --aw-color-marker-cluster-outer-bg: var(--aw-gradient-primary);
+
+  /* Map Marker colors */
+  --aw-color-marker-bg: transparent;
+  /* Map Marker-Icon colors */
+  /* Applied in raw html of marker-icon custom styling */
+  --aw-color-marker-icon-bg-gradient-top: var(--aw-color-primary-1);
+  --aw-color-marker-icon-bg-gradient-bottom: var(--aw-color-primary-2);
+  --aw-color-marker-icon-border: var(--aw-color-white);
+  --aw-color-marker-icon-circle-point: var(--aw-color-white);
 
   /* Scrollbar colors */
   --aw-color-scrollbar-track: #f1f1f1;
