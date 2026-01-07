@@ -105,7 +105,7 @@ const rate = rateStandardized(props.hotel)
 
   &__rate {
     background: var(--aw-color-overlay-dark);
-    color: var(--aw-color-bg-white);
+    color: var(--aw-color-text-white);
     padding: 6px 12px;
     border-radius: 6px;
     font-size: 1rem;
