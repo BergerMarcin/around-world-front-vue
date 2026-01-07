@@ -36,10 +36,8 @@
     var(--aw-color-primary-1-faint),
     var(--aw-color-primary-2-faint)
   );
-
   --aw-gradient-secondary: linear-gradient(135deg, var(--aw-color-secondary-1), var(--aw-color-secondary-2));
   --aw-gradient-secondary-hover: linear-gradient(135deg, var(--aw-color-secondary-1-dark), var(--aw-color-secondary-2));
-
   --aw-gradient-tertiary: linear-gradient(135deg, var(--aw-color-tertiary-1), var(--aw-color-tertiary-2));
   --aw-gradient-tertiary-hover: linear-gradient(135deg, var(--aw-color-tertiary-1-dark), var(--aw-color-tertiary-2));
 
@@ -57,11 +55,18 @@
   /* Border colors */
   --aw-color-border-light: rgba(60, 60, 60, 0.12);
 
+  /* Overlay colors */
+  --aw-color-overlay-dark: rgba(0, 0, 0, 0.7);
+  --aw-color-overlay-medium: rgba(0, 0, 0, 0.5);
+  --aw-color-overlay-light: rgba(0, 0, 0, 0.3);
+  --aw-color-overlay-lighter: rgba(0, 0, 0, 0.2);
+  --aw-color-overlay-faint: rgba(0, 0, 0, 0.1);
+
   /* Button colors */
   --aw-color-button-text: var(--aw-color-text-white);
   --aw-color-button-disabled-text: var(--aw-color-text-regular);
   --aw-color-button-disabled-bg: var(--aw-color-bg-light-gray);
-  --aw-color-button-shadow: var(--aw-color-primary-1-lighter);
+  --aw-color-button-box-shadow: var(--aw-color-primary-1-lighter);
   --aw-color-button-primary-bg: var(--aw-gradient-primary);
   --aw-color-button-primary-bg-hover: var(--aw-gradient-primary-hover);
   --aw-color-button-secondary-bg: var(--aw-gradient-secondary);
@@ -93,13 +98,6 @@
   --aw-color-scrollbar-track: #f1f1f1;
   --aw-color-scrollbar-thumb: #c1c1c1;
   --aw-color-scrollbar-thumb-hover: #a1a1a1;
-
-  /* Overlay colors */
-  --aw-color-overlay-dark: rgba(0, 0, 0, 0.7);
-  --aw-color-overlay-medium: rgba(0, 0, 0, 0.5);
-  --aw-color-overlay-light: rgba(0, 0, 0, 0.3);
-  --aw-color-overlay-lighter: rgba(0, 0, 0, 0.2);
-  --aw-color-overlay-faint: rgba(0, 0, 0, 0.1);
 
   /* Notification colors */
   --aw-color-notification-close: rgb(84, 84, 84);

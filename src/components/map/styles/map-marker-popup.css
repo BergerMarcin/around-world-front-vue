@@ -124,7 +124,7 @@
 
 .hotel-popup__details-button:hover {
   background: var(--aw-color-button-primary-bg-hover);
-  box-shadow: 4px 4px 8px var(--aw-color-button-shadow);
+  box-shadow: 4px 4px 8px var(--aw-color-button-box-shadow);
   transform: translateX(-1px) translateY(-1px);
 }
 

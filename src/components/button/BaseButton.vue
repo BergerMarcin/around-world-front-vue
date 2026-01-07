@@ -29,7 +29,7 @@ const disabled = props.disabled || false
 
   &:not(:disabled):hover {
     transform: translateX(-1px) translateY(-1px);
-    box-shadow: 4px 4px 8px var(--aw-color-button-shadow);
+    box-shadow: 4px 4px 8px var(--aw-color-button-box-shadow);
   }
 
   &:not(:disabled):active {
