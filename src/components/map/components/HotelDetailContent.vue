@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import BaseButton from '@/components/button/BaseButton.vue'
 import { imageUrlFromHotel, rateStandardized } from '@/components/map/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
@@ -7,8 +8,16 @@ const props = defineProps<{
   hotel: Hotel
 }>()
 
-const imageUrl = imageUrlFromHotel(props.hotel)
-const rate = rateStandardized(props.hotel)
+const emits = defineEmits<{
+  (e: 'add-to-cart', hotel: Hotel): void
+}>()
+
+const imageUrl = computed(() => imageUrlFromHotel(props.hotel))
+const rate = computed(() => rateStandardized(props.hotel))
+
+function addToCart() {
+  emits('add-to-cart', props.hotel)
+}
 </script>
 
 <template>
@@ -23,7 +32,7 @@ const rate = rateStandardized(props.hotel)
     <div class="hotel-detail__body">
       <div class="hotel-detail__header-container">
         <h2 class="hotel-detail__title">{{ hotel.title }}</h2>
-        <BaseButton>
+        <BaseButton @click="addToCart">
           <span class="hotel-detail__atc">Book Now</span>
         </BaseButton>
       </div>

@@ -7,7 +7,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import '../styles/map-marker-popup.css'
 import { useLogger } from '@/utils/logger'
-import { useHotelsStore } from '@/stores/hotels-store'
+import { useHotelsStore, useCartStore } from '@/stores/hotels-store'
 import type { Hotel } from '@/types/global.types'
 import {
   createHotelPopupContent,
@@ -18,36 +18,26 @@ import {
 } from '../utils/hotel-marker.utils.js'
 
 export function useHotels(): {
+  fetchHotelsToStore: () => Promise<void>
   hotels: Ref<Hotel[]>
   selectedHotel: Ref<Hotel | null>
   isModalOpen: Ref<boolean>
   closeModal: () => void
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
+  addToCart: (hotel: Hotel) => void
 } {
   const { devLog } = useLogger()
   const hotelsStore = useHotelsStore()
+  const cartStore = useCartStore()
 
   const hotels: Ref<Hotel[]> = computed(() => hotelsStore.hotels)
   const markerClusterGroup: Ref<Leaflet.MarkerClusterGroup | null> = ref(null)
   const selectedHotel: Ref<Hotel | null> = ref(null)
   const isModalOpen = ref(false)
 
-  function openModalWithHotel(hotel: Hotel) {
-    isModalOpen.value = true
-    selectedHotel.value = hotel
-  }
-
-  function closeModal() {
-    isModalOpen.value = false
-    selectedHotel.value = null
-  }
-
-  function openModalWithHotelOnEvent(hotel: Hotel) {
-    return (event: Event) => {
-      event.stopPropagation()
-      openModalWithHotel(hotel)
-    }
+  async function fetchHotelsToStore(): Promise<void> {
+    await hotelsStore.fetchHotels()
   }
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
@@ -87,5 +77,36 @@ export function useHotels(): {
     }
   }
 
-  return { hotels, selectedHotel, isModalOpen, closeModal, bindHotelsMarkers, unbindHotelsMarkers }
+  function openModalWithHotel(hotel: Hotel) {
+    isModalOpen.value = true
+    selectedHotel.value = hotel
+  }
+
+  function closeModal() {
+    isModalOpen.value = false
+    selectedHotel.value = null
+  }
+
+  function openModalWithHotelOnEvent(hotel: Hotel) {
+    return (event: Event) => {
+      event.stopPropagation()
+      openModalWithHotel(hotel)
+    }
+  }
+
+  function addToCart(hotel: Hotel): void {
+    cartStore.addToCart(hotel)
+    devLog(`Hotel "${hotel.title}" added to cart.`)
+  }
+
+  return {
+    fetchHotelsToStore,
+    hotels,
+    selectedHotel,
+    bindHotelsMarkers,
+    unbindHotelsMarkers,
+    isModalOpen,
+    closeModal,
+    addToCart,
+  }
 }
