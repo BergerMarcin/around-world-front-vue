@@ -6,6 +6,7 @@ import type { Hotel } from '@/types/global.types'
 
 const props = defineProps<{
   hotel: Hotel
+  isHotelInCart: boolean
 }>()
 
 const emits = defineEmits<{
@@ -14,6 +15,7 @@ const emits = defineEmits<{
 
 const imageUrl = computed(() => imageUrlFromHotel(props.hotel))
 const rate = computed(() => rateStandardized(props.hotel))
+const atcButtonText = computed(() => (props.isHotelInCart ? 'In Cart' : 'Book Now'))
 
 function addToCart() {
   emits('add-to-cart', props.hotel)
@@ -32,8 +34,8 @@ function addToCart() {
     <div class="hotel-detail__body">
       <div class="hotel-detail__header-container">
         <h2 class="hotel-detail__title">{{ hotel.title }}</h2>
-        <BaseButton @click="addToCart">
-          <span class="hotel-detail__atc">Book Now</span>
+        <BaseButton :disabled="isHotelInCart" @click="addToCart">
+          <span class="hotel-detail__atc">{{ atcButtonText }}</span>
         </BaseButton>
       </div>
 
@@ -141,6 +143,9 @@ function addToCart() {
   }
 
   &__atc {
+    display: block;
+    width: 80px;
+    text-align: center;
     font-weight: 600;
     white-space: nowrap;
     user-select: none;

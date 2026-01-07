@@ -14,6 +14,7 @@ const {
   isModalOpen,
   closeModal,
   addToCart,
+  isSelectedHotelInCart,
 } = useHotels()
 
 onMounted(async () => {
@@ -31,7 +32,12 @@ onBeforeUnmount(() => {
 <template>
   <div id="mapContainer"></div>
   <BaseModal :is-open="isModalOpen" @close="closeModal">
-    <HotelDetailContent v-if="selectedHotel" :hotel="selectedHotel" @add-to-cart="addToCart" />
+    <HotelDetailContent
+      v-if="selectedHotel"
+      :hotel="selectedHotel"
+      :isHotelInCart="isSelectedHotelInCart"
+      @add-to-cart="addToCart"
+    />
   </BaseModal>
 </template>
 

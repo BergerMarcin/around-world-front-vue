@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import Leaflet from 'leaflet'
 import type { LatLngTuple, Map } from 'leaflet'
 import 'leaflet.markercluster'
@@ -7,7 +7,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import '../styles/map-marker-popup.css'
 import { useLogger } from '@/utils/logger'
-import { useHotelsStore, useCartStore } from '@/stores/hotels-store'
+import { useHotelsStore, useCartStore } from '@/stores'
 import type { Hotel } from '@/types/global.types'
 import {
   createHotelPopupContent,
@@ -26,6 +26,7 @@ export function useHotels(): {
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   addToCart: (hotel: Hotel) => void
+  isSelectedHotelInCart: ComputedRef<boolean>
 } {
   const { devLog } = useLogger()
   const hotelsStore = useHotelsStore()
@@ -35,10 +36,6 @@ export function useHotels(): {
   const markerClusterGroup: Ref<Leaflet.MarkerClusterGroup | null> = ref(null)
   const selectedHotel: Ref<Hotel | null> = ref(null)
   const isModalOpen = ref(false)
-
-  async function fetchHotelsToStore(): Promise<void> {
-    await hotelsStore.fetchHotels()
-  }
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {
@@ -99,8 +96,12 @@ export function useHotels(): {
     devLog(`Hotel "${hotel.title}" added to cart.`)
   }
 
+  const isSelectedHotelInCart: ComputedRef<boolean> = computed(() =>
+    selectedHotel.value ? cartStore.isHotelInCart(selectedHotel.value) : false,
+  )
+
   return {
-    fetchHotelsToStore,
+    fetchHotelsToStore: hotelsStore.fetchHotels,
     hotels,
     selectedHotel,
     bindHotelsMarkers,
@@ -108,5 +109,6 @@ export function useHotels(): {
     isModalOpen,
     closeModal,
     addToCart,
+    isSelectedHotelInCart,
   }
 }
