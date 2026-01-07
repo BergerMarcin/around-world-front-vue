@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+
 const props = defineProps<{
   variant?: 'primary' | 'secondary' | 'tertiary'
   disabled?: boolean
@@ -8,8 +10,8 @@ const emits = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
 
-const variant = props.variant || 'primary'
-const disabled = props.disabled || false
+const variant = computed(() => props.variant || 'primary')
+const disabled = computed(() => props.disabled || false)
 </script>
 
 <template>
