@@ -3,6 +3,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   isOpen: boolean
+  options?: Record<string, unknown>
 }>()
 
 const emit = defineEmits<{
@@ -122,7 +123,6 @@ onUnmounted(() => {
 }
 
 .modal__content {
-  overflow-x: hidden;
   overflow-y: auto;
 
   &::-webkit-scrollbar {

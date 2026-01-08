@@ -91,8 +91,7 @@ function addToCart() {
 
 <style lang="scss" scoped>
 .hotel-detail {
-  width: 600px;
-  max-width: 85vw;
+  max-width: 600px;
 
   &__image-container {
     position: relative;
