@@ -6,17 +6,17 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Start',
+      name: 'MainMapView',
       component: MainView,
     },
     {
       path: '/project-dev-docs',
-      name: 'ProjectDevDocs',
+      name: 'ProjectDevDocsView',
       component: () => import('@/views/ProjectDevDocsView.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
-      name: 'NotFound',
+      name: 'NotFoundView',
       component: () => import('@/views/NotFoundView.vue'),
     },
   ],

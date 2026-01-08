@@ -3,6 +3,8 @@ import { provide, type ShallowRef, useTemplateRef } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Logos from '@/components/logos/Logos.vue'
 import Notification from '@/components/notification/Notification.vue'
+import CartNavButton from '@/components/cart/components/CartNavButton.vue'
+// import CartModal from '@/components/cart/components/CartModal.vue'
 import { ProviderKey } from '@/types/global.types'
 
 const logsContainer: Readonly<ShallowRef<HTMLElement | null>> = useTemplateRef('logsContainer')
@@ -18,11 +20,15 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
         <RouterLink to="/">Start</RouterLink>
         <div class="nav__separator" />
         <RouterLink to="/project-dev-docs">Dev Docs</RouterLink>
+        <div class="nav__separator" />
+        <CartNavButton :disabled="$route.name !== 'MainMapView'" class="nav__cart-button" />
       </nav>
     </div>
   </header>
 
   <RouterView />
+
+  <!-- <CartModal /> -->
 
   <Notification />
 </template>
@@ -45,10 +51,13 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
   font-size: 1rem;
   text-align: center;
 
-  & a {
+  & a,
+  .nav__cart-button {
     display: inline-block;
     padding: 0 1rem;
     vertical-align: middle;
+    font-size: inherit;
+    line-height: inherit;
 
     &.router-link-exact-active {
       color: var(--aw-color-text-regular);
