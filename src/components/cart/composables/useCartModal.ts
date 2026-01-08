@@ -13,7 +13,7 @@ export const useCartModal = (): {
   selectedCartItems: Ref<CartItem[]>
   isAnySelectedCartItem: ComputedRef<boolean>
   isCartItemSelected: (cartItem: CartItem) => boolean
-  toggleSelectionCartItem: (cartItem: CartItem) => void
+  toggleCartItemSelection: (cartItem: CartItem) => void
   removeFromCartSelectedCartItems: () => void
 } => {
   const { removeFromCart } = useCartStore()
@@ -36,7 +36,7 @@ export const useCartModal = (): {
     return selectedCartItems.value.some((item) => item.sku === cartItem.sku)
   }
 
-  function toggleSelectionCartItem(cartItem: CartItem) {
+  function toggleCartItemSelection(cartItem: CartItem) {
     if (isCartItemSelected(cartItem)) {
       selectedCartItems.value = selectedCartItems.value.filter((item) => item.sku !== cartItem.sku)
     } else {
@@ -56,7 +56,7 @@ export const useCartModal = (): {
     selectedCartItems,
     isAnySelectedCartItem,
     isCartItemSelected,
-    toggleSelectionCartItem,
+    toggleCartItemSelection,
     removeFromCartSelectedCartItems,
   }
 }

@@ -15,7 +15,7 @@ const {
   isCartItemSelected,
   removeFromCartSelectedCartItems,
   toggleOpenCartModal,
-  toggleSelectionCartItem,
+  toggleCartItemSelection,
 } = useCartModal()
 
 const toggleSelectionButtonText = (cartItem: CartItem) =>
@@ -30,7 +30,7 @@ const toggleSelectionButtonText = (cartItem: CartItem) =>
       <ul class="cart-items__list">
         <li v-for="hotel in cartItems" :key="hotel.sku" class="cart-item">
           <span>{{ hotel.title }} {{ hotel.location_country }} {{ hotel.location_region }}</span>
-          <BaseButton variant="tertiary" @click="toggleSelectionCartItem(hotel)">
+          <BaseButton variant="tertiary" @click="toggleCartItemSelection(hotel)">
             {{ toggleSelectionButtonText(hotel) }}
           </BaseButton>
         </li>
