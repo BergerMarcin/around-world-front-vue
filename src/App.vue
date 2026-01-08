@@ -17,11 +17,11 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
     <div ref="logsContainer" style="font-size: 8px"></div>
     <div class="nav__container">
       <nav class="nav__nav" aria-label="Main app navigation">
-        <RouterLink to="/">Start</RouterLink>
-        <div class="nav__separator" />
-        <RouterLink to="/project-dev-docs">Dev Docs</RouterLink>
+        <RouterLink to="/">Holidays</RouterLink>
         <div class="nav__separator" />
         <CartNavButton :disabled="$route.name !== 'MainMapView'" class="nav__cart-button" />
+        <div class="nav__separator" />
+        <RouterLink to="/project-dev-docs">Dev Docs</RouterLink>
       </nav>
     </div>
   </header>
@@ -61,6 +61,7 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
 
     &.router-link-exact-active {
       color: var(--aw-color-text-regular);
+      text-decoration: underline;
       cursor: default;
     }
 
