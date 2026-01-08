@@ -3,7 +3,6 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   isOpen: boolean
-  options?: Record<string, unknown>
 }>()
 
 const emit = defineEmits<{
