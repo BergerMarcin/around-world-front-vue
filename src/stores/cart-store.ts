@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+// TODO: use instead CartItem
 import type { Hotel } from '@/types/global.types'
 
 export const useCartStore = defineStore('cart', () => {
@@ -26,9 +27,13 @@ export const useCartStore = defineStore('cart', () => {
     cartItems.value = cartItems.value.filter(areHotelsDifferent(hotel))
   }
 
+  function hasCartItems(): boolean {
+    return Boolean(cartItems.value.length)
+  }
+
   function isHotelInCart(hotel: Hotel): boolean {
     return cartItems.value.some(areHotelsTheSame(hotel))
   }
 
-  return { cartItems, addToCart, removeFromCart, isHotelInCart }
+  return { cartItems, addToCart, removeFromCart, hasCartItems, isHotelInCart }
 })

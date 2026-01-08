@@ -21,6 +21,9 @@ export interface Hotel {
   description_sport_entertainment: string;
 }
 
+// TODO: use this type in cart-store and its usages
+export type CartItem = Hotel
+
 export enum ProviderKey {
   BACKEND_API_SERVICE = 'backendApiService',
   LOGS_CONTAINER = 'logsContainer',
