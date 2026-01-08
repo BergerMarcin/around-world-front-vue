@@ -5,11 +5,17 @@ const props = defineProps<{
   disabled: boolean
 }>()
 
-const { toggleOpenCartModal } = useCartModal()
+const { isCartModalOpen, toggleOpenCartModal } = useCartModal()
 </script>
 
 <template>
-  <button :disabled="props.disabled" class="cart-nav-button" @click="toggleOpenCartModal">Cart</button>
+  <button
+    :disabled="props.disabled || isCartModalOpen"
+    :class="['cart-nav-button', { 'cart-nav-button--modal-opened': isCartModalOpen }]"
+    @click="toggleOpenCartModal"
+  >
+    Cart
+  </button>
 </template>
 
 <style lang="scss" scoped>
@@ -32,6 +38,10 @@ const { toggleOpenCartModal } = useCartModal()
     color: var(--aw-color-text-regular);
     background: transparent;
     cursor: default;
+  }
+
+  &--modal-opened {
+    text-decoration: underline;
   }
 }
 </style>
