@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import BaseButton from '@/components/button/BaseButton.vue'
-import { imageUrlFromHotel, rateStandardized } from '@/components/map/utils/hotel-details.utils'
+import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 
 const props = defineProps<{

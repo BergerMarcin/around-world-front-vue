@@ -1,38 +1,25 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import CartItemDetails from './CartItemDetails.vue'
 import BaseButton from '@/components/button/BaseButton.vue'
 import { useCartStore } from '@/stores/cart-store'
 import { useCartModal } from '@/components/cart/composables/useCartModal'
-import type { CartItem } from '@/types/global.types'
 
 const cartStore = useCartStore()
 const { cartItems } = storeToRefs(cartStore)
 const { hasCartItems } = cartStore
 
-const {
-  isAnySelectedCartItem,
-  isCartItemSelected,
-  removeFromCartSelectedCartItems,
-  toggleOpenCartModal,
-  toggleCartItemSelection,
-} = useCartModal()
-
-const toggleSelectionButtonText = (cartItem: CartItem) =>
-  computed(() => (isCartItemSelected(cartItem) ? 'Restore' : 'Delete'))
+const { isAnySelectedCartItem, removeFromCartSelectedCartItems, toggleOpenCartModal } = useCartModal()
 </script>
 
 <template>
   <div class="cart-items">
-    <h2 class="cart-items__header">Your Cart</h2>
+    <h1 class="cart-items__header">Your Cart</h1>
     <p v-if="!hasCartItems()" class="cart-items__empty-message">Add your holidays to the cart to see them here.</p>
     <template v-else>
-      <ul class="cart-items__list">
-        <li v-for="hotel in cartItems" :key="hotel.sku" class="cart-item">
-          <span>{{ hotel.title }} {{ hotel.location_country }} {{ hotel.location_region }}</span>
-          <BaseButton variant="tertiary" @click="toggleCartItemSelection(hotel)">
-            {{ toggleSelectionButtonText(hotel) }}
-          </BaseButton>
+      <ul class="cart-items-list">
+        <li v-for="hotel in cartItems" :key="hotel.sku" class="cart-items-list__item">
+          <CartItemDetails :hotel="hotel" />
         </li>
       </ul>
       <div class="cart-items__buttons">
@@ -45,4 +32,56 @@ const toggleSelectionButtonText = (cartItem: CartItem) =>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cart-items {
+  padding: 1.25rem;
+
+  &__header {
+    color: var(--aw-color-text-header);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__empty-message {
+    text-align: center;
+    font-style: italic;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 1.25rem;
+  list-style: none;
+
+  @media (min-width: 660px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-button {
+      margin-top: 0.25rem;
+    }
+  }
+}
+</style>

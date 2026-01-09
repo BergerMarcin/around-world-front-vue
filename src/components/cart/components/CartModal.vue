@@ -8,6 +8,6 @@ const { isCartModalOpen, closeCartModal } = useCartModal()
 
 <template>
   <BaseModal :is-open="isCartModalOpen" @close="closeCartModal">
-    <CartItems />
+    <CartItems v-if="isCartModalOpen" />
   </BaseModal>
 </template>

@@ -1,5 +1,5 @@
 import Leaflet, { type LeafletEvent } from 'leaflet'
-import { imageUrlFromHotel, rateStandardized } from './hotel-details.utils'
+import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 import { LogLevel } from '@/utils/logger'
 
