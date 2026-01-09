@@ -1,21 +1,29 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-
-const props = defineProps<{
-  variant?: 'primary' | 'secondary' | 'tertiary'
-  disabled?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    variant?: 'primary' | 'secondary' | 'tertiary'
+    type?: 'button' | 'submit' | 'reset'
+    disabled?: boolean
+  }>(),
+  {
+    variant: 'primary',
+    type: 'button',
+    disabled: false,
+  },
+)
 
 const emits = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
-
-const variant = computed(() => props.variant || 'primary')
-const disabled = computed(() => props.disabled || false)
 </script>
 
 <template>
-  <button :class="['base-button', `base-button--${variant}`]" :disabled="disabled" @click="$emit('click', $event)">
+  <button
+    :type="type"
+    :class="['base-button', `base-button--${variant}`]"
+    :disabled="disabled"
+    @click="$emit('click', $event)"
+  >
     <slot />
   </button>
 </template>
@@ -27,6 +35,7 @@ const disabled = computed(() => props.disabled || false)
   font-size: 1rem;
   border: none;
   border-radius: 8px;
+  user-select: none;
   cursor: pointer;
 
   &:not(:disabled):hover {

@@ -56,6 +56,9 @@
   /* Border colors */
   --aw-color-border-light: rgba(60, 60, 60, 0.12);
 
+  /* Box shadow colors */
+  --aw-color-box-shadow: var(--aw-color-primary-1-lighter);
+
   /* Overlay colors */
   --aw-color-overlay-dark: rgba(0, 0, 0, 0.7);
   --aw-color-overlay-medium: rgba(0, 0, 0, 0.5);
@@ -67,7 +70,7 @@
   --aw-color-button-text: var(--aw-color-text-white);
   --aw-color-button-disabled-text: var(--aw-color-text-regular);
   --aw-color-button-disabled-bg: var(--aw-color-bg-light-gray);
-  --aw-color-button-box-shadow: var(--aw-color-primary-1-lighter);
+  --aw-color-button-box-shadow: var(--aw-color-box-shadow);
   --aw-color-button-primary-bg: var(--aw-gradient-primary);
   --aw-color-button-primary-bg-hover: var(--aw-gradient-primary-hover);
   --aw-color-button-secondary-bg: var(--aw-gradient-secondary);
