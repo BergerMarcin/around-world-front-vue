@@ -97,7 +97,7 @@ export function useHotels(): {
   }
 
   const isSelectedHotelInCart: ComputedRef<boolean> = computed(() =>
-    selectedHotel.value ? cartStore.isHotelInCart(selectedHotel.value) : false,
+    selectedHotel.value ? cartStore.isCartItemInCart(selectedHotel.value) : false,
   )
 
   return {
