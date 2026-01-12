@@ -1,7 +1,6 @@
 import Leaflet, { type LeafletEvent } from 'leaflet'
 import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
-import { LogLevel } from '@/utils/logger'
 
 export const customIcon = Leaflet.divIcon({
   className: 'custom-hotel-marker',
@@ -49,49 +48,41 @@ export function createHotelPopupContent(hotel: Hotel): string {
   `
 }
 
-// TODO: Remove `devLog`
-interface LeafletEventWithOriginalEvent extends LeafletEvent {
+interface LeafletEventExtended extends LeafletEvent {
   originalEvent: Event
+  stopPropagation: (event: Event) => void
 }
 export const openHotelModalOnMarkerClick = ({
   marker,
   hotel,
   isTouchDevice,
-  markerClickHandler,
-  devLog,
+  openHotelModal,
 }: {
   marker: Leaflet.Marker
   hotel: Hotel
   isTouchDevice: boolean
-  markerClickHandler: (hotel: Hotel) => (event: Event) => void
-  devLog: (...args: unknown[]) => void
+  openHotelModal: (hotel: Hotel) => void
 }) => {
   if (!isTouchDevice) {
-    const resolvedClickHandler = markerClickHandler(hotel)
-    marker.on('click', function (this: Leaflet.Marker, event: LeafletEventWithOriginalEvent) {
-      resolvedClickHandler(event.originalEvent)
-      devLog(`Marker clicked: ${hotel.title}`)
+    marker.on('click', function (this: Leaflet.Marker, leafletEvent: LeafletEvent) {
+      const extendedEvent = leafletEvent as LeafletEventExtended
+      extendedEvent.stopPropagation(extendedEvent.originalEvent)
+      openHotelModal(hotel)
     })
   }
 }
 
-// TODO: Remove `devLog`
-export const openClosePopupOnMarkerHover = ({
+export const openOrClosePopupOnMarkerHover = ({
   marker,
-  hotel,
   isTouchDevice,
-  devLog,
 }: {
   marker: Leaflet.Marker
-  hotel: Hotel
   isTouchDevice: boolean
-  devLog: (...args: unknown[]) => void
 }) => {
   if (!isTouchDevice) {
     marker
       .on('mouseover', function (this: Leaflet.Marker) {
         this.openPopup()
-        devLog(`Mouseover hotel marker ${hotel.title}`)
       })
       .on('mouseout', function (this: Leaflet.Marker) {
         const popup = this.getPopup()
@@ -101,16 +92,13 @@ export const openClosePopupOnMarkerHover = ({
           const isHoveringPopup = !!popupElem && popupElem.matches(':hover')
           if (!isHoveringPopup) {
             this.closePopup()
-            devLog(LogLevel.warn, `Mouseout hotel marker ${hotel.title} (closed after 300ms)`)
           } else {
             // If currently hovering popup, close when user leaves the popup element
-            devLog(`Mouseout ignored: hovering popup for ${hotel.title}`)
             if (popupElem && !popupElem.dataset.leaveBound) {
               popupElem.dataset.leaveBound = 'true'
               const onLeave = () => {
                 delete popupElem.dataset.leaveBound
                 this.closePopup()
-                devLog(LogLevel.error, `Popup mouseleave -> closed ${hotel.title}`)
               }
               popupElem.addEventListener('mouseleave', onLeave, { once: true })
             }
@@ -120,21 +108,19 @@ export const openClosePopupOnMarkerHover = ({
   }
 }
 
-// TODO: Remove `devLog`
 export const openHotelModalOnPopupClick = ({
   marker,
   hotel,
-  popupClickHandler,
-  devLog,
+  openHotelModal,
 }: {
   marker: Leaflet.Marker
   hotel: Hotel
-  popupClickHandler: (hotel: Hotel) => (event: Event) => void
-  devLog: (...args: unknown[]) => void
+  openHotelModal: (hotel: Hotel) => void
 }) => {
   const resolvedClickHandler = (event: Event) => {
     marker.closePopup()
-    popupClickHandler(hotel)(event)
+    event.stopPropagation()
+    openHotelModal(hotel)
   }
   marker.on('popupopen', function (this: Leaflet.Marker) {
     const popup = this.getPopup()
@@ -148,7 +134,6 @@ export const openHotelModalOnPopupClick = ({
     const popupElem = popup?.getElement()
     if (popupElem) {
       popupElem.removeEventListener('click', resolvedClickHandler)
-      devLog(LogLevel.warn, `Removed event listener of popupClickHandler. ${hotel.title}`)
     }
   })
 }

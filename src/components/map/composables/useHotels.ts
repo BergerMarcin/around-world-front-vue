@@ -14,7 +14,7 @@ import {
   customIcon,
   openHotelModalOnMarkerClick,
   openHotelModalOnPopupClick,
-  openClosePopupOnMarkerHover,
+  openOrClosePopupOnMarkerHover,
 } from '../utils/hotel-marker.utils.js'
 
 export function useHotels(): {
@@ -62,11 +62,10 @@ export function useHotels(): {
         marker,
         hotel,
         isTouchDevice,
-        markerClickHandler: openHotelModalOnEvent,
-        devLog,
+        openHotelModal,
       })
-      openClosePopupOnMarkerHover({ marker, hotel, isTouchDevice, devLog })
-      openHotelModalOnPopupClick({ marker, hotel, popupClickHandler: openHotelModalOnEvent, devLog })
+      openOrClosePopupOnMarkerHover({ marker, isTouchDevice })
+      openHotelModalOnPopupClick({ marker, hotel, openHotelModal })
       markerClusterGroup.value!.addLayer(marker)
     })
     mapRef.value.addLayer(markerClusterGroup.value)
@@ -88,13 +87,6 @@ export function useHotels(): {
   function closeHotelModal() {
     isHotelModalOpen.value = false
     selectedHotel.value = null
-  }
-
-  function openHotelModalOnEvent(hotel: Hotel) {
-    return (event: Event) => {
-      event.stopPropagation()
-      openHotelModal(hotel)
-    }
   }
 
   function addToCart(hotel: Hotel): void {
