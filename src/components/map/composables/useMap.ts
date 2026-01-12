@@ -9,7 +9,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import '../styles/map-marker-popup.css'
 import { useHotels } from './useHotels'
-import { useHotelModal } from './useHotelModal'
+import { useHotelModal } from '../../hotel-modal/composables/useHotelModal'
 import {
   createHotelPopupContent,
   customMarkerIcon,
