@@ -11,8 +11,8 @@ const {
   bindHotelsMarkers,
   unbindHotelsMarkers,
   selectedHotel,
-  isModalOpen,
-  closeModal,
+  isHotelModalOpen,
+  closeHotelModal,
   addToCart,
   isSelectedHotelInCart,
 } = useHotels()
@@ -31,7 +31,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="mapContainer"></div>
-  <BaseModal :is-open="isModalOpen" @close="closeModal">
+  <BaseModal :is-open="isHotelModalOpen" @close="closeHotelModal">
     <HotelDetailContent
       v-if="selectedHotel"
       :hotel="selectedHotel"

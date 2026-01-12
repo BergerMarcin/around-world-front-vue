@@ -25,6 +25,7 @@ export function createHotelPopupContent(hotel: Hotel): string {
   const rate = rateStandardized(hotel)
   const rateHtml = rate ? `<span class="hotel-popup__rate">⭐ ${rate}</span>` : ''
 
+  // TODO: add button `Book now` or `Add to cart`
   return `
     <div class="hotel-popup">
       <div class="hotel-popup__image-container">
@@ -52,7 +53,7 @@ export function createHotelPopupContent(hotel: Hotel): string {
 interface LeafletEventWithOriginalEvent extends LeafletEvent {
   originalEvent: Event
 }
-export const modalOpenOnMarkerClick = ({
+export const openHotelModalOnMarkerClick = ({
   marker,
   hotel,
   isTouchDevice,
@@ -75,7 +76,7 @@ export const modalOpenOnMarkerClick = ({
 }
 
 // TODO: Remove `devLog`
-export const popupOpenOnMarkerHover = ({
+export const openClosePopupOnMarkerHover = ({
   marker,
   hotel,
   isTouchDevice,
@@ -120,7 +121,7 @@ export const popupOpenOnMarkerHover = ({
 }
 
 // TODO: Remove `devLog`
-export const modalOpenOnPopupClick = ({
+export const openHotelModalOnPopupClick = ({
   marker,
   hotel,
   popupClickHandler,

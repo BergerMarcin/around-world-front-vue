@@ -12,17 +12,17 @@ import type { Hotel } from '@/types/global.types'
 import {
   createHotelPopupContent,
   customIcon,
-  modalOpenOnMarkerClick,
-  modalOpenOnPopupClick,
-  popupOpenOnMarkerHover,
+  openHotelModalOnMarkerClick,
+  openHotelModalOnPopupClick,
+  openClosePopupOnMarkerHover,
 } from '../utils/hotel-marker.utils.js'
 
 export function useHotels(): {
   fetchHotelsToStore: () => Promise<void>
   hotels: Ref<Hotel[]>
   selectedHotel: Ref<Hotel | null>
-  isModalOpen: Ref<boolean>
-  closeModal: () => void
+  isHotelModalOpen: Ref<boolean>
+  closeHotelModal: () => void
   bindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   unbindHotelsMarkers: (mapRef: Ref<Map | undefined>) => void
   addToCart: (hotel: Hotel) => void
@@ -35,7 +35,7 @@ export function useHotels(): {
   const hotels: Ref<Hotel[]> = computed(() => hotelsStore.hotels)
   const markerClusterGroup: Ref<Leaflet.MarkerClusterGroup | null> = ref(null)
   const selectedHotel: Ref<Hotel | null> = ref(null)
-  const isModalOpen = ref(false)
+  const isHotelModalOpen = ref(false)
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {
@@ -58,9 +58,15 @@ export function useHotels(): {
         className: 'hotel-popup-wrapper',
         closeOnClick: false,
       })
-      modalOpenOnMarkerClick({ marker, hotel, isTouchDevice, markerClickHandler: openModalWithHotelOnEvent, devLog })
-      popupOpenOnMarkerHover({ marker, hotel, isTouchDevice, devLog })
-      modalOpenOnPopupClick({ marker, hotel, popupClickHandler: openModalWithHotelOnEvent, devLog })
+      openHotelModalOnMarkerClick({
+        marker,
+        hotel,
+        isTouchDevice,
+        markerClickHandler: openHotelModalOnEvent,
+        devLog,
+      })
+      openClosePopupOnMarkerHover({ marker, hotel, isTouchDevice, devLog })
+      openHotelModalOnPopupClick({ marker, hotel, popupClickHandler: openHotelModalOnEvent, devLog })
       markerClusterGroup.value!.addLayer(marker)
     })
     mapRef.value.addLayer(markerClusterGroup.value)
@@ -74,20 +80,20 @@ export function useHotels(): {
     }
   }
 
-  function openModalWithHotel(hotel: Hotel) {
-    isModalOpen.value = true
+  function openHotelModal(hotel: Hotel) {
+    isHotelModalOpen.value = true
     selectedHotel.value = hotel
   }
 
-  function closeModal() {
-    isModalOpen.value = false
+  function closeHotelModal() {
+    isHotelModalOpen.value = false
     selectedHotel.value = null
   }
 
-  function openModalWithHotelOnEvent(hotel: Hotel) {
+  function openHotelModalOnEvent(hotel: Hotel) {
     return (event: Event) => {
       event.stopPropagation()
-      openModalWithHotel(hotel)
+      openHotelModal(hotel)
     }
   }
 
@@ -106,8 +112,8 @@ export function useHotels(): {
     selectedHotel,
     bindHotelsMarkers,
     unbindHotelsMarkers,
-    isModalOpen,
-    closeModal,
+    isHotelModalOpen,
+    closeHotelModal,
     addToCart,
     isSelectedHotelInCart,
   }
