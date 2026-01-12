@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCartModal } from '../composables/useCartModal'
-import BaseModal from '@/components/modal/BaseModal.vue'
+import BaseModal from '@/components-ui/modal/BaseModal.vue'
 import CartItems from './CartItems.vue'
 
 const { isCartModalOpen, closeCartModal } = useCartModal()

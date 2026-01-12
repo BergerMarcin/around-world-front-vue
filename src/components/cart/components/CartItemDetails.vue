@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import BaseButton from '@/components/button/BaseButton.vue'
+import BaseButton from '@/components-ui/button/BaseButton.vue'
 import { useCartModal } from '@/components/cart/composables/useCartModal'
 import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { CartItem } from '@/types/global.types'

@@ -1,4 +1,4 @@
-import type { ShowNotification } from '@/components/notification/notification.types'
+import type { ShowNotification } from '@/components-ui/notification/notification.types'
 import type { HttpClientMethods } from '../http/types/http-client.types'
 import type { HotelsServiceClient } from '../services/hotels.service-client'
 

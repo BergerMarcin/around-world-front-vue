@@ -1,7 +1,7 @@
 import { inject, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { ProviderKey } from '@/types/global.types'
-import { useNotification } from '@/components/notification/useNotification'
+import { useNotification } from '@/components-ui/notification/useNotification'
 import type { Hotel } from '@/types/global.types'
 import type { BackendApiService } from '@/api/types/backend-api-service.types'
 import { isHotelsTypeguard } from '@/types/global.typeguard'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import CartItemDetails from './CartItemDetails.vue'
-import BaseButton from '@/components/button/BaseButton.vue'
+import BaseButton from '@/components-ui/button/BaseButton.vue'
 import { useCartStore } from '@/stores/cart-store'
 import { useCartModal } from '@/components/cart/composables/useCartModal'
 

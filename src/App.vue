@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { provide, type ShallowRef, useTemplateRef } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import Logos from '@/components/logos/Logos.vue'
-import Notification from '@/components/notification/Notification.vue'
+import Logos from '@/components-ui/logos/Logos.vue'
+import Notification from '@/components-ui/notification/Notification.vue'
 import CartNavButton from '@/components/cart/components/CartNavButton.vue'
 import CartModal from '@/components/cart/components/CartModal.vue'
 import { ProviderKey } from '@/types/global.types'

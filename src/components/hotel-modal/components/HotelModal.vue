@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHotelModal } from '../composables/useHotelModal'
-import BaseModal from '@/components/modal/BaseModal.vue'
+import BaseModal from '@/components-ui/modal/BaseModal.vue'
 import HotelDetailContent from './HotelDetailContent.vue'
 
 const { addToCart, closeHotelModal, hotelForModal, isHotelModalOpen, isHotelForModalInCart } = useHotelModal()
