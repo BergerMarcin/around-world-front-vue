@@ -2,20 +2,21 @@
 import { onBeforeUnmount, onMounted } from 'vue'
 import { useMap } from '../composables/useMap'
 import { useHotels } from '../composables/useHotels'
+import { useHotelModal } from '../composables/useHotelModal'
 import BaseModal from '@/components/modal/BaseModal.vue'
 import HotelDetailContent from '@/components/map/components/HotelDetailContent.vue'
 
-const { map, mountMap, unmountMap } = useMap({ center: [51.505, -0.09] })
+const { bindHotelsMarkers, unbindHotelsMarkers, map, mountMap, unmountMap } = useMap({
+  center: [51.505, -0.09],
+})
+const { fetchHotelsToStore } = useHotels()
 const {
-  fetchHotelsToStore,
-  bindHotelsMarkers,
-  unbindHotelsMarkers,
-  selectedHotel,
+  hotelForModal,
   isHotelModalOpen,
   closeHotelModal,
   addToCart,
-  isSelectedHotelInCart,
-} = useHotels()
+  isHotelForModalInCart,
+} = useHotelModal()
 
 onMounted(async () => {
   mountMap()
@@ -31,11 +32,12 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="mapContainer"></div>
+  <!-- TODO: Create new HotelModal component and move below and useHotels composable -->
   <BaseModal :is-open="isHotelModalOpen" @close="closeHotelModal">
     <HotelDetailContent
-      v-if="selectedHotel"
-      :hotel="selectedHotel"
-      :isHotelInCart="isSelectedHotelInCart"
+      v-if="hotelForModal"
+      :hotel="hotelForModal"
+      :isHotelInCart="isHotelForModalInCart"
       @add-to-cart="addToCart"
     />
   </BaseModal>

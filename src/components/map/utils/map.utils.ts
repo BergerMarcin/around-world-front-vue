@@ -2,7 +2,7 @@ import Leaflet, { type LeafletEvent } from 'leaflet'
 import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 
-export const customIcon = Leaflet.divIcon({
+export const customMarkerIcon = Leaflet.divIcon({
   className: 'custom-hotel-marker',
   html: `<svg width="25" height="41" viewBox="0 0 25 41" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -48,9 +48,8 @@ export function createHotelPopupContent(hotel: Hotel): string {
   `
 }
 
-interface LeafletEventExtended extends LeafletEvent {
+interface LeafletEventWithOriginalEvent extends LeafletEvent {
   originalEvent: Event
-  stopPropagation: (event: Event) => void
 }
 export const openHotelModalOnMarkerClick = ({
   marker,
@@ -65,8 +64,8 @@ export const openHotelModalOnMarkerClick = ({
 }) => {
   if (!isTouchDevice) {
     marker.on('click', function (this: Leaflet.Marker, leafletEvent: LeafletEvent) {
-      const extendedEvent = leafletEvent as LeafletEventExtended
-      extendedEvent.stopPropagation(extendedEvent.originalEvent)
+      const event = leafletEvent as LeafletEventWithOriginalEvent
+      event.originalEvent.stopPropagation()
       openHotelModal(hotel)
     })
   }
