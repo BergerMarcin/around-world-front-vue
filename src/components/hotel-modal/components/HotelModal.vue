@@ -9,7 +9,7 @@ const { addToCart, closeHotelModal, hotelForModal, isHotelModalOpen, isHotelForM
 <template>
   <BaseModal :is-open="isHotelModalOpen" @close="closeHotelModal">
     <HotelDetailContent
-      v-if="isHotelModalOpen && hotelForModal"
+      v-if="hotelForModal"
       :hotel="hotelForModal"
       :isHotelInCart="isHotelForModalInCart"
       @add-to-cart="addToCart"

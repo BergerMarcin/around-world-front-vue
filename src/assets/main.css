@@ -105,7 +105,7 @@
 
   /* Modal */
   --aw-color-modal-bg: transparent;
-  --aw-color-modal-backdrop-bg: var(--aw-color-overlay-medium);
+  --aw-color-modal-backdrop-bg: var(--aw-color-overlay-light);
   --aw-color-modal-container-bg: var(--aw-color-bg-white);
   --aw-color-modal-container-box-shadow: var(--aw-color-overlay-lighter);
   --aw-color-modal-close-btn: var(--aw-color-text-dark);
@@ -119,6 +119,11 @@
   /* More notification colors in TS file `src/components/notification/useNotification.ts` */
 
   /* Vue color: hsla(160, 100%, 37%, 1); background: hsla(160, 100%, 37%, 0.2) */
+}
+
+:root {
+  /* In case update transition duration, update also BaseModal.vue (i.e. closing setTimeout time) */
+  --aw-transition: 0.3s ease;
 }
 
 body {

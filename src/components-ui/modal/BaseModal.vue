@@ -33,7 +33,9 @@ watch(
     if (isOpen) {
       modalRef.value?.showModal()
     } else {
-      modalRef.value?.close()
+      setTimeout(() => {
+        modalRef.value?.close()
+      }, 300) // Match with CSS transition duration
     }
   },
 )
@@ -48,17 +50,41 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <dialog ref="modalRef" class="modal" @click="handleBackdropClick">
-    <div class="modal__container">
-      <button class="modal__close-btn" type="button" aria-label="Close modal" @click="handleClose">×</button>
-      <div class="modal__content">
-        <slot />
+  <Transition name="modal-fade">
+    <dialog v-show="isOpen" ref="modalRef" class="modal" @click="handleBackdropClick">
+      <div class="modal__container">
+        <button class="modal__close-btn" type="button" aria-label="Close modal" @click="handleClose">×</button>
+        <div class="modal__content">
+          <Transition name="modal-content-fade">
+            <slot v-if="isOpen" />
+          </Transition>
+        </div>
       </div>
-    </div>
-  </dialog>
+    </dialog>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition:
+    opacity var(--aw-transition),
+    transform var(--aw-transition);
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.85);
+}
+.modal-content-fade-enter-active,
+.modal-content-fade-leave-active {
+  transition: opacity var(--aw-transition);
+}
+.modal-content-fade-enter-from,
+.modal-content-fade-leave-to {
+  opacity: 0;
+}
+
 .modal {
   position: fixed;
   inset: 0;
