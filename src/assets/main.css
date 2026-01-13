@@ -105,7 +105,7 @@
 
   /* Modal */
   --aw-color-modal-bg: transparent;
-  --aw-color-modal-backdrop-bg: var(--aw-color-overlay-light);
+  --aw-color-modal-backdrop-bg: var(--aw-color-overlay-lighter);
   --aw-color-modal-container-bg: var(--aw-color-bg-white);
   --aw-color-modal-container-box-shadow: var(--aw-color-overlay-lighter);
   --aw-color-modal-close-btn: var(--aw-color-text-dark);
