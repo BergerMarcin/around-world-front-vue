@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import BaseButton from '@/components-ui/button/BaseButton.vue'
+import { useHotelModal } from '@/components/hotel-modal/composables/useHotelModal'
 import { useCartModal } from '@/components/cart/composables/useCartModal'
 import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { CartItem } from '@/types/global.types'
@@ -9,6 +10,7 @@ const props = defineProps<{
   hotel: CartItem
 }>()
 
+const { openHotelModal } = useHotelModal()
 const { isCartItemSelected, toggleCartItemSelection } = useCartModal()
 
 const toggleSelectionButtonText = computed(() => (isCartItemSelected(props.hotel) ? 'Restore' : 'Delete'))
@@ -19,7 +21,7 @@ const rate = rateStandardized(props.hotel)
 
 <template>
   <div class="cart-item">
-    <div class="cart-item__image-container">
+    <div class="cart-item__image-container" @click="openHotelModal(hotel)">
       <img :src="imageUrl" :alt="hotel.title" class="cart-item__image" />
       <span v-if="rate" class="cart-item__rate">⭐ {{ rate }}</span>
     </div>
@@ -33,7 +35,9 @@ const rate = rateStandardized(props.hotel)
           </div>
         </div>
         <div class="cart-item-head__buttons">
-          <BaseButton><span class="cart-item-head__buttons-details">See more</span></BaseButton>
+          <BaseButton @click="openHotelModal(hotel)">
+            <span class="cart-item-head__buttons-details">See more</span>
+          </BaseButton>
           <BaseButton variant="tertiary" @click="toggleCartItemSelection(hotel)">
             <span class="cart-item-head__buttons-delete">{{ toggleSelectionButtonText }}</span>
           </BaseButton>
@@ -59,6 +63,7 @@ const rate = rateStandardized(props.hotel)
     width: 100%;
     height: 150px;
     overflow: hidden;
+    cursor: pointer;
   }
 
   &__image {
