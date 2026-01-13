@@ -2,7 +2,6 @@
 import { onBeforeUnmount, onMounted } from 'vue'
 import { useMap } from '../composables/useMap'
 import { useHotels } from '../composables/useHotels'
-import HotelModal from '@/components/hotel-modal/components/HotelModal.vue'
 
 const { bindHotelsMarkers, unbindHotelsMarkers, map, mountMap, unmountMap } = useMap({
   center: [51.505, -0.09],
@@ -22,9 +21,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="mapContainer"></div>
-
-  <HotelModal />
+  <div id="mapContainer" />
 </template>
 
 <style scoped>

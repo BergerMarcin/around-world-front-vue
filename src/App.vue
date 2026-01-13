@@ -2,9 +2,8 @@
 import { provide, type ShallowRef, useTemplateRef } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Logos from '@/components-ui/logos/Logos.vue'
-import Notification from '@/components-ui/notification/Notification.vue'
 import CartNavButton from '@/components/cart/components/CartNavButton.vue'
-import CartModal from '@/components/cart/components/CartModal.vue'
+import Notification from '@/components-ui/notification/Notification.vue'
 import { ProviderKey } from '@/types/global.types'
 
 const logsContainer: Readonly<ShallowRef<HTMLElement | null>> = useTemplateRef('logsContainer')
@@ -27,8 +26,6 @@ provide(ProviderKey.LOGS_CONTAINER, logsContainer)
   </header>
 
   <RouterView />
-
-  <CartModal />
 
   <Notification />
 </template>
