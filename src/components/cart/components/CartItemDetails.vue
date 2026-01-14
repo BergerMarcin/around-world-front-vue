@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import BaseButton from '@/components-ui/button/BaseButton.vue'
 import { useHotelModal } from '@/components/hotel-modal/composables/useHotelModal'
 import { useCartModal } from '@/components/cart/composables/useCartModal'
@@ -21,7 +21,7 @@ const rate = rateStandardized(props.hotel)
 
 <template>
   <div class="cart-item">
-    <div class="cart-item__image-container" @click="openHotelModal(hotel)">
+    <div class="cart-item__image-container">
       <img :src="imageUrl" :alt="hotel.title" class="cart-item__image" />
       <span v-if="rate" class="cart-item__rate">⭐ {{ rate }}</span>
     </div>
@@ -63,7 +63,6 @@ const rate = rateStandardized(props.hotel)
     width: 100%;
     height: 150px;
     overflow: hidden;
-    cursor: pointer;
   }
 
   &__image {
