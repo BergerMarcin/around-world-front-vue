@@ -2,6 +2,7 @@
 import Map from '@/components/map/components/Map.vue'
 import HotelModal from '@/components/hotel-modal/components/HotelModal.vue'
 import CartModal from '@/components/cart/components/CartModal.vue'
+import OrderModal from '@/components/order/components/OrderModal.vue';
 </script>
 
 <template>
@@ -9,5 +10,6 @@ import CartModal from '@/components/cart/components/CartModal.vue'
     <Map />
     <HotelModal />
     <CartModal />
+    <OrderModal />
   </main>
 </template>

@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import { type ComputedRef, type Ref } from 'vue'
 import { useCartStore } from '@/stores/cart-store'
+import { useOrderModal } from '@/components/order/composables/useOrderModal'
 import type { CartItem } from '@/types/global.types'
 
 const isCartModalOpen = ref(false)
@@ -14,9 +15,11 @@ export const useCartModal = (): {
   isAnySelectedCartItem: ComputedRef<boolean>
   isCartItemSelected: (cartItem: CartItem) => boolean
   toggleCartItemSelection: (cartItem: CartItem) => void
-  removeFromCartSelectedCartItems: () => void
+  removeSelectedCartItems: () => void
+  orderSelectedCartItems: () => void
 } => {
   const { removeFromCart } = useCartStore()
+  const { openOrderModal } = useOrderModal()
 
   function closeCartModal() {
     isCartModalOpen.value = false
@@ -44,8 +47,13 @@ export const useCartModal = (): {
     }
   }
 
-  function removeFromCartSelectedCartItems() {
+  function removeSelectedCartItems() {
     selectedCartItems.value.forEach(removeFromCart)
+    closeCartModal()
+  }
+
+  function orderSelectedCartItems() {
+    openOrderModal()
     closeCartModal()
   }
 
@@ -57,6 +65,7 @@ export const useCartModal = (): {
     isAnySelectedCartItem,
     isCartItemSelected,
     toggleCartItemSelection,
-    removeFromCartSelectedCartItems,
+    removeSelectedCartItems,
+    orderSelectedCartItems,
   }
 }

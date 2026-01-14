@@ -9,7 +9,7 @@ const cartStore = useCartStore()
 const { cartItems } = storeToRefs(cartStore)
 const { hasCartItems } = cartStore
 
-const { isAnySelectedCartItem, removeFromCartSelectedCartItems, toggleOpenCartModal } = useCartModal()
+const { isAnySelectedCartItem, toggleOpenCartModal, removeSelectedCartItems, orderSelectedCartItems } = useCartModal()
 </script>
 
 <template>
@@ -24,8 +24,11 @@ const { isAnySelectedCartItem, removeFromCartSelectedCartItems, toggleOpenCartMo
       </ul>
       <div class="cart-items__buttons">
         <BaseButton variant="tertiary" @click="toggleOpenCartModal">Discard</BaseButton>
-        <BaseButton :disabled="!isAnySelectedCartItem" variant="tertiary" @click="removeFromCartSelectedCartItems">
-          Remove Selected
+        <BaseButton :disabled="!isAnySelectedCartItem" variant="tertiary" @click="removeSelectedCartItems">
+          Confirm Delete
+        </BaseButton>
+        <BaseButton variant="primary" class="cart-items__buttons-order" @click="orderSelectedCartItems">
+          Order All
         </BaseButton>
       </div>
     </template>
@@ -55,6 +58,11 @@ const { isAnySelectedCartItem, removeFromCartSelectedCartItems, toggleOpenCartMo
     justify-content: center;
     gap: 1rem;
     margin-top: 1.75rem;
+    &-order {
+      min-width: 150px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
   }
 }
 

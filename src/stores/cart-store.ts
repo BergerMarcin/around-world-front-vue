@@ -26,6 +26,10 @@ export const useCartStore = defineStore('cart', () => {
     cartItems.value = cartItems.value.filter(areCartItemsDifferent(cartItem))
   }
 
+  function clearCart(): void {
+    cartItems.value = []
+  }
+
   function hasCartItems(): boolean {
     return Boolean(cartItems.value.length)
   }
@@ -34,5 +38,5 @@ export const useCartStore = defineStore('cart', () => {
     return cartItems.value.some(areCartItemsTheSame(cartItem))
   }
 
-  return { cartItems, addToCart, removeFromCart, hasCartItems, isCartItemInCart }
+  return { cartItems, addToCart, removeFromCart, clearCart, hasCartItems, isCartItemInCart }
 })
