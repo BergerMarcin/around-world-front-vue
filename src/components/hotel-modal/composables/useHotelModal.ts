@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
-import { useLogger } from '@/utils/logger'
 import { useCartStore } from '@/stores'
+import { useLogger } from '@/utils/logger'
 import type { Hotel } from '@/types/global.types'
 
 const isHotelModalOpen = ref(false)
@@ -12,11 +12,11 @@ export function useHotelModal(): {
   isHotelModalOpen: Ref<boolean>
   openHotelModal: (hotel: Hotel) => void
   closeHotelModal: () => void
-  addToCart: (hotel: Hotel) => void
+  addHotelToCart: (hotel: Hotel) => void
   isHotelForModalInCart: ComputedRef<boolean>
 } {
-  const { devLog } = useLogger()
   const cartStore = useCartStore()
+  const { devLog } = useLogger()
 
   function openHotelModal(hotel: Hotel) {
     isHotelModalOpen.value = true
@@ -28,9 +28,9 @@ export function useHotelModal(): {
     hotelForModal.value = null
   }
 
-  function addToCart(hotel: Hotel): void {
+  function addHotelToCart(hotel: Hotel): void {
     cartStore.addToCart(hotel)
-    devLog(`Hotel "${hotel.title}" added to cart.`)
+    devLog(`Hotel "${hotel.title}" added to cart from hotel modal.`)
   }
 
   const isHotelForModalInCart: ComputedRef<boolean> = computed(() =>
@@ -42,7 +42,7 @@ export function useHotelModal(): {
     isHotelModalOpen,
     openHotelModal,
     closeHotelModal,
-    addToCart,
+    addHotelToCart,
     isHotelForModalInCart,
   }
 }

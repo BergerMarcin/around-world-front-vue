@@ -3,7 +3,7 @@ import { useHotelModal } from '../composables/useHotelModal'
 import BaseModal from '@/components-ui/modal/BaseModal.vue'
 import HotelDetailContent from './HotelDetailContent.vue'
 
-const { addToCart, closeHotelModal, hotelForModal, isHotelModalOpen, isHotelForModalInCart } = useHotelModal()
+const { addHotelToCart, closeHotelModal, hotelForModal, isHotelModalOpen, isHotelForModalInCart } = useHotelModal()
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { addToCart, closeHotelModal, hotelForModal, isHotelModalOpen, isHotelForM
       v-if="hotelForModal"
       :hotel="hotelForModal"
       :isHotelInCart="isHotelForModalInCart"
-      @add-to-cart="addToCart"
+      @add-to-cart="addHotelToCart"
     />
   </BaseModal>
 </template>
