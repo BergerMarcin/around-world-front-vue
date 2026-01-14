@@ -19,12 +19,13 @@ export const customMarkerIcon = Leaflet.divIcon({
   popupAnchor: [1, -34],
 })
 
-export function createHotelPopupContent(hotel: Hotel): string {
+export const createHotelPopupContent = (hotel: Hotel, isHotelInCart: boolean): string => {
   const imageUrl = imageUrlFromHotel(hotel)
   const rate = rateStandardized(hotel)
   const rateHtml = rate ? `<span class="hotel-popup__rate">⭐ ${rate}</span>` : ''
+  const atcButtonDisabled = isHotelInCart ? 'disabled' : ''
+  const atcButtonText = isHotelInCart ? 'In Cart' : 'Book Now'
 
-  // TODO: add button `Book now` or `Add to cart`
   return `
     <div class="hotel-popup">
       <div class="hotel-popup__image-container">
@@ -32,7 +33,7 @@ export function createHotelPopupContent(hotel: Hotel): string {
         ${rateHtml}
       </div>
       <div class="hotel-popup__content">
-        <div class="hotel-popup__header">
+        <div class="hotel-popup__head">
           <div class="hotel-popup__title-price">
             <h3 class="hotel-popup__title">${hotel.title}</h3>
             <div class="hotel-popup__price">
@@ -40,12 +41,30 @@ export function createHotelPopupContent(hotel: Hotel): string {
               <span class="hotel-popup__price-currency">${hotel.currency}</span>
             </div>
           </div>
-          <button class="hotel-popup__details-button" type="button">See more</button>
+          <div class="cart-item-head__buttons">
+            <button ${atcButtonDisabled} class="hotel-popup__atc-button" type="button">${atcButtonText}</button>
+            <button class="hotel-popup__details-button" type="button">See more</button>
+          </div>
         </div>
         <p class="hotel-popup__description">${hotel.description_general}</p>
       </div>
     </div>
   `
+}
+
+export const updatePopupContentOnOpen = ({
+  marker,
+  hotel,
+  isHotelInCart,
+}: {
+  marker: Leaflet.Marker
+  hotel: Hotel
+  isHotelInCart: (hotel: Hotel) => boolean
+}) => {
+  marker.on('popupopen', function (this: Leaflet.Marker) {
+    const popup = this.getPopup()
+    popup?.setContent(createHotelPopupContent(hotel, isHotelInCart(hotel)))
+  })
 }
 
 interface LeafletEventWithOriginalEvent extends LeafletEvent {
@@ -124,15 +143,42 @@ export const openHotelModalOnPopupClick = ({
   marker.on('popupopen', function (this: Leaflet.Marker) {
     const popup = this.getPopup()
     const popupElem = popup?.getElement()
-    if (popupElem) {
-      popupElem.addEventListener('click', resolvedClickHandler)
-    }
+    popupElem?.addEventListener('click', resolvedClickHandler)
   })
   marker.on('popupclose', function (this: Leaflet.Marker) {
     const popup = this.getPopup()
     const popupElem = popup?.getElement()
-    if (popupElem) {
-      popupElem.removeEventListener('click', resolvedClickHandler)
-    }
+    popupElem?.removeEventListener('click', resolvedClickHandler)
+  })
+}
+
+export const addToCartOnAtcButtonClick = ({
+  marker,
+  hotel,
+  addHotelToCart,
+  isHotelInCart,
+}: {
+  marker: Leaflet.Marker
+  hotel: Hotel
+  addHotelToCart: (hotel: Hotel) => void
+  isHotelInCart: (hotel: Hotel) => boolean
+}) => {
+  const resolvedClickHandler = (event: Event) => {
+    event.stopPropagation()
+    addHotelToCart(hotel)
+    const popup = marker.getPopup()
+    popup?.setContent(createHotelPopupContent(hotel, isHotelInCart(hotel)))
+  }
+  marker.on('popupopen', function (this: Leaflet.Marker) {
+    const popup = this.getPopup()
+    const popupElem = popup?.getElement()
+    const atcButton = popupElem?.querySelector('.hotel-popup__atc-button') as HTMLButtonElement | null | undefined
+    atcButton?.addEventListener('click', resolvedClickHandler)
+  })
+  marker.on('popupclose', function (this: Leaflet.Marker) {
+    const popup = this.getPopup()
+    const popupElem = popup?.getElement()
+    const atcButton = popupElem?.querySelector('.hotel-popup__atc-button') as HTMLButtonElement | null | undefined
+    atcButton?.removeEventListener('click', resolvedClickHandler)
   })
 }
