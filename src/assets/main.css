@@ -54,7 +54,7 @@
   --aw-color-bg-light-gray: #c0c0c0;
 
   /* Border colors */
-  --aw-color-border-light: rgba(60, 60, 60, 0.12);
+  --aw-color-border-light: #e0e0e0;
 
   /* Box shadow colors */
   --aw-color-box-shadow: var(--aw-color-primary-1-lighter);
@@ -103,7 +103,7 @@
   --aw-color-scrollbar-thumb: #c1c1c1;
   --aw-color-scrollbar-thumb-hover: #a1a1a1;
 
-  /* Modal */
+  /* Modal colors */
   --aw-color-modal-bg: transparent;
   --aw-color-modal-backdrop-bg: var(--aw-color-overlay-lighter);
   --aw-color-modal-container-bg: var(--aw-color-bg-white);
@@ -112,6 +112,10 @@
   --aw-color-modal-close-btn-hover: var(--aw-color-black);
   --aw-color-modal-close-btn-bg: var(--aw-color-overlay-faint);
   --aw-color-modal-close-btn-bg-hover: var(--aw-color-overlay-light);
+
+  /* Table colors */
+  --aw-color-table-header-bg: #f5f5f5;
+  --aw-color-table-row-bg-hover: #f1f1f1;
 
   /* Notification colors */
   --aw-color-notification-close: rgb(84, 84, 84);

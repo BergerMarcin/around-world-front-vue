@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BaseButton from '@/components-ui/button/BaseButton.vue'
+import { useHotelModal } from '@/components/hotel-modal/composables/useHotelModal'
 import { imageUrlFromHotel } from '@/utils/hotel-details.utils'
 import type { CartItem } from '@/types/global.types'
 
@@ -7,6 +8,8 @@ defineProps<{
   cartItems: CartItem[]
   orderAll: () => void
 }>()
+
+const { openHotelModal } = useHotelModal()
 
 const location = (item: CartItem): string => `${item.location_country}, ${item.location_region}`
 </script>
@@ -28,7 +31,7 @@ const location = (item: CartItem): string => `${item.location_country}, ${item.l
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cartItems" :key="item.sku">
+          <tr v-for="item in cartItems" :key="item.sku" @click="openHotelModal(item)">
             <td>
               <img :src="imageUrlFromHotel(item)" :alt="item.title" class="order-cart-items__image" />
             </td>
@@ -64,23 +67,36 @@ const location = (item: CartItem): string => `${item.location_country}, ${item.l
   }
 
   &__table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
+    font-size: 0.875rem;
+    @media (min-width: 660px) {
+      font-size: 1rem;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      &:hover {
+        transition: background-color var(--aw-transition);
+        background-color: var(--aw-color-table-row-bg-hover);
+        transform: translateX(-1px) translateY(-1px);
+      }
+    }
 
     th,
     td {
       padding: 12px;
       text-align: left;
-      border-bottom: 1px solid var(--aw-color-border, #e0e0e0);
+      border-bottom: 1px solid var(--aw-color-border-light);
     }
 
     th {
       font-weight: 600;
-      background-color: var(--aw-color-table-header-bg, #f5f5f5);
+      background-color: var(--aw-color-table-header-bg);
     }
 
-    tbody tr:hover {
-      background-color: var(--aw-color-table-row-hover, #fafafa);
+    td {
+      word-break: break-word;
     }
   }
 
@@ -104,6 +120,21 @@ const location = (item: CartItem): string => `${item.location_country}, ${item.l
     justify-content: center;
     margin-top: 20px;
     padding-top: 16px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    &-track {
+      background: var(--aw-color-scrollbar-track);
+      border-radius: 3px;
+    }
+    &-thumb {
+      background: var(--aw-color-scrollbar-thumb);
+      border-radius: 3px;
+      &:hover {
+        background: var(--aw-color-scrollbar-thumb-hover);
+      }
+    }
   }
 }
 </style>
