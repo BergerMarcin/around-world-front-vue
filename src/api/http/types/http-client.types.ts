@@ -1,11 +1,15 @@
 // TODO: Rethink how validate typeguards are passed (maybe per http-client instance, not per request).
-export type Validator = <ResponseType>(data: ResponseType) => boolean
-export type Typeguard = <ResponseType>(data: ResponseType) => boolean
+export type ResponseDataTypeguard = <ResponseType>(data: ResponseType) => boolean
+export type ResponseDataValidator = <ResponseType>(data: ResponseType) => boolean
 
 // TODO: Add more specific options depended on http-method (later as needed).
-export type ApiClientOptions = Record<string, unknown> & {
-  validator?: Validator
-  typeguard?: Typeguard
+export type ApiServiceOptions = {
+  headers?: Record<string, string>
+}
+
+export type ApiClientOptions = ApiServiceOptions & {
+  typeguard?: ResponseDataTypeguard
+  validator?: ResponseDataValidator
 }
 
 export interface HttpClientConfig {

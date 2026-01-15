@@ -1,24 +1,30 @@
 export interface Hotel {
-  sku: string;
-  title: string;
-  location_country: string;
-  location_region: string;
-  location_coordinates_latitude: number;
-  location_coordinates_longitude: number;
-  rate?: number | null;
-  source_url?: string | null;
-  image: string;
-  image_file: string;
-  price: number;
-  currency: string;
-  category: "hotel";
-  description_general: string;
-  description_location: string;
-  description_hotel: string;
-  description_food_drinks: string;
-  description_room: string;
-  description_beach: string;
-  description_sport_entertainment: string;
+  sku: string
+  name: string
+  location: {
+    country: string
+    region: string
+    coordinates: { latitude: number; longitude: number }
+  }
+  rate: string
+  sourceUrl?: string
+  image: {
+    url: string
+    alt: string
+    sourceUrl: string
+  }
+  price: number
+  currency: string
+  category: 'hotel'
+  description: {
+    general: string
+    location: string
+    hotel: string
+    foodDrinks: string
+    room: string
+    beach: string
+    sportEntertainment: string
+  }
 }
 
 export type CartItem = Hotel
@@ -27,3 +33,8 @@ export enum ProviderKey {
   BACKEND_API_SERVICE = 'backendApiService',
   LOGS_CONTAINER = 'logsContainer',
 }
+
+export const NO_IMAGE = {
+  URL: 'src/assets/no_picture.png',
+  ALT: 'No picture available',
+} as const

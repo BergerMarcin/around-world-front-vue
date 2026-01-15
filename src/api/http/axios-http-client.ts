@@ -1,6 +1,6 @@
 import { createAxiosInstance } from './axios-instance'
 import type { AxiosInstance } from 'axios'
-import type { AxiosHttpClientConfig, HttpClientMethods, Typeguard, Validator } from './types/http-client.types'
+import type { ApiClientOptions, AxiosHttpClientConfig, HttpClientMethods } from './types/http-client.types'
 import { HttpHeaders } from './types/http-client.consts'
 
 export const createAxiosHttpClient = (config: AxiosHttpClientConfig): HttpClientMethods => {
@@ -11,11 +11,7 @@ export const createAxiosHttpClient = (config: AxiosHttpClientConfig): HttpClient
       endpointUrl: string,
       parameters?: Record<string, string | number | boolean | null>,
       // { cancelToken, headers, validatorOrTypeguard }: { cancelToken?: CancelToken; headers?: Record<string, string>; validatorOrTypeguard?: ValidatorOrTypeguard } = {},
-      {
-        headers,
-        validator,
-        typeguard,
-      }: { headers?: Record<string, string>; validator?: Validator; typeguard?: Typeguard } = {},
+      { headers, validator, typeguard }: ApiClientOptions = {},
     ): Promise<ResponseType> {
       const response = await axiosInstance.get<ResponseType>(endpointUrl, {
         params: parameters,
