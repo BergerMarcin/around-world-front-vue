@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BaseButton from '@/components-ui/button/BaseButton.vue'
 import { useHotelModal } from '@/components/hotel-modal/composables/useHotelModal'
-import { imageUrlFromHotel } from '@/utils/hotel-details.utils'
 import type { CartItem } from '@/types/global.types'
 
 defineProps<{
@@ -11,7 +10,7 @@ defineProps<{
 
 const { openHotelModal } = useHotelModal()
 
-const location = (item: CartItem): string => `${item.location_country}, ${item.location_region}`
+const location = (item: CartItem): string => `${item.location.country}, ${item.location.region}`
 </script>
 
 <template>
@@ -25,7 +24,7 @@ const location = (item: CartItem): string => `${item.location_country}, ${item.l
         <thead>
           <tr>
             <th>Image</th>
-            <th>Title</th>
+            <th>Name</th>
             <th>Location</th>
             <th>Price</th>
           </tr>
@@ -33,9 +32,9 @@ const location = (item: CartItem): string => `${item.location_country}, ${item.l
         <tbody>
           <tr v-for="item in cartItems" :key="item.sku" @click="openHotelModal(item)">
             <td>
-              <img :src="imageUrlFromHotel(item)" :alt="item.title" class="order-cart-items__image" />
+              <img :src="item.image.url" :alt="item.image.alt" class="order-cart-items__image" />
             </td>
-            <td>{{ item.title }}</td>
+            <td>{{ item.name }}</td>
             <td>{{ location(item) }}</td>
             <td>{{ item.price }} {{ item.currency }}</td>
           </tr>

@@ -20,7 +20,7 @@ export function useHotels(): {
 
   function addHotelToCart(hotel: Hotel): void {
     cartStore.addToCart(hotel)
-    devLog(`Hotel "${hotel.title}" added to cart from popup.`)
+    devLog(`Hotel "${hotel.name}" added to cart from popup.`)
   }
 
   function isHotelInCart(hotel: Hotel): boolean {

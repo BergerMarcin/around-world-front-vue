@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import BaseButton from '@/components-ui/button/BaseButton.vue'
 import { useHotelModal } from '@/components/hotel-modal/composables/useHotelModal'
 import { useCartModal } from '@/components/cart/composables/useCartModal'
-import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { CartItem } from '@/types/global.types'
 
 const props = defineProps<{
@@ -14,21 +13,18 @@ const { openHotelModal } = useHotelModal()
 const { isCartItemSelected, toggleCartItemSelection } = useCartModal()
 
 const toggleSelectionButtonText = computed(() => (isCartItemSelected(props.hotel) ? 'Restore' : 'Delete'))
-
-const imageUrl = imageUrlFromHotel(props.hotel)
-const rate = rateStandardized(props.hotel)
 </script>
 
 <template>
   <div class="cart-item">
     <div class="cart-item__image-container">
-      <img :src="imageUrl" :alt="hotel.title" class="cart-item__image" />
-      <span v-if="rate" class="cart-item__rate">⭐ {{ rate }}</span>
+      <img :src="hotel.image.url" :alt="hotel.image.alt" class="cart-item__image" />
+      <span v-if="hotel.rate" class="cart-item__rate">⭐ {{ hotel.rate }}</span>
     </div>
     <div class="cart-item__content">
       <div class="cart-item-head">
         <div class="cart-item-head__title-price">
-          <h3 class="cart-item-head__title">{{ hotel.title }}</h3>
+          <h3 class="cart-item-head__title">{{ hotel.name }}</h3>
           <div class="cart-item-head__price">
             <span class="cart-item-head__price-value">{{ hotel.price }}</span>
             <span class="cart-item-head__price-currency">{{ hotel.currency }}</span>
@@ -43,7 +39,11 @@ const rate = rateStandardized(props.hotel)
           </BaseButton>
         </div>
       </div>
-      <p class="cart-item-description">{{ hotel.description_general }}</p>
+      <div class="cart-item-location">
+        <span class="cart-item-location__icon">📍</span>
+        <span>{{ hotel.location.country }}, {{ hotel.location.region }}</span>
+      </div>
+      <p class="cart-item-description">{{ hotel.description.general }}</p>
     </div>
   </div>
 </template>
@@ -51,7 +51,7 @@ const rate = rateStandardized(props.hotel)
 <style lang="scss" scoped>
 .cart-item {
   width: 250px;
-  max-height: 300px;
+  max-height: 370px;
   border: 2px solid var(--aw-color-border-light);
   border-radius: 8px;
   box-shadow: 0 0 8px var(--aw-color-box-shadow);
@@ -133,6 +133,19 @@ const rate = rateStandardized(props.hotel)
           font-weight: 600;
           white-space: nowrap;
         }
+      }
+    }
+
+    & .cart-item-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--aw-color-text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+
+      &__icon {
+        font-size: 1rem;
       }
     }
 

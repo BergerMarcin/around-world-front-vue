@@ -1,5 +1,4 @@
 import Leaflet, { type LeafletEvent } from 'leaflet'
-import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 
 export const customMarkerIcon = Leaflet.divIcon({
@@ -20,22 +19,20 @@ export const customMarkerIcon = Leaflet.divIcon({
 })
 
 export const createHotelPopupContent = (hotel: Hotel, isHotelInCart: boolean): string => {
-  const imageUrl = imageUrlFromHotel(hotel)
-  const rate = rateStandardized(hotel)
-  const rateHtml = rate ? `<span class="hotel-popup__rate">⭐ ${rate}</span>` : ''
+  const rateHtml = hotel.rate ? `<span class="hotel-popup__rate">⭐ ${hotel.rate}</span>` : ''
   const atcButtonDisabled = isHotelInCart ? 'disabled' : ''
   const atcButtonText = isHotelInCart ? 'In Cart' : 'Book Now'
 
   return `
     <div class="hotel-popup">
       <div class="hotel-popup__image-container">
-        <img src="${imageUrl}" alt="${hotel.title}" class="hotel-popup__image" />
+        <img src="${hotel.image.url}" alt="${hotel.image.alt}" class="hotel-popup__image" />
         ${rateHtml}
       </div>
       <div class="hotel-popup__content">
         <div class="hotel-popup__head">
           <div class="hotel-popup__title-price">
-            <h3 class="hotel-popup__title">${hotel.title}</h3>
+            <h3 class="hotel-popup__title">${hotel.name}</h3>
             <div class="hotel-popup__price">
               <span class="hotel-popup__price-value">${hotel.price}</span>
               <span class="hotel-popup__price-currency">${hotel.currency}</span>
@@ -46,7 +43,7 @@ export const createHotelPopupContent = (hotel: Hotel, isHotelInCart: boolean): s
             <button class="hotel-popup__details-button" type="button">See more</button>
           </div>
         </div>
-        <p class="hotel-popup__description">${hotel.description_general}</p>
+        <p class="hotel-popup__description">${hotel.description.general}</p>
       </div>
     </div>
   `
@@ -121,7 +118,7 @@ export const openOrClosePopupOnMarkerHover = ({
               popupElem.addEventListener('mouseleave', onLeave, { once: true })
             }
           }
-        }, 300)
+        }, 30000)
       })
   }
 }

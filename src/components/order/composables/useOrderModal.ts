@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import type { Ref } from 'vue'
+
 import { useCartStore } from '@/stores'
 import { useLogger } from '@/utils/logger'
 import type { CartItem } from '@/types/global.types'
@@ -17,10 +18,15 @@ export function useOrderModal(): {
   const { cartItems, clearCart } = useCartStore()
   const { devLog } = useLogger()
 
+  function itemsSummaryText(): string {
+    const names = cartItems.map((item) => item.name).join(', ')
+    return `${cartItems.length} items: ${names}`
+  }
+
   function openOrderModal() {
     isOrderModalOpen.value = true
     cartItemsToBeOrdered.value = cartItems
-    devLog(`Order modal opened with ${cartItems.length} cart items: ${cartItems.map((item) => item.title).join(', ')}`)
+    devLog(`Order modal opened with ${itemsSummaryText()}`)
   }
 
   function closeOrderModal() {
@@ -29,7 +35,7 @@ export function useOrderModal(): {
   }
 
   function orderAll() {
-    devLog(`Ordered ${cartItems.length} cart items: ${cartItems.map((item) => item.title).join(', ')}`)
+    devLog(`Ordered ${itemsSummaryText()}`)
     clearCart()
     closeOrderModal()
   }

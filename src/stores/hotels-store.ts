@@ -4,8 +4,6 @@ import { ProviderKey } from '@/types/global.types'
 import { useNotification } from '@/components-ui/notification/useNotification'
 import type { Hotel } from '@/types/global.types'
 import type { BackendApiService } from '@/api/types/backend-api-service.types'
-import { isHotelsTypeguard } from '@/types/global.typeguard'
-import { validateHotels } from './utils/hotels-validate'
 
 export const useHotelsStore = defineStore('hotels', () => {
   const { showNotification } = useNotification()
@@ -15,8 +13,7 @@ export const useHotelsStore = defineStore('hotels', () => {
 
   const fetchHotels = async () => {
     try {
-      const hotelsResponse = await backendApiService!.hotelsService.hotels({ typeguard: isHotelsTypeguard })
-      hotels.value = validateHotels(hotelsResponse)
+      hotels.value = await backendApiService!.hotelsService.hotels()
       if (!hotels.value.length) {
         showNotification('No valid hotels data available.', { notificationType: 'warning', timer: 3000 })
       }

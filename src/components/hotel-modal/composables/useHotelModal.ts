@@ -30,7 +30,7 @@ export function useHotelModal(): {
 
   function addHotelToCart(hotel: Hotel): void {
     cartStore.addToCart(hotel)
-    devLog(`Hotel "${hotel.title}" added to cart from hotel modal.`)
+    devLog(`Hotel "${hotel.name}" added to cart from hotel modal.`)
   }
 
   const isHotelForModalInCart: ComputedRef<boolean> = computed(() =>

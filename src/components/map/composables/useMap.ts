@@ -61,7 +61,7 @@ export function useMap(options?: UseMapOptions): {
 
     const isTouchDevice: boolean = 'ontouchstart' in window || navigator.maxTouchPoints > 0
     hotels.value.forEach((hotel) => {
-      const hotelLatLng: LatLngTuple = [hotel.location_coordinates_latitude, hotel.location_coordinates_longitude]
+      const hotelLatLng: LatLngTuple = [hotel.location.coordinates.latitude, hotel.location.coordinates.longitude]
       const marker = Leaflet.marker(hotelLatLng, { icon: customMarkerIcon }).bindPopup(
         createHotelPopupContent(hotel, isHotelInCart(hotel)),
         {

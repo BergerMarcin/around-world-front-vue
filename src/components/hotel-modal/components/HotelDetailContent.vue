@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import BaseButton from '@/components-ui/button/BaseButton.vue'
-import { imageUrlFromHotel, rateStandardized } from '@/utils/hotel-details.utils'
 import type { Hotel } from '@/types/global.types'
 
 const props = defineProps<{
@@ -13,8 +12,6 @@ const emits = defineEmits<{
   (e: 'add-to-cart', hotel: Hotel): void
 }>()
 
-const imageUrl = computed(() => imageUrlFromHotel(props.hotel))
-const rate = computed(() => rateStandardized(props.hotel))
 const atcButtonText = computed(() => (props.isHotelInCart ? 'In Cart' : 'Book Now'))
 
 function addToCart() {
@@ -25,15 +22,15 @@ function addToCart() {
 <template>
   <div class="hotel-detail">
     <div class="hotel-detail__image-container">
-      <img :src="imageUrl" :alt="hotel.title" class="hotel-detail__image" />
+      <img :src="hotel.image.url" :alt="hotel.image.alt" class="hotel-detail__image" />
       <div class="hotel-detail__rate-overlay">
-        <span v-if="rate" class="hotel-detail__rate">⭐ {{ rate }}</span>
+        <span v-if="hotel.rate" class="hotel-detail__rate">⭐ {{ hotel.rate }}</span>
       </div>
     </div>
 
     <div class="hotel-detail__body">
       <div class="hotel-detail__header-container">
-        <h2 class="hotel-detail__title">{{ hotel.title }}</h2>
+        <h2 class="hotel-detail__title">{{ hotel.name }}</h2>
         <BaseButton :disabled="isHotelInCart" @click="addToCart">
           <span class="hotel-detail__atc">{{ atcButtonText }}</span>
         </BaseButton>
@@ -41,7 +38,7 @@ function addToCart() {
 
       <div class="hotel-detail__location">
         <span class="hotel-detail__location-icon">📍</span>
-        <span>{{ hotel.location_region }}, {{ hotel.location_country }}</span>
+        <span>{{ hotel.location.country }}, {{ hotel.location.region }}</span>
       </div>
 
       <div class="hotel-detail__price">
@@ -50,39 +47,39 @@ function addToCart() {
       </div>
 
       <div class="hotel-detail__sections-container">
-        <section v-if="hotel.description_general" class="hotel-detail__section">
+        <section v-if="hotel.description.general" class="hotel-detail__section">
           <h3>Overview</h3>
-          <p>{{ hotel.description_general }}</p>
+          <p>{{ hotel.description.general }}</p>
         </section>
 
-        <section v-if="hotel.description_location" class="hotel-detail__section">
+        <section v-if="hotel.description.location" class="hotel-detail__section">
           <h3>Location</h3>
-          <p>{{ hotel.description_location }}</p>
+          <p>{{ hotel.description.location }}</p>
         </section>
 
-        <section v-if="hotel.description_hotel" class="hotel-detail__section">
+        <section v-if="hotel.description.hotel" class="hotel-detail__section">
           <h3>Hotel</h3>
-          <p>{{ hotel.description_hotel }}</p>
+          <p>{{ hotel.description.hotel }}</p>
         </section>
 
-        <section v-if="hotel.description_room" class="hotel-detail__section">
+        <section v-if="hotel.description.room" class="hotel-detail__section">
           <h3>Rooms</h3>
-          <p>{{ hotel.description_room }}</p>
+          <p>{{ hotel.description.room }}</p>
         </section>
 
-        <section v-if="hotel.description_food_drinks" class="hotel-detail__section">
+        <section v-if="hotel.description.foodDrinks" class="hotel-detail__section">
           <h3>Food & Drinks</h3>
-          <p>{{ hotel.description_food_drinks }}</p>
+          <p>{{ hotel.description.foodDrinks }}</p>
         </section>
 
-        <section v-if="hotel.description_beach" class="hotel-detail__section">
+        <section v-if="hotel.description.beach" class="hotel-detail__section">
           <h3>Beach</h3>
-          <p>{{ hotel.description_beach }}</p>
+          <p>{{ hotel.description.beach }}</p>
         </section>
 
-        <section v-if="hotel.description_sport_entertainment" class="hotel-detail__section">
+        <section v-if="hotel.description.sportEntertainment" class="hotel-detail__section">
           <h3>Sport & Entertainment</h3>
-          <p>{{ hotel.description_sport_entertainment }}</p>
+          <p>{{ hotel.description.sportEntertainment }}</p>
         </section>
       </div>
     </div>
