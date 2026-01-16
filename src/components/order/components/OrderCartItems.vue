@@ -100,10 +100,14 @@ const location = (item: CartItem): string => `${item.location.country}, ${item.l
   }
 
   &__image {
-    width: 100px;
-    height: 60px;
+    width: 80px;
+    height: 50px;
     object-fit: cover;
     border-radius: 4px;
+    @media (min-width: 450px) {
+      width: 100px;
+      height: 60px;
+    }
     @media (min-width: 660px) {
       width: 150px;
       height: 90px;
