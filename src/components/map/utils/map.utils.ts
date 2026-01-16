@@ -70,13 +70,13 @@ interface LeafletEventWithOriginalEvent extends LeafletEvent {
 export const openHotelModalOnMarkerClick = ({
   marker,
   hotel,
-  isTouchDevice,
   openHotelModal,
+  isTouchDevice,
 }: {
   marker: Leaflet.Marker
   hotel: Hotel
-  isTouchDevice: boolean
   openHotelModal: (hotel: Hotel) => void
+  isTouchDevice: boolean
 }) => {
   if (!isTouchDevice) {
     marker.on('click', function (this: Leaflet.Marker, leafletEvent: LeafletEvent) {
@@ -154,17 +154,25 @@ export const addToCartOnAtcButtonClick = ({
   hotel,
   addHotelToCart,
   isHotelInCart,
+  openCartModal,
+  isTouchDevice,
 }: {
   marker: Leaflet.Marker
   hotel: Hotel
   addHotelToCart: (hotel: Hotel) => void
   isHotelInCart: (hotel: Hotel) => boolean
+  openCartModal: () => void
+  isTouchDevice: boolean
 }) => {
   const resolvedClickHandler = (event: Event) => {
     event.stopPropagation()
     addHotelToCart(hotel)
     const popup = marker.getPopup()
     popup?.setContent(createHotelPopupContent(hotel, isHotelInCart(hotel)))
+    if (isTouchDevice) {
+      marker.closePopup()
+      openCartModal()
+    }
   }
   marker.on('popupopen', function (this: Leaflet.Marker) {
     const popup = this.getPopup()

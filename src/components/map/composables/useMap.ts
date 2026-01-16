@@ -19,6 +19,7 @@ import {
   openOrClosePopupOnMarkerHover,
   updatePopupContentOnOpen,
 } from '../utils/map.utils'
+import { useCartModal } from '@/components/cart/composables/useCartModal'
 
 export interface UseMapOptions {
   containerId?: string
@@ -45,6 +46,7 @@ export function useMap(options?: UseMapOptions): {
 
   const { hotels, addHotelToCart, isHotelInCart } = useHotels()
   const { openHotelModal } = useHotelModal()
+  const { toggleOpenCartModal } = useCartModal()
 
   function bindHotelsMarkers(mapRef: Ref<Map | undefined>): void {
     if (!mapRef.value) {
@@ -74,12 +76,19 @@ export function useMap(options?: UseMapOptions): {
       openHotelModalOnMarkerClick({
         marker,
         hotel,
-        isTouchDevice,
         openHotelModal,
+        isTouchDevice,
       })
       openOrClosePopupOnMarkerHover({ marker, isTouchDevice })
       openHotelModalOnPopupClick({ marker, hotel, openHotelModal })
-      addToCartOnAtcButtonClick({ marker, hotel, addHotelToCart, isHotelInCart })
+      addToCartOnAtcButtonClick({
+        marker,
+        hotel,
+        addHotelToCart,
+        isHotelInCart,
+        openCartModal: toggleOpenCartModal,
+        isTouchDevice,
+      })
       markerClusterGroup.value!.addLayer(marker)
     })
     mapRef.value.addLayer(markerClusterGroup.value)
