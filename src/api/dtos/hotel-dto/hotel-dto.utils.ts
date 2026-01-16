@@ -19,7 +19,11 @@ export function consoleInvalidHotelDTOs(dataArray: unknown[]): void {
     }
   })
   if (hotelsNotPassed.length) {
-    consoleDevLog(LogLevel.error, 'Some hotels did not pass the typeguard:', hotelsNotPassed)
+    consoleDevLog(
+      LogLevel.error,
+      '[Fetching hotels] Some hotels did not pass the typeguard of `HotelDTO`:',
+      hotelsNotPassed,
+    )
   }
 }
 

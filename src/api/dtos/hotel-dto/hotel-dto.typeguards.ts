@@ -3,7 +3,7 @@ import { LogLevel, consoleDevLog } from '@/utils/logger'
 
 export function isHotelDTOsArrayTypeguard(data: unknown): data is HotelDTO[] {
   if (typeof data !== 'object' || data === null || !Array.isArray(data)) {
-    consoleDevLog(LogLevel.error, 'Hotels is not an array')
+    consoleDevLog(LogLevel.error, '[Fetching hotels] Hotels is not an array')
     return false
   }
   return true

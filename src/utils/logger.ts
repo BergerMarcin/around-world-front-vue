@@ -33,6 +33,9 @@ const getLevelLogs = (logArgs: unknown[]): [LogLevel: LogLevel, logs: unknown[]]
 }
 
 const consoleDevLog = (level: LogLevel, ...logs: unknown[]): void => {
+  if (!isDevLogsEnabled(logs)) {
+    return
+  }
   console[level]('[DEV LOG]: ', ...logs)
 }
 
