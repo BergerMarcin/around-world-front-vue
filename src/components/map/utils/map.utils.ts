@@ -118,7 +118,7 @@ export const openOrClosePopupOnMarkerHover = ({
               popupElem.addEventListener('mouseleave', onLeave, { once: true })
             }
           }
-        }, 30000)
+        }, 300)
       })
   }
 }
