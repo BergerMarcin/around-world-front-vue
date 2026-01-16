@@ -49,7 +49,6 @@ export const useCartModal = (): {
 
   function removeSelectedCartItems() {
     selectedCartItems.value.forEach(removeFromCart)
-    closeCartModal()
   }
 
   function orderSelectedCartItems() {
