@@ -1,4 +1,4 @@
-import type { HotelDTO } from '@/api/dto/hotel-dto/hotel-dto.type'
+import type { HotelDTO } from '@/api/dtos/hotel-dto/hotel-dto.type'
 import { LogLevel, consoleDevLog } from '@/utils/logger'
 
 export function isHotelDTOsArrayTypeguard(data: unknown): data is HotelDTO[] {

@@ -1,9 +1,9 @@
-import { isHotelDTOsArrayTypeguard } from '../dto/hotel-dto/hotel-dto.typeguards'
+import { isHotelDTOsArrayTypeguard } from '../dtos/hotel-dto/hotel-dto.typeguards'
 import type { Hotel } from '@/types/global.types'
-import type { HotelDTO } from '../dto/hotel-dto/hotel-dto.type'
+import type { HotelDTO } from '../dtos/hotel-dto/hotel-dto.type'
 import type { ApiClientOptions, ApiServiceOptions } from '../http/types/http-client.types'
 import type { ApiServiceConfig } from '../types/backend-api-service.types'
-import { consoleInvalidHotelDTOs, filterValidHotelDTOs, mapHotelDTOsToHotels } from '../dto/hotel-dto/hotel-dto.utils'
+import { consoleInvalidHotelDTOs, filterValidHotelDTOs, mapHotelDTOsToHotels } from '../dtos/hotel-dto/hotel-dto.utils'
 
 export interface HotelsServiceClient {
   hotels: (options?: ApiServiceOptions) => Promise<Hotel[]>

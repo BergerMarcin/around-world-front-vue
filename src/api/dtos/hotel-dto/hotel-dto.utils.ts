@@ -2,7 +2,7 @@ import { isHotelDTOTypeguard } from './hotel-dto.typeguards'
 import { consoleDevLog, LogLevel } from '@/utils/logger'
 import { NO_IMAGE } from '@/types/global.types'
 import type { Hotel } from '@/types/global.types'
-import type { HotelDTO } from '@/api/dto/hotel-dto/hotel-dto.type'
+import type { HotelDTO } from '@/api/dtos/hotel-dto/hotel-dto.type'
 
 export function filterValidHotelDTOs(dataArray: unknown[]): HotelDTO[] {
   return dataArray.filter(isHotelDTOTypeguard)
