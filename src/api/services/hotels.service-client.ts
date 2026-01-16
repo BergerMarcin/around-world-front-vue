@@ -16,7 +16,7 @@ export const createHotelsServiceClient = (serviceConfig: ApiServiceConfig): Hote
       const mergedOptions: ApiClientOptions = { ...options, typeguard: isHotelDTOsArrayTypeguard }
       const hotels = errorHandler(client.get<unknown[]>('/hotels', undefined, mergedOptions))
         .catch((error) => {
-          showNotification('Could not load hotels. Please try again later', { notificationType: 'error', timer: 3000 })
+          showNotification('Could not load hotels. Please try again later', { notificationType: 'error', timer: 5000 })
           return Promise.reject(error)
         })
         .then((dataArray: unknown[]): Promise<HotelDTO[]> => {

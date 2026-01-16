@@ -15,11 +15,11 @@ export const useHotelsStore = defineStore('hotels', () => {
     try {
       hotels.value = await backendApiService!.hotelsService.hotels()
       if (!hotels.value.length) {
-        showNotification('No valid hotels data available.', { notificationType: 'warning', timer: 3000 })
+        showNotification('No valid hotels data available.', { notificationType: 'warning', timer: 5000 })
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      showNotification('Could not load hotels. Please try again later', { notificationType: 'error', timer: 3000 })
+      showNotification('Could not load hotels. Please try again later', { notificationType: 'error' })
     }
   }
 
