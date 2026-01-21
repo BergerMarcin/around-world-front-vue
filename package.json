@@ -1,11 +1,19 @@
 {
   "name": "around-world-front-vue",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
+  "keywords": [
+    "around the world",
+    "travel",
+    "holidays",
+    "booking"
+  ],
+  "author": "Marcin Berger marcin.berger@wp.pl",
+  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "dev-all": "json-server db.json --watch --port 3010 & node ./scripts/serve_image_files.cjs 3012 & vite",
