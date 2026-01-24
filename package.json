@@ -8,7 +8,7 @@
   "type": "module",
   "main": "main.ts",
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": "22.21.0"
   },
   "keywords": [
     "around the world",
@@ -17,16 +17,18 @@
     "booking"
   ],
   "scripts": {
-    "dev": "vite",
-    "dev-all": "json-server db.json --watch --port 3010 & node ./scripts/serve_image_files.cjs 3012 & vite",
+    "dev": "npm run check-node && vite",
+    "dev-all": "npm run check-node && json-server db.json --watch --port 3010 & node ./scripts/serve_image_files.cjs 3012 & vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "test:unit": "vitest",
+    "preview": "npm run check-node && vite preview",
+    "test:unit": "npm run check-node && vitest",
     "test:e2e": "playwright test",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
+    "build-only": "npm run check-node && vite build",
+    "type-check": "npm run check-node && vue-tsc --build",
     "lint": "eslint . --fix --cache",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "reinstall": "npm run check-node && rm -rf node_modules && rm package-lock.json && npm install",
+    "check-node": "node scripts/check-node-version.js"
   },
   "dependencies": {
     "@types/leaflet.markercluster": "^1.5.6",
