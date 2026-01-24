@@ -1,8 +1,12 @@
 {
   "name": "around-world-front-vue",
   "version": "1.0.0",
+  "description": "'Around World' app for choosing holidays",
+  "author": "BergerMarcin <marcin.berger@wp.pl>",
   "private": true,
+  "license": "SEE LICENSE IN LICENSE",
   "type": "module",
+  "main": "main.ts",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
@@ -12,8 +16,6 @@
     "holidays",
     "booking"
   ],
-  "author": "Marcin Berger marcin.berger@wp.pl",
-  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "dev-all": "json-server db.json --watch --port 3010 & node ./scripts/serve_image_files.cjs 3012 & vite",
