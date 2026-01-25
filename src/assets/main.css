@@ -1,3 +1,4 @@
+/* Color Palette Definitions */
 :root {
   /* Basic colors */
   --aw-color-white: #fff;
@@ -125,6 +126,7 @@
   /* Vue color: hsla(160, 100%, 37%, 1); background: hsla(160, 100%, 37%, 0.2) */
 }
 
+/* Transition Global Style */
 :root {
   /* In case update transition duration, update also BaseModal.vue (i.e. closing setTimeout time) */
   --aw-transition: 0.3s ease;
