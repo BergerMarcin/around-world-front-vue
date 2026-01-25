@@ -17,18 +17,18 @@
     "booking"
   ],
   "scripts": {
-    "dev": "npm run check-node && vite",
-    "dev-all": "npm run check-node && json-server db.json --watch --port 3010 & node ./scripts/serve_image_files.cjs 3012 & vite",
-    "build": "run-p ts-check \"build-only {@}\" --",
-    "preview": "npm run check-node && vite preview",
-    "test:unit": "npm run check-node && vitest",
+    "dev": "npm run node-check && vite",
+    "dev-all": "npm run node-check && json-server db.json --watch --port 3010 & node ./scripts/serve_image_files.cjs 3012 & vite",
+    "build": "run-p node-check ts-check lint \"build-only {@}\" --",
+    "build-only": "vite build",
+    "preview": "npm run node-check && vite preview",
+    "test:unit": "npm run node-check && vitest",
     "test:e2e": "playwright test",
-    "build-only": "npm run check-node && vite build",
     "ts-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
     "format": "prettier --write src/",
-    "reinstall": "npm run check-node && rm -rf node_modules && rm package-lock.json && npm install",
-    "check-node": "node scripts/check-node-version.js"
+    "reinstall": "npm run node-check && rm -rf node_modules && rm package-lock.json && npm install",
+    "node-check": "node scripts/node-version-check.js"
   },
   "dependencies": {
     "@types/leaflet.markercluster": "^1.5.6",
